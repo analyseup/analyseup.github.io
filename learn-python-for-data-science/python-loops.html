@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <!-- GOOGLE ANALYTICS -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-147504302-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-147504302-1');
+    </script>
+
+    <title>Python While Loops & For Loops | AnalyseUp.com</title>
+    
+    <!--META TAGS-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Learn how to use For and While Loops in Python. We'll see how we can use loops to perform an action depending on conditions that we define and how to perform the same operation on several elements in Python objects like lists.">
+    <!--SOCIAL MEDIA META TAGS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--STYLESHEETS-->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link href='../css/w3.css' rel='stylesheet' type="text/css">
+    <link href='../css/page_style.css' rel='stylesheet' type='text/css'> 
+
+    <!--JAVASCRIPT FOR BURGER MENU-->
+    <script>
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+        }
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+        }
+    </script>
+</head>
+    
+<body>
+    <!--TOP BANNER-->
+
+
+    <div id="top">
+        <a href="../index.html"><img alt="Get Started with Data Science, Data Analysis and BI" id="banner" src="../img/AnalyseUp_Black(v2.2).png" ></a>
+        <div class="sep"></div>
+    </div>
+    
+
+    
+    <!--SIDE MENU-->
+    <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:250px; top:0vh;" id="mySidebar">
+        <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+        <!--NEXT BUTTON-->
+        <a href="python-loops.html" style="text-decoration: none;"><div id="next">Next</div></a>
+        <p></p>
+        <!--MENU LINKS-->
+        <h6 class="side_title">Python Basics</h6>
+            <a href="python-variables-and-data-types.html" class="w3-bar-item w3-button side_link" >Variables & Comments</a>
+            <a href="python-math-operators.html" class="w3-bar-item w3-button side_link" >Math Operators</a>
+            <a href="python-sequence-data-types.html" class="w3-bar-item w3-button side_link" >Sequence Data Types</a>
+            <a href="python-strings.html" class="w3-bar-item w3-button side_link" >Strings</a>
+            <a href="python-lists-and-tuples.html" class="w3-bar-item w3-button side_link" >Lists & Tuples</a>
+            <a href="python-comparison-and-logical-operators.html" class="w3-bar-item w3-button side_link" >Logical Operators</a>
+            <a href="python-if-else-elif.html" class="w3-bar-item w3-button side_link" >Conditional Statements</a>
+            <a id="sel" href="python-loops.html" class="w3-bar-item w3-button side_link" >Loops</a>
+        <h6 class="side_title">Data Preparation</h6>
+            <a href="" class="w3-bar-item w3-button side_link" >Coming Soon</a>
+        <h6 class="side_title">Visualisation</h6>
+            <a href="" class="w3-bar-item w3-button side_link" >Coming Soon</a>
+        <h6 class="side_title">Machine Learning</h6>
+            <a href="" class="w3-bar-item w3-button side_link" >Coming Soon</a>
+        <h6 class="side_title">Other Tutorials & Content</h6>
+            <a href="../python-data-science-reference/pandas-create-dataframe.html" class="w3-bar-item w3-button side_link" >Python Data Science Reference</a>
+            <a href="../blog/evaluation-metric-tunnel-vision.html" class="w3-bar-item w3-button side_link" >Blog</a> 
+                    <br/>
+            <br/>
+            <br/>
+            <br/>
+    </div>
+
+    <!--MAIN PAGE----->
+    <div class="w3-main" style="margin-left:250px; margin-right:200px;">
+    <div>
+            
+        <!--MENU BUTTON-->
+          <div class="h_left">
+              <button class="w3-button w3-xlarge w3-hide-large" onclick="w3_open()" style="left:0;">&#9776;</button>
+          </div>
+        
+          <!--HEADER-->
+          <div class="h_right">
+              <h1>Python For & While Loops</h1>
+          </div>
+        
+        <!--TOP AD BANNER-->
+        <div class='horizontal_ad'>
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- top_ad_banner -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:100%;height:100px;
+                        text-align:center;"
+                 data-ad-client="ca-pub-4825364639199120"
+                 data-ad-slot="9902475134"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        
+        <!--CONTENT-->
+        <div class="w3-container">
+              
+            <div class="share_buttons">
+                  <!--TWITTER FOLLOW-->
+                  <a href="https://twitter.com/AnalyseUp?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @AnalyseUp</a>
+                  <!--TWEET-->
+                  <a class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                  <!--FACEBOOK SHARE-->
+                  <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.analyseup.com/learn-python-for-data-science/python-loops.html&layout=button_count&size=small&width=77&height=20&appId" width="77" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                  
+            </div>
+            <p></p>
+             <img src="../img/learn-python-for-data-science/loops/python-loops.jpg" alt="Python Loops" class="photo" >
+
+            <p class="txt txt_pad">In python we use loops to repeat a process while a certain condition is met or to perform an action on elements in an object such as a list. There are two types of loops in Python; <b>While Loops</b> and <b>For Loops</b>. </p>
+            
+            <h3 class="txt_pad">While Loops</h3>
+            <p class="txt2">While loops enable us to set a conditional statement upon which the loop keeps running and the action we define keeps on happening. We write conditional statements in a similar way as we do for if statements but instead of performing a single action, Python keeps performing the action until the statement evaluates to False. </p>
+            <p class="txt2">Imagine you are pumping up a tyre. Until the tyre is full inflated you will keep performing the action of pumping the tyre then checking how much it is inflated and if it is not fully inflated repeating the action. We can think of a while loop in this way, where the conditional statement would be “While the tyre is not fully inflated” and the action would be to pump the tyre. Once the tyre is inflated then the statement evaluates to false and we stop pumping (the loop ends).</p>
+            <p class="txt2">Let’s see how to implement this in Python.</p>
+            <div class="wide_box code_wide_box">
+                  <div class="code_box_wide">
+                      <div class="txt2 code">
+                          <div class='code_line'>
+                              tyre_inflation_percentage = <span class=number>70</span>
+                          </div>
+                          <br/>
+                          <div class='code_line'>
+                              <span class=key_word>while</span> tyre_inflation_percentage &lt; <span class=number>100</span>:
+                          </div>
+                          <div class='code_line function1'>
+                              <span class=key_word>print</span>(<span class=string>"Pump Tyre"</span>)
+                          </div>
+                          <div class='code_line function1'>
+                              tyre_inflation_percentage += <span class=number>10</span>
+                          </div>
+                          <div class='code_line function1'>
+                              <span class=key_word>print</span>(<span class=string>"Tyre Inflation Percentage"</span>, tyre_inflation_percentage)
+                          </div>
+                      </div>
+                    </div>
+                    <div class="output_box_wide">
+                        <div class="txt2 output_txt">
+                        > Pump Tyre<br/>
+                        > Tyre Inflation Percentage 80<br/>
+                        > Pump Tyre<br/>
+                        > Tyre Inflation Percentage 90<br/>
+                        > Pump Tyre<br/>
+                        > Tyre Inflation Percentage 100<br/>
+                        </div>
+                  </div>
+            </div>
+            
+            <h3 class="txt_pad">For Loops</h3>
+            <p class="txt2">For loops allow us to perform actions or processes on a pre-defined set of elements such as a range of numbers, list, dictionary or any other object in Python. This allows us to write an algorithm that does something to a collection of elements without having to write the code to explicitly perform the action on each individual element. Let’s try this now.</p>
+            <p class="txt2">If we wanted to square all the numbers in a list without a For loop we would have to code the operation for each element individually like below.</p>
+            <div class="wide_box code_wide_box">
+                  <div class="code_box_wide">
+                      <div class="txt2 code">
+                          numbers = [<span class=number>2</span>, <span class=number>4</span>, <span class=number>6</span>, <span class=number>8</span>]<br/>
+                          <br/>
+                          <span class=key_word>print</span>(numbers[<span class=number>0</span>]**<span class=number>2</span>)<br/>
+                          <span class=key_word>print</span>(numbers[<span class=number>1</span>]**<span class=number>2</span>)<br/>
+                          <span class=key_word>print</span>(numbers[<span class=number>2</span>]**<span class=number>2</span>)<br/>
+                          <span class=key_word>print</span>(numbers[<span class=number>3</span>]**<span class=number>2)</span><br/>
+                      </div>
+                    </div>
+                    <div class="output_box_wide">
+                        <div class="txt2 output_txt">
+                        > 4<br/>
+                        > 16<br/>
+                        > 36<br/>
+                        > 64<br/>
+                        </div>
+                  </div>
+            </div>
+            
+            <p class="txt2">If we use a For loop however, we only have to code the operation once, no matter how many elements are involved. </p>
+            <div class="wide_box code_wide_box">
+                  <div class="code_box_wide">
+                      <div class="txt2 code">
+                          <span class=key_word>for</span> number <span class=skey_word>in</span> numbers:
+                          <div class='code_line function1'>
+                              <span class=key_word>print</span>(number**<span class=number>2</span>)
+                          </div>
+                      </div>
+                    </div>
+                    <div class="output_box_wide">
+                        <div class="txt2 output_txt">
+                            > 4<br/>
+                            > 16<br/>
+                            > 36<br/>
+                            > 64<br/>
+                        </div>
+                  </div>
+            </div>
+            
+            <h3 class="txt_pad">Generating Values with For Loops</h3>
+            <p class="txt2">Not only can we perform operations on existing elements, we can also use For loops to generate new elements based on some logic we define. Let’s try this by appending another 4 values to our numbers list based on the pattern of numbers that already exist.</p>
+            <div class="wide_box code_wide_box" >
+                  <div class="code_box_wide">
+                      <div class="txt2 code">
+                          <span class=key_word>for</span> i <span class=key_word>in</span> <span class=key_word>range</span>(<span class=number>3</span>,<span class=number>7</span>):
+                          <div class='code_line function1'>
+                              numbers.append(numbers[i-<span class=number>1</span>] + <span class=number>2</span>)
+                          </div>
+                          <div class='code_line function1'>
+                              <span class=key_word>print</span>(numbers) 
+                          </div>                      
+                      </div>
+                    </div>
+                    <div class="output_box_wide">
+                        <div class="txt2 output_txt">
+                            > [2, 4, 6, 8, 10, 12, 14, 16]
+                        </div>
+                  </div>
+            </div>
+            
+            <h3 class="txt_pad">Why We Use For Loops With Data</h3>
+            <p class="txt2">Now that we have explained loops you might be wondering how these might be useful in a Data science context. You will generally find For Loops more useful when working with data in Python than While Loops as we will often be working with pre-defined data structures. We will use for loops to iterate over these data structures when we want to modify the data in the same way such as multiplying the values by changing the data types of some fields. We will see more specific examples when we move onto actually doing some data science with Python. </p>
+            
+            <h3 class="txt_pad">Exercise</h3>
+            <p class="txt2">Generate a list called new_list and append the numbers 0, 10, 20, 30 and 40 using a For loop.</p>
+            
+            <a href="python-loops.html" style="text-decoration: none;"><div id="next_mobile">Next</div></a>
+            <!--AD BANNER-->
+            <div class="ad_banner">
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <ins class="adsbygoogle"
+                         style="display:block; text-align:center;"
+                         data-ad-layout="in-article"
+                         data-ad-format="fluid"
+                         data-ad-client="ca-pub-4825364639199120"
+                         data-ad-slot="8773565602"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+            </div>
+
+        </div>
+    </div>
+    </div>
+<!-------------------------------------FOOTER---------------------------------->
+<div id="footer"></div>
+
+        
+<!--SIDE AD BAR-->
+<div id="ad_bar" >
+    <!-- side_bar_1 -->
+    <ins class="adsbygoogle"
+         style="display:block; margin-top: 10vh;"
+         data-ad-client="ca-pub-4825364639199120"
+         data-ad-slot="6532762683"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+</div>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>    
+
+</body>
+</html>
