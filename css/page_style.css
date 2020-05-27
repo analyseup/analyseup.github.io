@@ -313,14 +313,14 @@ rather than side by side*/
 }
 .txt {
     font-family:"opensans";
-    font-size:16px;
+    font-size:18px;
     font-weight:100;
     color:#595959;
     text-indent: 50px;
 }
 .txt2 {
     font-family:"opensans";
-    font-size:16px;
+    font-size:18px;
     font-weight:100;
     color:#595959;
 }
@@ -330,6 +330,14 @@ rather than side by side*/
     font-size:12px;
     font-weight:100;
     color:#595959;
+}
+
+.txt_bold {
+    font-family:"opensans";
+    font-size:18px;
+    font-weight:100;
+    color:#595959;
+    /*font-weight: 700;*/
 }
 
 .txt_pad {
@@ -450,8 +458,11 @@ tr:nth-child(even) {
     vertical-align: middle;
 }
 .code{
-    font-family: "Consolas";
+    /*font-family: "Consolas";*/
+    font-family: monospace;
     overflow: scroll;
+    font-size:16px;
+    font-weight:100;
 }
 
 .code_line {
@@ -521,7 +532,11 @@ tr:nth-child(even) {
 
 .output_txt {
     color:white;
-    font-family: "Consolas";
+    /*font-family: "Consolas";*/
+    font-family: monospace;
+    overflow: scroll;
+    font-size:16px;
+    font-weight:100;
 }
 
 .output_image {
