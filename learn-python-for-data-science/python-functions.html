@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <!-- GOOGLE ANALYTICS -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-147504302-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-147504302-1');
+    </script>
+
+    <title>Python Functions | AnalyseUp.com</title>
+    
+    <!--META TAGS-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Learn how to use functions in Python as part of our Learn Python for Data Science tutorial series. See how to write a function, how to return multiple outputs and how to set default parameters. We also exlpain the difference between global and local variables.">
+    <!--SOCIAL MEDIA META TAGS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--STYLESHEETS-->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link href='../css/w3.css' rel='stylesheet' type="text/css">
+    <link href='../css/page_style.css' rel='stylesheet' type='text/css'> 
+
+    <!--JAVASCRIPT FOR BURGER MENU-->
+    <script>
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+        }
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+        }
+    </script>
+</head>
+    
+<body>
+    <!--TOP BANNER-->
+
+
+    <div id="top" style="max-width: 1080px">
+        <a href="../index.html"><img alt="Get Started with Data Science, Data Analysis and BI" id="banner" src="../img/AnalyseUp_Black(v2.2).png" ></a>
+        <div class="sep"></div>
+    </div>
+    
+
+    
+    <!--SIDE MENU-->
+    <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:250px; top:0vh;" id="mySidebar">
+        <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+        <!--NEXT BUTTON-->
+        <a href="python-functions.html" style="text-decoration: none;"><div id="next">Next</div></a>
+        <p></p>
+        <!--MENU LINKS-->
+        <h6 class="side_title">Python Basics</h6>
+            <a href="python-variables-and-data-types.html" class="w3-bar-item w3-button side_link" >Variables & Comments</a>
+            <a href="python-math-operators.html" class="w3-bar-item w3-button side_link" >Math Operators</a>
+            <a href="python-sequence-data-types.html" class="w3-bar-item w3-button side_link" >Sequence Data Types</a>
+            <a href="python-strings.html" class="w3-bar-item w3-button side_link" >Strings</a>
+            <a href="python-lists-and-tuples.html" class="w3-bar-item w3-button side_link" >Lists & Tuples</a>
+            <a href="python-comparison-and-logical-operators.html" class="w3-bar-item w3-button side_link" >Logical Operators</a>
+            <a href="python-if-else-elif.html" class="w3-bar-item w3-button side_link" >Conditional Statements</a>
+            <a href="python-loops.html" class="w3-bar-item w3-button side_link" >Loops</a>
+            <a id="sel" href="python-functions.html" class="w3-bar-item w3-button side_link" >Functions</a>
+        <h6 class="side_title">Data Preparation</h6>
+            <a href="" class="w3-bar-item w3-button side_link" >Coming Soon</a>
+        <h6 class="side_title">Visualisation</h6>
+            <a href="" class="w3-bar-item w3-button side_link" >Coming Soon</a>
+        <h6 class="side_title">Machine Learning</h6>
+            <a href="" class="w3-bar-item w3-button side_link" >Coming Soon</a>
+        <h6 class="side_title">Other Tutorials & Content</h6>
+            <a href="../python-data-science-reference/pandas-create-dataframe.html" class="w3-bar-item w3-button side_link" >Python Data Science Reference</a>
+            <a href="../blog/evaluation-metric-tunnel-vision.html" class="w3-bar-item w3-button side_link" >Blog</a> 
+                    <br/>
+            <br/>
+            <br/>
+            <br/>
+    </div>
+
+    <!--MAIN PAGE----->
+    <div class="w3-main" style="margin-left:250px; margin-right:200px; width=2px;">
+    <div>
+            
+        <!--MENU BUTTON-->
+          <div class="h_left">
+              <button class="w3-button w3-xlarge w3-hide-large" onclick="w3_open()" style="left:0;">&#9776;</button>
+          </div>
+        
+          <!--HEADER-->
+          <div class="h_right">
+              <h1>Python Functions</h1>
+          </div>
+        
+        <!--TOP AD BANNER-->
+        <div class='horizontal_ad'>
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- top_ad_banner -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:100%;height:100px;
+                        text-align:center;"
+                 data-ad-client="ca-pub-4825364639199120"
+                 data-ad-slot="9902475134"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        
+        <!--CONTENT-->
+        <div class="w3-container content_container">
+              
+            <div class="share_buttons">
+                  <!--TWITTER FOLLOW-->
+                  <a href="https://twitter.com/AnalyseUp?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @AnalyseUp</a>
+                  <!--TWEET-->
+                  <a class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                  <!--FACEBOOK SHARE-->
+                  <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.analyseup.com/learn-python-for-data-science/python-functions.html&layout=button_count&size=small&width=77&height=20&appId" width="77" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                  
+            </div>
+            <p></p>
+
+            <p class="txt txt_pad">In Python we use functions to perform some action or operation that we want to do more than once. We code the function and then call it with a single line of code whenever we need it. For example we could write a function that prints out the current date to the console. Functions can take some variables as inputs (known as parameters) to use inside the function and can also return an output after the action or operation has been performed. Functions can be as simple or as complex as required and can contain other functions (nested functions) as well as loops and if else statements.</p>
+            
+            <h3 class="txt_pad">Declaring a Function</h3>
+            <div class="wide_box code_wide_box">
+                  <div class="code_box_wide">
+                      <div class="txt2 code">
+                          <span class=key_word>def</span> <b>function_name</b>(parameter1, parameter2):<br/>
+                           <div class=function1>
+                               <span class=comment>#Some action or operation</span>
+                          </div>
+                      </div>
+                    </div>
+            </div>
+            <p class="txt">We declare a function by using the keyword def followed by the function name and then a set of brackets where we declare the parameters we wish to pass to the function (oh and let’s not forget the colon). We define the action or operation below this and just like with loops and if else statements we must ensure that the code within the function is indented.</p>
+            <p class="txt2">Finally we call the function by simply typing the function name followed by the required parameters in brackets. </p>
+            <div class="wide_box code_wide_box">
+                  <div class="code_box_wide">
+                      <div class="txt2 code">
+                          function_name(x, y)
+                      </div>
+                    </div>
+            </div>
+            <p class="txt2">Now we’ve seen the structure of a function, let’s look at some actual examples.</p>
+            
+            <h3 class="txt_pad">A Simple Function</h3>
+            <p class="txt">This function below is a simple example that takes an input called number and sets the binary variable to 1 if the value of the input is greater than zero or otherwise 0. Finally the function prints the value stored in the binary variable.</p>
+            <div class="wide_box code_wide_box">
+                  <div class="code_box_wide">
+                      <div class="txt2 code">
+                          <div class=code_line>
+                              <span class=key_word>def</span> <b>convert_to_binary</b>(number):
+                          </div>
+                          <div class="code_line function1">
+                              <span class=key_word>if</span> number > <span class=number>0</span>:
+                          </div>
+                          <div class="code_line function2">
+                              output = <span class=number>1</span>
+                          </div>
+                          <div class="code_line function1">
+                              <span class=key_word>else:</span>
+                          </div>
+                           <div class="code_line function2">
+                               output = <span class=number>0</span>
+                          </div>
+                          <div class="code_line function1">
+                              <span class=key_word>print</span>(<span class=string>"Output ="</span>, output)
+                          </div>
+                          <br/>
+                          <div class="code_line">
+                              convert_to_binary(<span class=number>10</span>)
+                          </div>
+                      </div>
+                    </div>
+                    <div class="output_box_wide">
+                        <div class="txt2 output_txt">
+                        > Output = 1<br/>
+                        </div>
+                  </div>
+            </div>
+            
+            <h3 class="txt_pad">Returning an Output</h3>
+            <p class="txt">Functions can also return an output which can then stored in a variable and referenced in the rest of our script. We do this using the <b>return</b> keyword followed by the variable name we want to return. Below we modify the previous function to return the output into a variable called binary.</p>
+            <div class="wide_box code_wide_box">
+                  <div class="code_box_wide">
+                      <div class="txt2 code">
+                          <div class=code_line>
+                              <span class=key_word>def</span> <b>convert_to_binary</b>(number):
+                          </div>
+                          <div class="code_line function1">
+                              <span class=key_word>if</span> number > <span class=number>0</span>:
+                          </div>
+                          <div class="code_line function2">
+                              output = <span class=number>1</span>
+                          </div>
+                          <div class="code_line function1">
+                              <span class=key_word>else:</span>
+                          </div>
+                           <div class="code_line function2">
+                               output = <span class=number>0</span>
+                          </div>
+                          <div class="code_line function1">
+                              <span class=key_word>return</span> output
+                          </div>
+                          <br/>
+                          <div class="code_line">
+                              binary = convert_to_binary(<span class=number>10</span>)
+                          </div>
+                          <div class="code_line">
+                              <span class=key_word>print</span>(<span class=string>"Output ="</span>, binary)
+                          </div>
+                      </div>
+                    </div>
+                    <div class="output_box_wide">
+                        <div class="txt2 output_txt">
+                        > Output = 1<br/>
+                        </div>
+                  </div>
+            </div>
+            <p class="txt2">We can in practice create as many different variables as we need by using the same function but perhaps with different parameter values. This is one of the main reasons that functions are useful and a very efficient way to write code.</p>
+            
+             <h3 class="txt_pad">Returning Multiple Outputs</h3>
+            <p class="txt">One other useful aspect of Python functions is that we’re not limited to returning just one output. Functions can return multiple outputs that can each be assigned to different variables. In the below example we pass a number to a function that returns both the square and cube of that number which we then store in separate variables.</p>
+            <div class="wide_box code_wide_box">
+                  <div class="code_box_wide">
+                      <div class="txt2 code">
+                            <div class="code_line">
+                                <span class=key_word>def</span> <b>get_square_and_cube</b>(number):
+                            </div>
+                            <div class="code_line function1">
+                                square = number ** <span class=number>2</span>
+                            </div>
+                            <div class="code_line function1">
+                                cube = number ** <span class=number>3</span>
+                            </div>
+                            <div class="code_line function1">
+                                <span class=key_word>return</span> square, cube
+                            </div>
+                            <br/>
+                            <div class="code_line">
+                                six_squared, six_cubed = get_square_and_cube(<span class=number>6</span>)
+                            </div>
+                            <div class="code_line">
+                                <span class=key_word>print</span>(six_squared)
+                            </div>
+                            <div class="code_line">
+                                <span class=key_word>print</span>(six_cubed)
+                            </div>
+                      </div>
+                    </div>
+                    <div class="output_box_wide">
+                        <div class="txt2 output_txt">
+                        > 36 <br/>
+                        > 216 <br/>
+                        </div>
+                  </div>
+            </div>
+            
+            <h3 class="txt_pad">Local & Global Variables</h3>
+            <p class="txt">Now you may have noticed that in some of the examples so far we have been assigning new variables inside functions but it’s worth pointing out that these don’t exactly behave like variables we’ve been dealing with before and that’s because they don’t have scope that ordinary variables do. If we declare a new variable in the function like we did with the square variable in the previous example, then this is called a local variable, meaning that it’s limited to being used only in the function in which it’s declared. Global variable are ones we declare in the main regular part of our code as we have seen previously and can be referenced from anywhere.</p>
+            <p class="txt2">If we try to reference a local variable outside of the function it’s declared in then we will get a NameError. Let’s try to do this now with the square variable we declared previously in the get_square_and_cube function from the example above.</p>
+                       <div class="wide_box code_wide_box">
+                  <div class="code_box_wide">
+                      <div class="txt2 code">
+                            <div class="code_line">
+                                <span class=key_word>print</span>(square)
+                            </div>
+                      </div>
+                    </div>
+                    <div class="output_box_wide">
+                        <div class="txt2 output_txt">
+                        > NameError: name 'square' is not defined<br/>
+                        </div>
+                  </div>
+            </div>
+
+            <h3 class="txt_pad">Default Parameters</h3>
+            <p class="txt">When we declare a function with parameters you are basically telling Python that it needs those parameters for the function to work correctly and therefore will error if it isn’t given the values it needs. Sometimes however, the parameter we pass will often end up being the same value and so rather than passing it every time, we can set the parameter to a default value that means if we don’t pass a value when we call the function then Python will just use this instead. Of course, when we do this we still have the option to pass a different value if required when we call the function.</p>
+            <p class="txt2">In the example below we have created a function that calculates the tax for a given value. As most of the time we believe the tax rate we need is 20% then we have set the default value to 0.2 for tax_rate by assigning it in the parameter list when we declare the function. Now when we call the function with only the value parameter then Python will use 0.2 for the tax_rate.</p>
+            <div class="wide_box code_wide_box">
+                  <div class="code_box_wide">
+                      <div class="txt2 code">
+                            <div class="code_line">
+                                <span class=key_word>def</span> <b>tax_calculator</b>(value, tax_rate=<span class=number>0.2</span>):
+                            </div>
+                            <div class="code_line function1">
+                                tax = value * tax_rate
+                            </div>
+                            <div class="code_line function1">
+                                <span class=key_word>return</span> tax
+                            </div>
+                            <br/>
+                            <div class="code_line">
+                                my_tax = tax_calculator(<span class=number>1000</span>)
+                            </div>
+                            <div class="code_line">
+                                <span class=key_word>print</span>(my_tax)
+                            </div>
+                      </div>
+                    </div>
+                    <div class="output_box_wide">
+                        <div class="txt2 output_txt">
+                        > 200.0
+                        </div>
+                  </div>
+            </div>
+            <p class="txt2">If we decide on a different tax_rate, such as 0.3, then we can still pass this value as a parameter and Python will use this instead.</p>
+            <div class="wide_box code_wide_box">
+                  <div class="code_box_wide">
+                      <div class="txt2 code">
+                            <div class="code_line">
+                                my_tax = tax_calculator(<span class=number>1000</span>, <span class=number>0.3</span>)
+                            </div>
+                            <div class="code_line">
+                                <span class=key_word>print</span>(my_tax)
+                            </div>
+                      </div>
+                    </div>
+                    <div class="output_box_wide">
+                        <div class="txt2 output_txt">
+                        > 300.0
+                        </div>
+                  </div>
+            </div>
+            
+            <h3 class="txt_pad">Exercises</h3>
+            <p class="txt2">1. Write a function that takes two strings as inputs and returns the concatenation of the two strings to a new variable.</p>
+            <p class="txt2">2. Write a function that takes a list of numbers containing the numbers 1 to 4 as an input and returns a new list that that contains the square of all the numbers in the input list. (Hint: You could use a For loop here).</p>
+            
+            <h3 class="txt_pad">Solutions</h3>
+            <div class="wide_box code_wide_box">
+                  <div class="code_box_wide">
+                      <div class="txt2 code">
+                            <div class="code_line">
+                                <span class=comment>#Exercise 1</span>
+                            </div>
+                            <div class="code_line">
+                                <span class=key_word>def</span> <b>string_concatenator</b>(string1, string2):
+                            </div>
+                            <div class="code_line function1">
+                                concatenated_string = string1 + string2
+                            </div>
+                            <div class="code_line function1">
+                                <span class=key_word>return</span> concatenated_string
+                            </div>
+                            <br/>
+                            <div class="code_line">
+                                <span class=key_word>print</span>(string_concatenator(<span class=string>'Concatenated '</span>, <span class=string>'string'</span>))
+                            </div>
+                      </div>
+                    </div>
+                    <div class="output_box_wide">
+                        <div class="txt2 output_txt">
+                        > Concatenated string
+                        </div>
+                  </div>
+            </div>
+            
+            <div class="wide_box code_wide_box">
+                  <div class="code_box_wide">
+                      <div class="txt2 code">
+                            <div class="code_line">
+                                <span class=comment>#Exercise 2</span>
+                            </div>
+                            <div class="code_line">
+                                <span class=key_word>def</span> <b>square_list</b>(list_of_numbers):
+                            </div>
+                            <div class="code_line function1">
+                                square_numbers = []
+                            </div>  
+                            <div class="code_line function1">
+                                <span class=key_word>for</span> number in list_of_numbers:
+                            </div>       
+                            <div class="code_line function2">
+                                square_numbers.append(number ** <span class=number>2</span>)
+                            </div>         
+                            <div class="code_line function1">
+                                <span class=key_word>return</span> square_numbers
+                            </div>      
+                            <br/>
+                            <div class="code_line">
+                                numbers = [<span class=number>1</span>, <span class=number>2</span>, <span class=number>3</span>, <span class=number>4</span>]
+                            </div>                 
+                            <div class="code_line">
+                                numbers_squared = square_list(numbers)
+                            </div>                      
+                            <div class="code_line">
+                                <span class=key_word>print</span>(numbers_squared)
+                            </div>
+                      </div>
+                    </div>
+                    <div class="output_box_wide">
+                        <div class="txt2 output_txt">
+                        > [1, 4, 9, 16]
+                        </div>
+                  </div>
+            </div>
+            
+            <a href="python-functions.html" style="text-decoration: none;"><div id="next_mobile">Next</div></a>
+            <!--AD BANNER-->
+            <div class="ad_banner">
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <ins class="adsbygoogle"
+                         style="display:block; text-align:center;"
+                         data-ad-layout="in-article"
+                         data-ad-format="fluid"
+                         data-ad-client="ca-pub-4825364639199120"
+                         data-ad-slot="8773565602"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+            </div>
+
+        </div>
+    </div>
+    </div>
+<!-------------------------------------FOOTER---------------------------------->
+<div id="footer"></div>
+
+        
+<!--SIDE AD BAR-->
+<div id="ad_bar" >
+    <!-- side_bar_1 -->
+    <ins class="adsbygoogle"
+         style="display:block; margin-top: 10vh;"
+         data-ad-client="ca-pub-4825364639199120"
+         data-ad-slot="6532762683"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+</div>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>    
+
+</body>
+</html>
