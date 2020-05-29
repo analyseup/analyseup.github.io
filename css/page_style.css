@@ -163,6 +163,10 @@ a{
 }
 /*CONTENT*/
 
+.content_container {
+    max-width: 800px;
+}
+
 .ad_banner {
     width:100%;
     height: auto;
