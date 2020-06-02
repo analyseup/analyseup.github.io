@@ -49,6 +49,7 @@
     position:relative;
     overflow: hidden;
     display: inline-block;
+    vertical-align: bottom;
 
 }
 .tutorial_header {
