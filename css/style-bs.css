@@ -1,0 +1,114 @@
+/*DESKTOP*/
+
+#analyseup-logo{
+    width:35%;
+}
+
+#analyseup-tagline{
+    padding-top:10px;
+    color:grey;
+    font-size:17px; 
+    letter-spacing: 3px;
+    font-family:"arial";
+}
+
+
+.analyseup-tutorial-card{
+    height:410px;
+    background-color: #E8E8E8;
+    border: 1px solid #F5F5F5;
+    border-radius: 10px;
+    width: 280px;
+    padding: 5px 5px 5px 5px;
+
+}
+
+.analyseup-tutorial-image {
+    box-shadow: 10px 7px 10px darkgrey;
+    height:32%;
+    width:93%;
+    overflow: hidden;
+    margin-top:2%;
+    margin-left:2%;
+    margin-right:2%; 
+}
+ 
+#analyseup-info-card ul {
+    padding-left:0;
+}
+
+#analyseup-info-card ul li {
+    list-style: none;
+    margin:auto;
+}
+
+.analyseup-tutorial-title h2 {
+    font-size: 24px;
+}
+
+.analyseup-tutorial-description{
+    height:140px;
+    margin: 2px 2px 2px 2px;
+}
+
+.analyseup-link-button{
+    background-color: #ff7700ff;
+    width: 90%;
+    border: 0px;
+    height: 50px;
+    font-size: 15px;
+    /*box-shadow: 10px 7px 10px darkgrey;*/
+}
+
+.btn-success:hover {
+    background-color: black;
+}
+
+#analyseup-info-card{
+    background-color: white;
+    border: 0px;
+    border-radius: 0px;
+}
+
+.txt {
+    font-family: "helvetica";
+    font-size:15px;
+    letter-spacing: 1px;
+    color:dimgrey;
+
+}
+
+/*TABLET*/
+@media (max-width: 992px) 
+{
+    #analyseup-logo{
+        width:60%;
+    }  
+    #analyseup-tagline{
+        font-size:17px; 
+        letter-spacing: 2.5px;
+        padding-right: 15%;
+        padding-left: 15%;
+        line-height: 20px;
+    }
+    .analyseup-tutorial-card{
+        margin: auto;
+        width:320px;
+        height: 420px;
+    }
+    .analyseup-tutorial-image {
+        width:295px;
+    }
+    .analyseup-tutorial-description{
+        height:110px;
+        margin: 5%;
+    }
+       
+}
+
+/*MOBILE*/
+@media (max-width: 576px) {
+    #analyseup-tagline{
+        font-size:15px; 
+    }   
+}
