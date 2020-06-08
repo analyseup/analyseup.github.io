@@ -61,7 +61,9 @@
 }
 
 .btn-success:hover {
-    background-color: black;
+    /*background-color: black;*/
+    background-color: #ff7700ff;
+    box-shadow: 10px 7px 10px darkgrey;
 }
 
 #analyseup-info-card{
