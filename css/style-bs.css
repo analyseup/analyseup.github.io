@@ -17,14 +17,14 @@
     height:410px;
     background-color: #E8E8E8;
     border: 1px solid #F5F5F5;
-    border-radius: 10px;
+    border-left: 3px solid #ff7700ff;
+    /*border-radius: 10px;*/
     width: 280px;
     padding: 5px 5px 5px 5px;
+    border-radius: 0px 5px 5px 0px;
 
 }
-.analyseup-tutorial-card h2{
-    color: dimgray;
-}
+
 .analyseup-tutorial-image {
     box-shadow: 10px 7px 10px darkgrey;
     height:32%;
@@ -33,7 +33,9 @@
     margin-top:2%;
     margin-left:2%;
     margin-right:2%; 
+    border-radius: 5px
 }
+ 
 #analyseup-info-card ul {
     padding-left:0;
 }
@@ -45,6 +47,7 @@
 
 .analyseup-tutorial-title h2 {
     font-size: 24px;
+    color: black;
 }
 
 .analyseup-tutorial-description{
@@ -55,9 +58,10 @@
 .analyseup-link-button{
     background-color: #ff7700ff;
     width: 90%;
-    border: 0px;
+    border: 10px  #ff7700ff;
     height: 50px;
     font-size: 15px;
+    border-radius: 40px
     /*box-shadow: 10px 7px 10px darkgrey;*/
 }
 
@@ -71,13 +75,15 @@
     background-color: white;
     border: 0px;
     border-radius: 0px;
+    border-left: 2px solid #ff7700ff;
+    padding-top: 45px;
 }
 
 .txt {
     font-family: "helvetica";
     font-size:15px;
     letter-spacing: 1px;
-    color:dimgrey;
+    color:black;
 
 }
 
