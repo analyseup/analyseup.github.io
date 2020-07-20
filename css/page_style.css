@@ -583,6 +583,15 @@ tr:nth-child(even) {
     margin:auto;
 }
 
+.output_image_50 {
+    display:block;
+    width: 50%;
+    height: 100%;
+    position:relative;
+    top:20px;
+    margin:auto;
+}
+
 .output_image_40 {
     display:block;
     width: 40%;
@@ -590,6 +599,15 @@ tr:nth-child(even) {
     position:relative;
     top:20px;
     margin:auto;
+}
+
+.jupyter_image{
+    display:block;
+    width: 80%;
+    height: auto;
+    position:relative;
+    top:2px;
+    margin:none;
 }
 
 /*PHOTOS*/
@@ -873,11 +891,21 @@ input {
         .output_image_60 {
             width: 100%;
         }
+
+        .output_image_50 {
+            width: 100%;
+        }
         .output_image_40 {
             width: 100%;
         }
         .output_image_80 {
             width: 100%;
+        }
+
+        .jupyter_image{
+            width: 100%;
+            top:5px;
+            margin:auto;
         }
 
         .output_txt {
