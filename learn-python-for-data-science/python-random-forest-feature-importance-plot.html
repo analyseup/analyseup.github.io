@@ -103,8 +103,7 @@
                   
             </div>
             <p></p>
-             <img src="../img/learn-python-for-data-science/feature-importance/feature-importance.jpg" alt="Random Forest Feature Importance Plot" class="photo" >
-            <p class="txt2"  style="text-align: center;">Photo by Patricia Serna (@sernarial) on Unsplash</p>
+             
             <p class="txt txt_pad">A big part of analysing our models post training is whether the features we used for training actually helped in predicting the target and by how much. Tree based machine learning algorithms such as <b>Random Forest</b> and <b>XGBoost</b> come with a <b>feature importance</b> attribute that outputs an array containing a value between 0 and 100 for each feature representing how useful the model found each feature in trying to predict the target. This gives us the opportunity to analyse what contributed to the accuracy of the model and what features were just noise. With this information we can check that the model is working as we would expect, discard features if we feel they are not adding any value and use it to hypothesis about new features that we could engineer for another iteration of the model.
             </p>
             <p class="txt2">However, the problem with the feature importance attribute is that the output is an unlabelled, unordered array of values so looking at it in isolation won’t tell us much about our model. So we are going to take this array and create a function that plots the feature importance data on a labelled and ordered Seaborn bar chart that will give us a more intuitive understanding of which features our model has deemed useful.</p>
