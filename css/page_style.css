@@ -409,6 +409,10 @@ rather than side by side*/
     margin-left: 4%;
     margin-right: 4%;
 }
+
+.analyseup-link{
+    color:#ff7700ff;
+}
 /*TABLES*/
 table {
   font-family: arial, sans-serif;

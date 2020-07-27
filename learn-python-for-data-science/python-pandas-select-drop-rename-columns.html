@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <!-- GOOGLE ANALYTICS -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-147504302-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-147504302-1');
+    </script>
+
+    <title>Select, Drop & Rename Columns with Pandas - AnalyseUp.com</title>
+    
+    <!--META TAGS-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Learn how to select, drop and rename columns using Python Pandas. Learn multiple ways to do each task and when to use each.">
+    <!--SOCIAL MEDIA META TAGS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--STYLESHEETS-->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link href='../css/w3.css' rel='stylesheet' type="text/css">
+    <link href='../css/page_style.css' rel='stylesheet' type='text/css'> 
+
+    <!--JAVASCRIPT FOR BURGER MENU-->
+    <script>
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+        }
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+        }
+    </script>
+</head>
+    
+<body>
+    <!--TOP BANNER-->
+
+
+    <div id="top" style="max-width: 1080px">
+        <a href="../index.html"><img alt="Get Started with Data Science, Data Analysis and BI" id="banner" src="../img/AnalyseUp_Black(v2.2).png" ></a>
+        <div class="sep"></div>
+    </div>
+    
+
+    
+    <!--SIDE MENU-->
+    <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:250px; top:0vh;" id="mySidebar">
+        <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+        <!--NEXT BUTTON-->
+        <a href="python-pandas-join-dataframes.html" style="text-decoration: none;"><div id="next">Next</div></a>
+        <p></p>
+        <!--MENU LINKS-->
+        <h6 class="side_title">Python Basics</h6>
+            <a href="python-variables-and-data-types.html" class="w3-bar-item w3-button side_link" >Variables & Comments</a>
+            <a href="python-math-operators.html" class="w3-bar-item w3-button side_link" >Math Operators</a>
+            <a href="python-sequence-data-types.html" class="w3-bar-item w3-button side_link" >Sequence Data Types</a>
+            <a href="python-strings.html" class="w3-bar-item w3-button side_link" >Strings</a>
+            <a href="python-lists-and-tuples.html" class="w3-bar-item w3-button side_link" >Lists & Tuples</a>
+            <a href="python-comparison-and-logical-operators.html" class="w3-bar-item w3-button side_link" >Logical Operators</a>
+            <a href="python-if-else-elif.html" class="w3-bar-item w3-button side_link" >Conditional Statements</a>
+            <a href="python-loops.html" class="w3-bar-item w3-button side_link" >Loops</a>
+            <a href="python-functions.html" class="w3-bar-item w3-button side_link" >Functions</a>
+        <h6 class="side_title">Data Wrangling</h6>
+            <a href="python-pandas-introduction.html" class="w3-bar-item w3-button side_link" >Pandas Introduction</a>
+            <a href="python-pandas-importing-data.html" class="w3-bar-item w3-button side_link" >Importing Data</a>
+            <a id="sel"  href="python-pandas-select-drop-rename-columns.html" class="w3-bar-item w3-button side_link" >Select, Drop & Rename</a>
+            <a href="python-pandas-join-dataframes.html" class="w3-bar-item w3-button side_link" >Joining Data</a>
+        <h6 class="side_title">Visualisation</h6>
+            <a href="" class="w3-bar-item w3-button side_link" >Coming Soon</a>
+        <h6 class="side_title">Machine Learning</h6>
+            <a href="" class="w3-bar-item w3-button side_link" >Coming Soon</a>
+        <h6 class="side_title">Other Tutorials & Content</h6>
+            <a href="../python-data-science-reference/pandas-create-dataframe.html" class="w3-bar-item w3-button side_link" >Python Data Science Reference</a>
+            <a href="../blog/evaluation-metric-tunnel-vision.html" class="w3-bar-item w3-button side_link" >Blog</a> 
+                    <br/>
+            <br/>
+            <br/>
+            <br/>
+    </div>
+
+    <!--MAIN PAGE----->
+    <div class="w3-main" style="margin-left:250px; margin-right:200px;">
+    <div>
+            
+        <!--MENU BUTTON-->
+          <div class="h_left">
+              <button class="w3-button w3-xlarge w3-hide-large" onclick="w3_open()" style="left:0;">&#9776;</button>
+          </div>
+        
+          <!--HEADER-->
+          <div class="h_right">
+              <h1>Select, Drop & Rename Columns with Pandas</h1>
+          </div>
+        
+        <!--CONTENT-->
+        <div class="w3-container content_container">
+            <!--TOP AD BANNER-->
+            <div class='horizontal_ad'>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- top_ad_banner -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:100%;height:100px;
+                            text-align:center;"
+                     data-ad-client="ca-pub-4825364639199120"
+                     data-ad-slot="9902475134"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+            <div class="share_buttons">
+                  <!--TWITTER FOLLOW-->
+                  <a href="https://twitter.com/AnalyseUp?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @AnalyseUp</a>
+                  <!--TWEET-->
+                  <a class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                  <!--FACEBOOK SHARE-->
+                  <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.analyseup.com/learn-python-for-data-science/python-if-else-elif.html&layout=button_count&size=small&width=77&height=20&appId" width="77" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                  
+            </div>
+            <p></p>
+
+            <h2 class="txt_pad">Select Columns</h2>
+            <p class="txt">Often we will only want to use only certain columns from our data frames. The simplest way to select a subset of columns is to simply pass a list of the column names you want to select in between brackets.</p>
+            <p class="txt2">In the orders data frame we have a few “unnamed” columns that don’t contain any data.</p>
+            <img class="output_image_80" src="../img/learn-python-for-data-science/pandas-select-drop-rename/orders-before-select.png">
+            <p class="txt2 txt_pad">Let’s select the columns that are useful by passing a list to the data frame.</p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            orders = orders[[<span class=string>'Order_No'</span>, <span class=string>'Order_Date'</span>, <span class=string>'Customer_ID'</span>, <span class=string>'PromoID'</span>, <span class=string>'ProductID'</span>]]
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            <img class="output_image_50" src="../img/learn-python-for-data-science/pandas-select-drop-rename/orders-after-select.png">
+            <p class="txt2 txt_pad">While the above method is perhaps the simplest method it is not suitable in all cases. What this does is create a view of the original data frame meaning that it’s not a separate data frame and any operations you perform on the view will also be performed on the full original data frame.</p>
+            <p class="txt2">Using the above method is fine if you no longer require the original data frame but can be problematic if you need to use both data frames and want to perform different operations on each. For this purpose we can use Loc operations.</p>
+            <h3 class="txt_pad">Loc</h3>
+            <p class="txt2">Loc operations work by declaring both the rows and columns we want to select but we are going to use it to just select the columns. In order to select columns using loc we pass either a list of column names or a column name range. Unlike the previous method, loc operations create unique data frames which means that we can use both the original and new data frame. Let's see how to do the same column selection we did above using the Loc operation.</p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            <span class=comment>#Using a list</span>
+                        </div>
+                        <div class="code_line">
+                            orders = orders.loc[:,[<span class=string>'Order_No'</span>, <span class=string>'Order_Date'</span>, <span class=string>'Customer_ID'</span>, <span class=string>'PromoID'</span>, <span class=string>'ProductID'</span>]]
+                        </div>
+                        <div class="code_line">
+                            <span class=comment>#Using a range</span>
+                        </div>
+                        <div class="code_line">
+                            orders = orders.loc[:,<span class=string>'Order_No'</span>:<span class=string>'ProductID'</span>]
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            <p class="txt2">iLoc works in the same way as Loc but instead of declaring columns names you declare column numbers starting at 0 for the first column.</p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            <span class=comment>#Using a list</span>
+                        </div>
+                        <div class="code_line">
+                            orders = orders.loc[:,[<span class=number>0</span>, <span class=number>1</span>, <span class=number>2</span>, <span class=number>3</span>, <span class=number>4</span>]]
+                        </div>
+                        <div class="code_line">
+                            <span class=comment>#Using a range</span>
+                        </div>
+                        <div class="code_line">
+                            orders = orders.loc[:,<span class=number>0</span>:<span class=number>5</span>]
+                        </div>
+                        <div class="code_line">
+                            <span class=comment>#Note: The last digit of the range is not inclusive so these two operations are equivilant</span>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            
+            <h2 class="txt_pad">Drop Columns</h2>
+            <p class="txt2">Pandas drop function allows us to remove either columns or rows from a data frame. We do this by passing a list of column names (or row names) we want to get rid of. In the customers data frame like the orders data frame we have an unnamed column that doesn’t contain any information.</p>
+            <img class="output_image_50" src="../img/learn-python-for-data-science/pandas-select-drop-rename/customers-before-drop.png">
+            <p class="txt2 txt_pad">Let’s use the drop function to get rid of the column.</p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            customers.drop([<span class=string>'Unnamed: 0'</span>],axis=<span class=number>1</span>,inplace=<span class=key_word>True</span>)
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            <img class="output_image_40" src="../img/learn-python-for-data-science/pandas-select-drop-rename/customers-after-drop.png">
+            <p class="txt2 txt_pad">Here we have passed in two parameters that we will encounter in several other Pandas functions. The <b>axis</b> parameter refers to which direction Pandas will attempt to perform an operation. In other words are you referring to columns or rows. Axis=0 is the default and refers to the row wise operations while axis=1 refers to column wise operations. In the example above we wanted to drop a column so we wanted Pandas to look across the columns for a column with the name given name.</p>
+            <p class="txt2">The <b>inplace</b> parameter tells Pandas to either perform the operation on the existing data frame (True) or return a copy of the data frame (False). This is set to False by default but in the above example we wanted to apply this to the data frame in question.</p>
+            <p class="txt2">Anytime we only want a subset of columns we can either select the columns we need or drop the columns we don’t need. Which method you use will ultimately depend on your particular use case and is often dictated by how many columns you want to keep or drop. For example, if you have 100 columns and want to keep 99 of them then it’s easier to drop the one column you don’t want rather than select the 99 that you do.</p>
+
+            <h2 class="txt_pad">Rename Columns</h2>
+            <p class="txt">Pandas also provides a function to rename either columns or rows. We do this by using the rename function and passing a python dictionary where the key is the current name and the value is the new name.</p>
+            <p class="txt">{‘Current_Name’ : ‘New_Name’}</p>
+            <p class="txt2">In the orders data frame the column that contains the product ID is called ‘ProductID’ however in the other data frames it’s called ‘Product_ID’. Let’s rename the orders data frame column to match the other data frames.</p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            orders.rename({<span class=string>'ProductID'</span>:<span class=string>'Product_ID'</span>},axis=<span class=number>1</span>,inplace=<span class=key_word>True</span>)
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            <p class="txt2">As you can see, the rename operation also requires the axis parameter to tell it we are renaming a column and we can use the inplace parameter to perform the operation directly on the existing orders data frame.</p>
+            <p class="txt2">Previously we have seen that you can view column names by calling .columns on a data frame. You can actually also reassign this if you want to rename a large number of columns. Let’s do this now to rename all the columns in the returns data frame.</p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            returns.columns = [<span class=string>'Order_No'</span>, <span class=string>'Product_ID'</span>,<span class=string>'Reason'</span>]
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            
+            <a href="python-pandas-join-dataframes.html" style="text-decoration: none;"><div id="next_mobile">Next</div></a>
+            <!--AD BANNER-->
+            <div class="ad_banner">
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <ins class="adsbygoogle"
+                         style="display:block; text-align:center;"
+                         data-ad-layout="in-article"
+                         data-ad-format="fluid"
+                         data-ad-client="ca-pub-4825364639199120"
+                         data-ad-slot="8773565602"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+            </div>
+
+        </div>
+    </div>
+    </div>
+<!-------------------------------------FOOTER---------------------------------->
+<div id="footer"></div>
+
+        
+<!--SIDE AD BAR-->
+<div id="ad_bar" >
+    <!-- side_bar_1 -->
+    <ins class="adsbygoogle"
+         style="display:block; margin-top: 10vh;"
+         data-ad-client="ca-pub-4825364639199120"
+         data-ad-slot="6532762683"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+</div>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>    
+
+</body>
+</html>

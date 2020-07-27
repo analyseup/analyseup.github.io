@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <!-- GOOGLE ANALYTICS -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-147504302-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-147504302-1');
+    </script>
+
+    <title>Importing Data with Pandas - AnalyseUp.com</title>
+    
+    <!--META TAGS-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Learn how to import data into dataframes using Pandas. You'll see how to work with CSV and Excel files and how to change the way Pandas reads the data. We'll also use Pandas function to start exploring the data once it's imported.">
+    <!--SOCIAL MEDIA META TAGS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--STYLESHEETS-->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link href='../css/w3.css' rel='stylesheet' type="text/css">
+    <link href='../css/page_style.css' rel='stylesheet' type='text/css'> 
+
+    <!--JAVASCRIPT FOR BURGER MENU-->
+    <script>
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+        }
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+        }
+    </script>
+</head>
+    
+<body>
+    <!--TOP BANNER-->
+
+
+    <div id="top" style="max-width: 1080px">
+        <a href="../index.html"><img alt="Get Started with Data Science, Data Analysis and BI" id="banner" src="../img/AnalyseUp_Black(v2.2).png" ></a>
+        <div class="sep"></div>
+    </div>
+    
+
+    
+    <!--SIDE MENU-->
+    <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:250px; top:0vh;" id="mySidebar">
+        <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+        <!--NEXT BUTTON-->
+        <a href="python-pandas-select-drop-rename-columns.html" style="text-decoration: none;"><div id="next">Next</div></a>
+        <p></p>
+        <!--MENU LINKS-->
+        <h6 class="side_title">Python Basics</h6>
+            <a href="python-variables-and-data-types.html" class="w3-bar-item w3-button side_link" >Variables & Comments</a>
+            <a href="python-math-operators.html" class="w3-bar-item w3-button side_link" >Math Operators</a>
+            <a href="python-sequence-data-types.html" class="w3-bar-item w3-button side_link" >Sequence Data Types</a>
+            <a href="python-strings.html" class="w3-bar-item w3-button side_link" >Strings</a>
+            <a href="python-lists-and-tuples.html" class="w3-bar-item w3-button side_link" >Lists & Tuples</a>
+            <a href="python-comparison-and-logical-operators.html" class="w3-bar-item w3-button side_link" >Logical Operators</a>
+            <a href="python-if-else-elif.html" class="w3-bar-item w3-button side_link" >Conditional Statements</a>
+            <a href="python-loops.html" class="w3-bar-item w3-button side_link" >Loops</a>
+            <a href="python-functions.html" class="w3-bar-item w3-button side_link" >Functions</a>
+        <h6 class="side_title">Data Wrangling</h6>
+            <a href="python-pandas-introduction.html" class="w3-bar-item w3-button side_link" >Pandas Introduction</a>
+            <a id="sel"  href="python-pandas-importing-data.html" class="w3-bar-item w3-button side_link" >Importing Data</a>
+            <a href="python-pandas-select-drop-rename-columns.html" class="w3-bar-item w3-button side_link" >Select, Drop & Rename</a>
+            <a href="python-pandas-join-dataframes.html" class="w3-bar-item w3-button side_link" >Joining Data</a>
+        <h6 class="side_title">Visualisation</h6>
+            <a href="" class="w3-bar-item w3-button side_link" >Coming Soon</a>
+        <h6 class="side_title">Machine Learning</h6>
+            <a href="" class="w3-bar-item w3-button side_link" >Coming Soon</a>
+        <h6 class="side_title">Other Tutorials & Content</h6>
+            <a href="../python-data-science-reference/pandas-create-dataframe.html" class="w3-bar-item w3-button side_link" >Python Data Science Reference</a>
+            <a href="../blog/evaluation-metric-tunnel-vision.html" class="w3-bar-item w3-button side_link" >Blog</a> 
+                    <br/>
+            <br/>
+            <br/>
+            <br/>
+    </div>
+
+    <!--MAIN PAGE----->
+    <div class="w3-main" style="margin-left:250px; margin-right:200px;">
+    <div>
+            
+        <!--MENU BUTTON-->
+          <div class="h_left">
+              <button class="w3-button w3-xlarge w3-hide-large" onclick="w3_open()" style="left:0;">&#9776;</button>
+          </div>
+        
+          <!--HEADER-->
+          <div class="h_right">
+              <h1>Importing Data with Pandas</h1>
+          </div>
+        
+        <!--CONTENT-->
+        <div class="w3-container content_container">
+            <!--TOP AD BANNER-->
+            <div class='horizontal_ad'>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- top_ad_banner -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:100%;height:100px;
+                            text-align:center;"
+                     data-ad-client="ca-pub-4825364639199120"
+                     data-ad-slot="9902475134"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+            <div class="share_buttons">
+                  <!--TWITTER FOLLOW-->
+                  <a href="https://twitter.com/AnalyseUp?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @AnalyseUp</a>
+                  <!--TWEET-->
+                  <a class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                  <!--FACEBOOK SHARE-->
+                  <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.analyseup.com/learn-python-for-data-science/python-if-else-elif.html&layout=button_count&size=small&width=77&height=20&appId" width="77" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                  
+            </div>
+            <p></p>
+            <p class="txt2 txt_pad">In this part we’ll be importing data from several csv and Excel files into Pandas dataframes. We’ll also inspect the data stored in the dataframes, looking at the shape of the data, the data types, column names and if there are any missing values.</p>
+            
+            <h2 class="txt_pad">Import Pandas Library</h2>
+            <p class="txt2">Before we import any data we need to import the Pandas library where the convention is to import as pd.</p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            <span class=key_word>import</span> pandas <span class=key_word>as</span> pd
+                        </div>
+                    </div>
+                  </div>
+            </div>
+
+            <h2 class="txt_pad">Importing CSV Files</h2>
+            <p class="txt2">We are going to import 4 csv and 1 Excel file that we will process and blend together. The files are products.csv, orders.csv, returns.xlsx, promotions.csv and customer.csv. They can be downloaded <a class = "txt"  href='../Data/LargeRainforestData.zip'>here</a> if you want to code along.</p>
+            <p class="txt2">Let’s start by importing the products csv file. In order to do this we use Pandas read_csv function and pass the path to the file (which in our case is stored in the data folder) as a parameter. We store any Pandas data structures inside variables as we can with any other Python object.</p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            products = pd.read_csv(<span class=string>'data/products.csv'</span>)
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            <p class="txt2"><i>(Note: the path extends either the location of the script or the working directory depending on how you’ve setup your environment. You can always use the full path if needed)</i></p>
+
+            <h2 class="txt_pad">Read_CSV Parameters</h2>
+            <p class="txt2">Pandas let’s us pass several parameters into the read_csv function that change how Pandas imports the csv file. We do this by specifying the parameter in-between the brackets as we would for any regular Python function. We have already passed one parameter telling Pandas where the file we want to import is located. Other useful parameters include the following:</p>
+            <p class="txt2">
+                <ul class="txt2">
+                    <li><b>use_cols</b>: Pandas will only import the columns passed through this parameter</li>
+                    <li><b>sep</b>: As standard read_csv uses a comma as the separator between columns but other values can be defined using the sep parameter.</li>
+                    <li><b>skip_rows</b>: If your file contains rows at the start that you don’t want then you can pass the skip_rows parameter to remove a specified number of rows.</li>
+                    <li><b>parse_dates</b>: If any columns of data are dates then read_csv will as default recognise these as strings but we can use the parse_dates parameter to tell Pandas which columns to import as dates.</li>
+                </ul>
+            </p>
+            <p class="txt2">The full details on all parameters that can be used with the read_csv function can be found in the Pandas documentation <a class = "txt"  href='https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html'>here</a>.
+            </p>
+            <p class="txt2">We are now going to import the orders csv file. If you open the file in a spreadsheet or text editor you will notice that there is a column called Order_Date that contains, as you’d expect the date of the order. Given that we know that this field is a date, let’s use the parse_dates parameter when importing the csv to immediately convert the column to a datetime data type.</p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            orders = pd.read_csv(<span class=string>'data/orders.csv'</span>, parse_dates=[<span class=string>'Order_Date'</span>])
+                        </div>
+                    </div>
+                  </div>
+            </div>
+
+            <h2 class="txt_pad">Importing Excel Files</h2>
+            <p class="txt2">The files we’ve imported so far have been csv files but the returns file is in Excel format. We can import this in a similar way by using the read_excel function in Pandas. We import in the data in the same way, by passing the path of the file as a parameter in the function but we can also pass in an additional parameter to tell Pandas which sheet in the excel file our data is stored in. If we don’t pass a value for the sheet parameter then Pandas will just assume we want to import the data in the first sheet it finds.</p>
+            <p class="txt2">Let’s import the returns.xlsx file using the read_excel function. The data we require is stored in the “Returns” sheet so we’ll declare this with the sheet_name parameter.</p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            returns = pd.read_excel(<span class=string>'data/Returns.xlsx'</span>, sheet_name=<span class=string>'Returns'</span>)
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            <p class="txt2">We can also pass in many of the same parameters described above for the read_csv function. The full list can be found in the Pandas documentation <a class = "txt"  href='https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_excel.html'>here</a>.</p>
+
+            <h2 class="txt_pad">Exploring DataFrames</h2>
+            <p class="txt2">Now we’ve imported some data, let’s explore the products dataframe in more detail.</p>
+            <h3 class="txt_pad">Shape</h3>
+            <p class="txt2">First let’s look at the shape of the data, that is how many columns and rows of data do we have. For this we call the shape function on the products dataframe.</p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            products.shape
+                        </div>
+                    </div>
+                </div>
+             </div>
+            <img class="jupyter_image" src="../img/learn-python-for-data-science/pandas-importing-data/pandas-shape.png">
+            <p class="txt2">The output of this tells us that we have 50 rows of data and 6 columns.</p>
+            <h3 class="txt_pad">Head</h3>
+            <p class="txt2">Let’s actually looks at some example rows of data by calling the head function.</p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            products.head()
+                        </div>
+                    </div>
+                  </div>
+             </div>
+             <img class="jupyter_image"  src="../img/learn-python-for-data-science/pandas-importing-data/pandas-head.png">
+             <p class="txt2 txt_pad">By default, calling head will show us the first 5 rows of the dataframe but you can place any number greater than zero inbetween the brackets to return more examples.</p>
+             <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            <span class=comment>#Returns the first 20 rows of the dataframe</span>
+                        </div>
+                        <div class="code_line">
+                            products.head(20)
+                        </div>
+                    </div>
+                  </div>
+             </div>
+             <h3 class="txt_pad">Info</h3>
+             <p class="txt2">So we know the shape of the dataframe and have seen some examples of what is in there so let’’s not get some more information about the dataframe by using the info function to get some metadata.</p>
+             <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            products.info()
+                        </div>
+                    </div>
+                  </div>
+             </div>
+             <img class="jupyter_image"  src="../img/learn-python-for-data-science/pandas-importing-data/pandas-info.png">
+             <p class="txt2 txt_pad">Here we can see the name, how many rows contain non-null values and the data type for each column. We can see from this that all rows in all columns contain values so we have no missing data. We can also see that we have four numerical columns and two listed with object data types. While this may seem ambiguous, object data types often just means it’s a column that contains string as technically these are objects.</p>
+             <h3 class="txt_pad">Column Names & Dtypes</h3>
+             <p class="txt2">If we wanted to just find the column names or date types of a dataframe we can simply use the columns function or dtypes function rather than calling the info function.
+            </p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            products.columns
+                        </div>
+                    </div>
+                  </div>
+             </div>
+             <img class="jupyter_image"  src="../img/learn-python-for-data-science/pandas-importing-data/pandas-columns.png">
+             <p class="txt_pad"></p>
+             <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            products.dtypes
+                        </div>
+                    </div>
+                  </div>
+             </div>
+             <img class="jupyter_image" src="../img/learn-python-for-data-science/pandas-importing-data/pandas-dtypes.png">
+
+            <h2 class="txt_pad">Exercises</h2>
+            <p class="txt2">Import the promotions and customer csv files using the read_csv function. Once you’ve imported them try exploring the dataframes to get a feel for the data that’s in there.
+            </p>
+            
+            <a href="python-pandas-select-drop-rename-columns.html" style="text-decoration: none;"><div id="next_mobile">Next</div></a>
+            <!--AD BANNER-->
+            <div class="ad_banner">
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <ins class="adsbygoogle"
+                         style="display:block; text-align:center;"
+                         data-ad-layout="in-article"
+                         data-ad-format="fluid"
+                         data-ad-client="ca-pub-4825364639199120"
+                         data-ad-slot="8773565602"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+            </div>
+
+        </div>
+    </div>
+    </div>
+<!-------------------------------------FOOTER---------------------------------->
+<div id="footer"></div>
+
+        
+<!--SIDE AD BAR-->
+<div id="ad_bar" >
+    <!-- side_bar_1 -->
+    <ins class="adsbygoogle"
+         style="display:block; margin-top: 10vh;"
+         data-ad-client="ca-pub-4825364639199120"
+         data-ad-slot="6532762683"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+</div>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>    
+
+</body>
+</html>
