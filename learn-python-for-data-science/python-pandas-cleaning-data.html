@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <!-- GOOGLE ANALYTICS -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-147504302-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-147504302-1');
+    </script>
+
+    <title>Cleaning Data with Python and Pandas - AnalyseUp.com</title>
+    
+    <!--META TAGS-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Learn how to clean data with Python and Pandas. We'll see how to convert data types, handle missing data, replace values and remove duplicates.">
+    <!--SOCIAL MEDIA META TAGS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--STYLESHEETS-->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link href='../css/w3.css' rel='stylesheet' type="text/css">
+    <link href='../css/page_style.css' rel='stylesheet' type='text/css'> 
+
+    <!--JAVASCRIPT FOR BURGER MENU-->
+    <script>
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+        }
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+        }
+    </script>
+</head>
+    
+<body>
+    <!--TOP BANNER-->
+
+
+    <div id="top" style="max-width: 1080px">
+        <a href="../index.html"><img alt="Get Started with Data Science, Data Analysis and BI" id="banner" src="../img/AnalyseUp_Black(v2.2).png" ></a>
+        <div class="sep"></div>
+    </div>
+    
+
+    
+    <!--SIDE MENU-->
+    <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:250px; top:0vh;" id="mySidebar">
+        <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+        <!--NEXT BUTTON-->
+        <a href="python-pandas-cleaning-data.html" style="text-decoration: none;"><div id="next">Next</div></a>
+        <p></p>
+        <!--MENU LINKS-->
+        <h6 class="side_title">Python Basics</h6>
+            <a href="python-variables-and-data-types.html" class="w3-bar-item w3-button side_link" >Variables & Comments</a>
+            <a href="python-math-operators.html" class="w3-bar-item w3-button side_link" >Math Operators</a>
+            <a href="python-sequence-data-types.html" class="w3-bar-item w3-button side_link" >Sequence Data Types</a>
+            <a href="python-strings.html" class="w3-bar-item w3-button side_link" >Strings</a>
+            <a href="python-lists-and-tuples.html" class="w3-bar-item w3-button side_link" >Lists & Tuples</a>
+            <a href="python-comparison-and-logical-operators.html" class="w3-bar-item w3-button side_link" >Logical Operators</a>
+            <a href="python-if-else-elif.html" class="w3-bar-item w3-button side_link" >Conditional Statements</a>
+            <a href="python-loops.html" class="w3-bar-item w3-button side_link" >Loops</a>
+            <a href="python-functions.html" class="w3-bar-item w3-button side_link" >Functions</a>
+        <h6 class="side_title">Data Wrangling</h6>
+            <a href="python-pandas-introduction.html" class="w3-bar-item w3-button side_link" >Pandas Introduction</a>
+            <a href="python-pandas-importing-data.html" class="w3-bar-item w3-button side_link" >Importing Data</a>
+            <a href="python-pandas-select-drop-rename-columns.html" class="w3-bar-item w3-button side_link" >Select, Drop & Rename</a>
+            <a href="python-pandas-join-dataframes.html" class="w3-bar-item w3-button side_link" >Joining Data</a>
+            <a id="sel"  href="python-pandas-cleaning-data.html" class="w3-bar-item w3-button side_link" >Cleaning Data</a>
+        <h6 class="side_title">Visualisation</h6>
+            <a href="" class="w3-bar-item w3-button side_link" >Coming Soon</a>
+        <h6 class="side_title">Machine Learning</h6>
+            <a href="" class="w3-bar-item w3-button side_link" >Coming Soon</a>
+        <h6 class="side_title">Other Tutorials & Content</h6>
+            <a href="../python-data-science-reference/pandas-create-dataframe.html" class="w3-bar-item w3-button side_link" >Python Data Science Reference</a>
+            <a href="../blog/evaluation-metric-tunnel-vision.html" class="w3-bar-item w3-button side_link" >Blog</a> 
+                    <br/>
+            <br/>
+            <br/>
+            <br/>
+    </div>
+
+    <!--MAIN PAGE----->
+    <div class="w3-main" style="margin-left:250px; margin-right:200px;">
+    <div>
+            
+        <!--MENU BUTTON-->
+          <div class="h_left">
+              <button class="w3-button w3-xlarge w3-hide-large" onclick="w3_open()" style="left:0;">&#9776;</button>
+          </div>
+        
+          <!--HEADER-->
+          <div class="h_right">
+              <h1>Cleaning Data with Python and Pandas</h1>
+          </div>
+        
+        <!--CONTENT-->
+        <div class="w3-container content_container">
+            <!--TOP AD BANNER-->
+            <div class='horizontal_ad'>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- top_ad_banner -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:100%;height:100px;
+                            text-align:center;"
+                     data-ad-client="ca-pub-4825364639199120"
+                     data-ad-slot="9902475134"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+            <div class="share_buttons">
+                  <!--TWITTER FOLLOW-->
+                  <a href="https://twitter.com/AnalyseUp?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @AnalyseUp</a>
+                  <!--TWEET-->
+                  <a class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                  <!--FACEBOOK SHARE-->
+                  <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.analyseup.com/learn-python-for-data-science/python-pandas-cleaning-data.html&layout=button_count&size=small&width=77&height=20&appId" width="77" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                  
+            </div>
+            <p></p>
+            
+            <p class="txt2">Cleaning data often involves some combination of the following:
+            </p>
+            <ul class="txt2">
+                <li>Converting Data Types</li>
+                <li>Dealing with missing or NULL values</li>
+                <li>Replacing Values</li>
+                <li>Removing Duplicates</li>
+            </ul>
+            <p class="txt2">We do this primarily to make sure that the data is correct and that any future operations we perform on the data will work as we expect. It’s actually rare to work with a data set that’s clean from the get go and data scientists and analysts often end up spending a large amount of time cleaning before making further use of the data.
+            </p>
+            <h2 class="txt_pad">Converting Data Types</h2>
+            <p class="txt">When we work with Pandas or other libraries in the Python data science stack, certain operations can only be performed on certain data types i.e. we can’t divide by a string. It’s therefore essential that each column is set to contain the correct data type for it’s intended use.
+            </p>
+            <p class="txt2">There are a number of data types you can use in Pandas but commonly we use integers, floats (decimal numbers), strings (in Pandas they are named as object data types) and datetimes. When you import data into Pandas, it will make an educated guess on what the data type is but, for various reasons, we will often want to change those data types. 
+            </p>
+            <p class="txt2">If you call the dtypes command on our data frame you will see the columns names with corresponding data types and you will see that Order_No, Customer_ID and Product_ID are listed as integers. 
+            </p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            df.dtypes
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            <img class="output_image_40" alt="df-data-types" src="../img/learn-python-for-data-science/pandas-cleaning-data/pandas-before-converting.png">
+            <p class="txt2 txt_pad">This makes sense as they’re made up solely of numbers so Pandas logically assumes that’s what they are. However, in our case we need know that these represent identifiers and therefore act as names rather than to express some value. It’s possible that in future these could contain letters as well as numbers so let’s convert these to strings in order to future proof our processing.
+            </p>
+
+            <h4 class="txt_pad">Converting Strings, Integers & Floats</h4>
+            <p class="txt2">To convert to integers, floats and strings we can use the astype Pandas operation and pass in the data type we want to convert to as a parameter.
+            </p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            df[column_name] = df[column_name].astype(data type)
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            <p class="txt2">We can pass in int for integer, float for float and str for strings so let’s convert the Order_No, Customer_ID and Product_ID columns to strings by passing str as a parameter.
+            </p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            df[[<span class=string>'Order_No'</span>,<span class=string>'Customer_ID'</span>,<span class=string>'Product_ID'</span>]] = df[[<span class=string>'Order_No'</span>,<span class=string>'Customer_ID'</span>,<span class=string>'Product_ID'</span>]].astype(<span class=key_word>str</span>)
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            <img class="output_image_40" alt="df-data-types" src="../img/learn-python-for-data-science/pandas-cleaning-data/pandas-after-converting.png">
+
+            <h4 class="txt_pad">Converting DateTime</h4>
+            <p class="txt2">When we imported our orders csv we already specified that the Order_Date column should be imported as a date time. If we didn’t specify this when we read the csv then Pandas would have assumed the column contains strings. You can however still convert a columns to date time after import using the Pandas to_datetime operation. The code below shows how we would do this if Order_Date had been imported as a string:</p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            df[<span class=string>'Order_Date'</span>] = pd.to_datetime(df[<span class=string>'Order_Date'</span>])
+                        </div>
+                    </div>
+                  </div>
+            </div>
+
+            <h2 class="txt_pad">Handling NaNs</h2>
+            <p class="txt">We will often see NANs in our data to represent missing values. These can occur for various reasons: sometimes because they’re simply missing in the raw data or because they are the result of non-matching rows from left or right outer joins. How we deal with this will depend on the particular use case and vary depending on what we are trying to achieve but Pandas comes with two ways to handle them out of the box. The fillna operation allows us to fill the NaNs with a value we define and can be applied to a whole data frame or a subset of columns.</p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            df.fillna(value)
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            <p class="txt2">In our data frame, the Discount column contains NaNs because some of the orders did not have a discount applied and therefore those orders did not appear in the original promotions data source. This resulted in NaNs when the two data sources were joined through a left outer join.</p>
+            <img class="output_image" alt="df-data-types" src="../img/learn-python-for-data-science/pandas-cleaning-data/pandas-before-fillna.png">
+            <p class="txt2 txt_pad">Let’s fill the NaNs in this column with zeros.</p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            df[<span class=string>'Discount'</span>].fillna(<span class=number>0</span>,inplace=<span class=key_word>True</span>)
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            <img class="output_image" alt="df-data-types" src="../img/learn-python-for-data-science/pandas-cleaning-data/pandas-after-fillna.png">
+            <p class="txt2 txt_pad">This will enable any calculations or aggregations we do with the Discount value to perform correctly as often operations involving NaNs just result in other NaNs. Again here, we perform the operation directly on the data frame by using the inplace=True parameter.</p>
+            <p class="txt2">In addition to fillna, Pandas also has the dropna operation for when the presence of NaNs indicates a row that is not needed. This operation simply drops any rows that contain NaNs and can be applied like this:</p>
+            <p class="txt2">df.dropna(inplace=True) </p>
+            <p class="txt2">We can also use it to drop any columns with NaNs by using the axis=1 parameter.</p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            df[<span class=string>'Discount'</span>].fillna(<span class=number>0</span>,inplace=<span class=key_word>True</span>)
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            <p class="txt2">df.dropna(inplace=True, axis=1)</p>
+
+            <h2 class="txt_pad">Replacing Values</h2>
+            <p class="txt">The fillna operation can be thought of as a special case of the Pandas Replace operation. The Replace operation simply replaces any value in your data frame that you specify with another value that you define.</p>
+            <p class="txt2">In the PromoID column we can see that some of the values are “nan” (which is a string rather than a genuine NaN).</p>
+            <img class="output_image" alt="df-data-types" src="../img/learn-python-for-data-science/pandas-cleaning-data/pandas-before-replace.png">
+            <p class="txt2 txt_pad">The reason we don’t get a genuine ID in there is because that order was not ordered as part of a promo so let’s use the replace operation to replace “nan” with the string “Full Price”.</p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            df[<Span class=string>'PromoID'</Span>].replace(to_replace=<span class=string>'nan'</span>,value=<span class=string>'Full Price'</span>,inplace=<span class=key_word>True</span>)
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            <img class="output_image" alt="df-data-types" src="../img/learn-python-for-data-science/pandas-cleaning-data/pandas-after-replace.png">
+            <p class="txt2 txt_pad">This will enable us to differentiate our data based on whether a product was ordered as part of a promotion or at full price. Once again, we perform the operation directly on the DataFrame as we don’t want to keep the original values.</p>
+
+            <h2 class="txt_pad">Removing Duplicates</h2>
+            <p class="txt">Finally we are going to remove any duplicate rows in our data frame. Duplicate rows can cause double counting and misrepresentation of the values in our data. To solve this Pandas provides us with the drop_duplicates operation. Every row in our data frame should be unique so we can perform the operation over the whole data frame like this: </p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            df.drop_duplicates(inplace=<span class=key_word>True</span>)
+                        </div>
+                    </div>
+                  </div>
+            </div>
+
+            <h2 class="txt_pad">A Final Note on Cleaning Data</h2>
+            <p class="txt">A key thing to remember is that cleaning data can be a tricky task and can cause issues if not done correctly. Often this requires some prior investigation of the data and some knowledge of the subject the data is describing but is something that you build an instinct for with experience. Although we haven’t done it here, sometimes cleaning individual data frames is necessary before joining them together. Every data set is different and will require a different set of steps when cleaning so it’s important to spend some time to carefully perform this part of processing and to understand how different errors in your data will affect the task you intend to use it for.
+            </p>
+
+            <h2 class="txt_pad">Exercise</h2>
+            <p class="txt">If you look through our data frame you will see we still have one column that needs cleaning. As an exercise, explore the data frame, identify what needs to be cleaned and apply a solution.
+            </p>
+
+            <h2 class="txt_pad">Solution</h2>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            df[<span class=string>'Reason'</span>].fillna(<span class=string>'Not Returned'</span>,inplace=<span class=key_word>True</span>)
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            <p class="txt">We needed to fill the NaNs in the Reason column. We have chosen to fill with a “Not Returned” string so that we can differentiate between returned and non-returned orders but any string that would do the same job is acceptable. 
+            </p>
+
+            
+            <a href="python-pandas-cleaning-data.html" style="text-decoration: none;"><div id="next_mobile">Next</div></a>
+            <!--AD BANNER-->
+            <div class="ad_banner">
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <ins class="adsbygoogle"
+                         style="display:block; text-align:center;"
+                         data-ad-layout="in-article"
+                         data-ad-format="fluid"
+                         data-ad-client="ca-pub-4825364639199120"
+                         data-ad-slot="8773565602"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+            </div>
+
+        </div>
+    </div>
+    </div>
+<!-------------------------------------FOOTER---------------------------------->
+<div id="footer"></div>
+
+        
+<!--SIDE AD BAR-->
+<div id="ad_bar" >
+    <!-- side_bar_1 -->
+    <ins class="adsbygoogle"
+         style="display:block; margin-top: 10vh;"
+         data-ad-client="ca-pub-4825364639199120"
+         data-ad-slot="6532762683"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+</div>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>    
+
+</body>
+</html>
