@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <!-- GOOGLE ANALYTICS -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-147504302-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-147504302-1');
+    </script>
+
+    <title>Pandas Add New Column to Dataframe - AnalyseUp.com</title>
+    
+    <!--META TAGS-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Learn how to add new columns in Pandas Dataframes. You'll see how to create new columns by calculating existing columns and by making use of functions and Pandas Apply operation.">
+    <!--SOCIAL MEDIA META TAGS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--STYLESHEETS-->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link href='../css/w3.css' rel='stylesheet' type="text/css">
+    <link href='../css/page_style.css' rel='stylesheet' type='text/css'> 
+
+    <!--JAVASCRIPT FOR BURGER MENU-->
+    <script>
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+        }
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+        }
+    </script>
+</head>
+    
+<body>
+    <!--TOP BANNER-->
+
+
+    <div id="top" style="max-width: 1080px">
+        <a href="../index.html"><img alt="Get Started with Data Science, Data Analysis and BI" id="banner" src="../img/AnalyseUp_Black(v2.2).png" ></a>
+        <div class="sep"></div>
+    </div>
+    
+
+    
+    <!--SIDE MENU-->
+    <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:250px; top:0vh;" id="mySidebar">
+        <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+        <!--NEXT BUTTON-->
+        <a href="python-pandas-add-new-column-to-dataframe.html" style="text-decoration: none;"><div id="next">Next</div></a>
+        <p></p>
+        <!--MENU LINKS-->
+        <h6 class="side_title">Python Basics</h6>
+            <a href="python-variables-and-data-types.html" class="w3-bar-item w3-button side_link" >Variables & Comments</a>
+            <a href="python-math-operators.html" class="w3-bar-item w3-button side_link" >Math Operators</a>
+            <a href="python-sequence-data-types.html" class="w3-bar-item w3-button side_link" >Sequence Data Types</a>
+            <a href="python-strings.html" class="w3-bar-item w3-button side_link" >Strings</a>
+            <a href="python-lists-and-tuples.html" class="w3-bar-item w3-button side_link" >Lists & Tuples</a>
+            <a href="python-comparison-and-logical-operators.html" class="w3-bar-item w3-button side_link" >Logical Operators</a>
+            <a href="python-if-else-elif.html" class="w3-bar-item w3-button side_link" >Conditional Statements</a>
+            <a href="python-loops.html" class="w3-bar-item w3-button side_link" >Loops</a>
+            <a href="python-functions.html" class="w3-bar-item w3-button side_link" >Functions</a>
+        <h6 class="side_title">Data Wrangling</h6>
+            <a href="python-pandas-introduction.html" class="w3-bar-item w3-button side_link" >Pandas Introduction</a>
+            <a href="python-pandas-importing-data.html" class="w3-bar-item w3-button side_link" >Importing Data</a>
+            <a href="python-pandas-select-drop-rename-columns.html" class="w3-bar-item w3-button side_link" >Select, Drop & Rename</a>
+            <a href="python-pandas-join-dataframes.html" class="w3-bar-item w3-button side_link" >Joining Data</a>
+            <a href="python-pandas-cleaning-data.html" class="w3-bar-item w3-button side_link" >Cleaning Data</a>
+            <a id="sel"  href="python-pandas-add-new-column-to-dataframe.html" class="w3-bar-item w3-button side_link" >Add Columns</a>
+        <h6 class="side_title">Visualisation</h6>
+            <a href="" class="w3-bar-item w3-button side_link" >Coming Soon</a>
+        <h6 class="side_title">Machine Learning</h6>
+            <a href="" class="w3-bar-item w3-button side_link" >Coming Soon</a>
+        <h6 class="side_title">Other Tutorials & Content</h6>
+            <a href="../python-data-science-reference/pandas-create-dataframe.html" class="w3-bar-item w3-button side_link" >Python Data Science Reference</a>
+            <a href="../blog/evaluation-metric-tunnel-vision.html" class="w3-bar-item w3-button side_link" >Blog</a> 
+                    <br/>
+            <br/>
+            <br/>
+            <br/>
+    </div>
+
+    <!--MAIN PAGE----->
+    <div class="w3-main" style="margin-left:250px; margin-right:200px;">
+    <div>
+            
+        <!--MENU BUTTON-->
+          <div class="h_left">
+              <button class="w3-button w3-xlarge w3-hide-large" onclick="w3_open()" style="left:0;">&#9776;</button>
+          </div>
+        
+          <!--HEADER-->
+          <div class="h_right">
+              <h1>Pandas - Add New Columns to DataFrames</h1>
+          </div>
+        
+        <!--CONTENT-->
+        <div class="w3-container content_container">
+            <!--TOP AD BANNER-->
+            <div class='horizontal_ad'>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- top_ad_banner -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:100%;height:100px;
+                            text-align:center;"
+                     data-ad-client="ca-pub-4825364639199120"
+                     data-ad-slot="9902475134"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+            <div class="share_buttons">
+                  <!--TWITTER FOLLOW-->
+                  <a href="https://twitter.com/AnalyseUp?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @AnalyseUp</a>
+                  <!--TWEET-->
+                  <a class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                  <!--FACEBOOK SHARE-->
+                  <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.analyseup.com/learn-python-for-data-science/python-pandas-add-new-column-to-dataframe.html&layout=button_count&size=small&width=77&height=20&appId" width="77" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                  
+            </div>
+            <p></p>
+            
+            <p class="txt">To add new columns to dataframes with Pandas we have a couple of options depending on how simple or complex the calculations are for the new columns.
+            </p>
+            <h2 class="txt_pad">Simple Method</h2>
+            <p class="txt">The simple method involves us declaring the new column name and the value or calculation to use. This can be a constant of any pandas data type or a value calculated from other columns in the data frame.
+            </p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            df[new_column_name] = column_A + column_B
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            <h2 class="txt_pad">Pandas Apply Function</h2>
+            <p class="txt">For more complex column creation such as creating columns using functions, we can use the apply operation.
+            </p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            df[new_column_name] = df.apply(function_name, axis=<span class=number>1</span>)
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            <p class="txt2">When we use the apply function and the axis=1 parameter we effectively pass each row of a DataFrame into the function that we declare in the parameters. If we build a custom function then we can use any combination of existing columns to create a new column and the logic inside the function can be as complex as required.
+            </p>
+
+            <h2 class="txt_pad">Pandas Apply with Lambda</h2>
+            <p class="txt2">As an extension to the apply method we can also use Python’s lambda operation in place of a regular function as we can in any Python script. This is especially useful if the logic in our function only requires the use of 1 existing column to calculate value in our new column.
+                <div class="wide_box code_wide_box">
+                    <div class="code_box_wide">
+                        <div class="txt2 code">
+                            <div class="code_line">
+                                df[new_columns_name] = df[column_A].apply(<span class=key_word>lambda</span> x: <span class=number>1</span> <span class=key_word>if</span> x >= <span class=number>0</span> <span class=key_word>else</span> <span class=number>0</span>)
+                            </div>
+                        </div>
+                      </div>
+                </div>
+
+            <h2 class="txt_pad">Adding Columns in Practice</h2>
+            <p class="txt2">In our data frame we have information about what was ordered and about the different costs and discounts associated with each order and product but a lot of the key financial and operational metrics are missing such as: 
+            </p>
+            <ul class="txt2">
+                <li>Promotional Discount Value</li>
+                <li>Gross Sales Value (Product price minus discount value)</li>
+                <li>Net Sales Value (Gross sales value after returns)</li>
+                <li>Net Products Sold</li>
+                <li>Profit</li>
+            </ul>
+            <p class="txt2">Let’s create some new columns that calculate these metrics.
+            </p>
+
+            <h4 class="txt_pad">Discount Value</h4>
+            <p class="txt2">We have the discount rate but we don’t know what that is in monetary terms. Let’s create a new column called Discount_Value that gives us this:
+            </p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            df[<span class=string>'Discount_Value'</span>] = df[<span class=string>'Retail_Price'</span>] * df[<span class=string>'Discount'</span>]
+                        </div>
+                    </div>
+                  </div>
+            </div>
+
+            <img class="output_image" alt="pandas-add-column-discount-value" src="../img/learn-python-for-data-science/pandas-add-column/pandas-add-column-discount-value.png">
+
+            <h4 class="txt_pad">Gross Sales Value</h4>
+            <p class="txt2">Now that we know the discount value that was applied to each order, we can calculate the gross sale value for each product that was ordered. This is the money the business received from the customer and the calculation needed here is simply the retail price minus the discount value.
+            </p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            df[<span class=string>'Gross_Sale_Value'</span>] = df[<span class=string>'Retail_Price'</span>] - df[<span class=string>'Discount_Value'</span>]
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            <img class="output_image" alt="pandas-add-column-gross-sale-value" src="../img/learn-python-for-data-science/pandas-add-column/pandas-add-column-gross-sale-value.png">
+            <h4 class="txt_pad">Net Sales Value</h4>
+            <p class="txt2">This gives us some important sales information but doesn’t give us the full picture as we also need to know the net sales value which is the sales value once returns have been accounted for. In other words if a customer has kept the product then the net sales value is equal to the gross sales value but if the product was returned then the net sales value is zero as the business would have refunded the sale value back to the customer.
+            </p>
+            <p class="txt2">Whenever a customer kept a product the reason column contains a “Not Returned” string.
+            </p>
+            <img class="output_image" alt="pandas-add-column-reason" src="../img/learn-python-for-data-science/pandas-add-column/pandas-add-column-reason.png">
+            <p class="txt2 txt_pad">So to get the net sales value we are going to have to define a function that returns a zero when the reason columns is equal to “Not Returned” but otherwise returns the gross sales value.
+            </p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            <span class=key_word>def</span> <b>get_net_sale_value</b>(df_row):
+                        </div>
+                        <div class="code_line">
+                            <div class=function1>
+                            <span class=key_word>if</span> df_row[<span class=string>'Reason'</span>] == <span class=string>'Not Returned'</span>:
+                            </div>
+                        </div>
+                        <div class="code_line">
+                            <div class=function2>
+                                net_sale_value = df_row[<span class=string>'Gross_Sale_Value'</span>]
+                            </div>
+                        </div>
+                        <div class="code_line">
+                            <div class=function1>
+                            <span class=key_word>else</span>:
+                            </div>
+                        </div>
+                        <div class="code_line">
+                            <div class=function2>
+                                net_sale_value = <span class=number>0</span>
+                            </div>
+                        </div>
+                        <div class="code_line">
+                            <div class=function1>
+                            <span class=key_word>return</span> net_sale_value
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            <p class="txt2">Finally we use the apply operation to pass each row of our data frame to the function for it derive and then return the net sales value.
+            </p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            df[<span class=string>'Net_Sale_Value'</span>] = df.apply(get_net_sale_value, axis=<span class=number>1</span>)
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            <img class="output_image" alt="pandas-add-column-net-sales-value" src="../img/learn-python-for-data-science/pandas-add-column/pandas-add-column-net-sale-value.png">
+
+            <h4 class="txt_pad">Net Units Sold</h4>
+            <p class="txt">We can use similar logic to the function we created to calculate net sales value to create a column that tells us the number of net units units sold (the number of units after returns have been subtracted). As we only have one product for each row this will either be a 1 or 0 but having this column will allow us to sum the net number of products sold when we aggregate our data. Let’s use lambda to create this column:
+            </p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            df[<span class=string>'Net_Units_Sold'</span>] = df[<span class=string>'Reason'</span>].apply(<span class=key_word>lambda</span> x: <span class=number>1</span> <span class=key_word>if</span> x == <span class=string>'Not Returned'</span> <span class=key_word>else</span> <span class=number>0</span>)
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            <img class="output_image" alt="pandas-add-column-net-units-sold" src="../img/learn-python-for-data-science/pandas-add-column/pandas-add-column-net-units-sold.png">
+
+            <h2 class="txt_pad">Exercises</h2>
+            <p class="txt">For our final final few columns we need to know some information about how much profit (sale value after costs to the business has been calculated) was made for each product the business sold and how many products were returned.
+            </p>
+            <ol class=txt2>
+                <li>Create a column called “Profit” that contains the net profit for each product sold which is Gross Sales Value minus Cost and then multiplied by the Net Units Sold</li>
+                <li>Create a column called “Profit_Margin” that tells us the percentage of the sale value that the business keeps as profit. The calculation for this should be the profit divided by the gross sales value</li>
+                <li>Finally let’s create a column that contains the number of units returned for each row. Hint: You can use a similar method to that used in creating Net_Units_Sold column</li>
+            </ol>
+
+            <h2 class="txt_pad">Solutions</h2>
+            <h4 class="txt_pad">Exercise 1</h4>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            df[<span class=string>'Profit'</span>] = (df[<span class=string>'Gross_Sale_Value'</span>] - df[<span class=string>'Cost'</span>]) * df[<span class=string>'Net_Units_Sold'</span>]
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            <img class="output_image" alt="pandas-add-column-profit" src="../img/learn-python-for-data-science/pandas-add-column/pandas-add-column-profit.png">
+            <p class="txt2 txt_pad">Note: We need to multiply by net units sold to make sure that we see zero profit for returned products. We could have equally used the apply method and a function to more explicitly calculate this.
+            <h4 class="txt_pad">Exercise 2</h4>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            df[<span class=string>'Profit_Margin'</span>] = df[<span class=string>'Profit'</span>] / df[<span class=string>'Gross_Sale_Value'</span>]
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            <img class="output_image" alt="pandas-add-column-profit-margin" src="../img/learn-python-for-data-science/pandas-add-column/pandas-add-column-profit-margin.png">
+            <h4 class="txt_pad">Exercise 3</h4>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            df[<span class=string>'Returned_Units'</span>] = df[<span class=string>'Reason'</span>].apply(<span class=key_word>lambda</span> x: <span class=number>0</span> <span class=key_word>if</span> x == <span class=string>'Not Returned'</span> <span class=key_word>else</span> <span class=number>1</span>)
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            <img class="output_image" alt="pandas-add-column-returned-units" src="../img/learn-python-for-data-science/pandas-add-column/pandas-add-column-returned-units.png">
+            
+            <a href="python-pandas-cleaning-data.html" style="text-decoration: none;"><div id="next_mobile">Next</div></a>
+            <!--AD BANNER-->
+            <div class="ad_banner">
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <ins class="adsbygoogle"
+                         style="display:block; text-align:center;"
+                         data-ad-layout="in-article"
+                         data-ad-format="fluid"
+                         data-ad-client="ca-pub-4825364639199120"
+                         data-ad-slot="8773565602"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+            </div>
+
+        </div>
+    </div>
+    </div>
+<!-------------------------------------FOOTER---------------------------------->
+<div id="footer"></div>
+
+        
+<!--SIDE AD BAR-->
+<div id="ad_bar" >
+    <!-- side_bar_1 -->
+    <ins class="adsbygoogle"
+         style="display:block; margin-top: 10vh;"
+         data-ad-client="ca-pub-4825364639199120"
+         data-ad-slot="6532762683"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+</div>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>    
+
+</body>
+</html>
