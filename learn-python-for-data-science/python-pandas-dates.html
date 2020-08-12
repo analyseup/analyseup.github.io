@@ -12,12 +12,12 @@
       gtag('config', 'UA-147504302-1');
     </script>
 
-    <title>Python Math Operators - Learn Python for Data Science at AnalyseUp</title>
+    <title>Pandas Dates - AnalyseUp.com</title>
     
     <!--META TAGS-->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Learn how to do arithmetic and basic mathematics in Python. We cover arithemtic along with raising numbers, calculating roots, quotients and modulus.">
+    <meta name="description" content="Learn how to extract different date features from date columns in Pandas DataFrames.">
     <!--SOCIAL MEDIA META TAGS-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--STYLESHEETS-->
@@ -40,7 +40,7 @@
     <!--TOP BANNER-->
 
 
-    <div id="top">
+    <div id="top" style="max-width: 1080px">
         <a href="../index.html"><img alt="Get Started with Data Science, Data Analysis and BI" id="banner" src="../img/AnalyseUp_Black(v2.2).png" ></a>
         <div class="sep"></div>
     </div>
@@ -51,12 +51,12 @@
     <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:250px; top:0vh;" id="mySidebar">
         <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
         <!--NEXT BUTTON-->
-        <a href="python-sequence-data-types.html" style="text-decoration: none;"><div id="next">Next</div></a>
+        <a href="python-pandas-dates.html" style="text-decoration: none;"><div id="next">Next</div></a>
         <p></p>
         <!--MENU LINKS-->
         <h6 class="side_title">Python Basics</h6>
             <a href="python-variables-and-data-types.html" class="w3-bar-item w3-button side_link" >Variables & Comments</a>
-            <a id="sel" href="python-math-operators.html" class="w3-bar-item w3-button side_link" >Math Operators</a>
+            <a href="python-math-operators.html" class="w3-bar-item w3-button side_link" >Math Operators</a>
             <a href="python-sequence-data-types.html" class="w3-bar-item w3-button side_link" >Sequence Data Types</a>
             <a href="python-strings.html" class="w3-bar-item w3-button side_link" >Strings</a>
             <a href="python-lists-and-tuples.html" class="w3-bar-item w3-button side_link" >Lists & Tuples</a>
@@ -71,7 +71,7 @@
             <a href="python-pandas-join-dataframes.html" class="w3-bar-item w3-button side_link" >Joining Data</a>
             <a href="python-pandas-cleaning-data.html" class="w3-bar-item w3-button side_link" >Cleaning Data</a>
             <a href="python-pandas-add-new-column-to-dataframe.html" class="w3-bar-item w3-button side_link" >Add Columns</a>
-            <a href="python-pandas-dates.html" class="w3-bar-item w3-button side_link" >Dates</a>
+            <a id="sel"  href="python-pandas-dates.html" class="w3-bar-item w3-button side_link" >Dates</a>
         <h6 class="side_title">Visualisation</h6>
             <a href="" class="w3-bar-item w3-button side_link" >Coming Soon</a>
         <h6 class="side_title">Machine Learning</h6>
@@ -96,11 +96,11 @@
         
           <!--HEADER-->
           <div class="h_right">
-              <h1>Python Math Operators</h1>
+              <h1>Pandas Dates</h1>
           </div>
         
         <!--CONTENT-->
-        <div class="w3-container">
+        <div class="w3-container content_container">
             <!--TOP AD BANNER-->
             <div class='horizontal_ad'>
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -118,117 +118,55 @@
                   <!--TWITTER FOLLOW-->
                   <a href="https://twitter.com/AnalyseUp?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @AnalyseUp</a>
                   <!--TWEET-->
-                  <a href="https://twitter.com/share?text=www.analyseup.com/learn-python-for-data-science/python-math-operators.html" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                  <a class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                   <!--FACEBOOK SHARE-->
-                  <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.analyseup.com/learn-python-for-data-science/python-math-operators.html&layout=button_count&size=small&width=77&height=20&appId" width="77" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>   
+                  <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.analyseup.com/learn-python-for-data-science/dates.html&layout=button_count&size=small&width=77&height=20&appId" width="77" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                  
             </div>
-
-             <p class="txt txt_pad">Now that we know how to assign values to variables we can now use Pythons math operators to make calculations with these variables. Let's start by defining some numeric variables and then performing some math operations with them.</p>
-             <div class="wide_box code_wide_box">
-                  <div class="code_box">
-                      <div class="txt2 code">
-                          a = 2 <br/>
-                          b = 5 <br/> c = 10 <br/>
-                          d = 17 <br/>
-                      </div>
-                  </div>
-              </div>
+            <p></p>
             
-            <h2 class="txt_pad">Python Addition</h2>        
-             <div class="wide_box code_wide_box">
-                  <div class="code_box">
-                      <div class="txt2 code">
-                          a + b<br/>
-                      </div>
+            <p class="txt">Pandas comes with inbuilt operations to extract date and time features from date time columns and these can in turn be used to create new columns. We do this by using the dt object and then specifying the date feature we want to extract from our date column i.e. year or month.
+            </p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            df[date_column].dt.year
+                        </div>
+                    </div>
                   </div>
-                  <div class="output_box">
-                    <div class="txt2 output_txt">
-                        > 7<br/>
-                      </div>
+            </div>
+            <p class="txt">In our data set we know the date that an order was placed so let’s create some new columns containing different date features that we can use for reporting and modelling purposes later on. 
+                We are going to the get the year, quarter, month, week, day of month and weekday that each order occurred.
+            </p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            df[<span class=string>'Year'</span>] = df[<span class=string>'Order_Date'</span>].dt.year
+                        </div>
+                        <div class="code_line">
+                            df[<span class=string>'Qtr'</span>] = df[<span class=string>'Order_Date'</span>].dt.quarter
+                        </div>
+                        <div class="code_line">
+                            df[<span class=string>'Month'</span>] = df[<span class=string>'Order_Date'</span>].dt.month
+                        </div>
+                        <div class="code_line">
+                            df[<span class=string>'Week'</span>] = df[<span class=string>'Order_Date'</span>].dt.week
+                        </div>
+                        <div class="code_line">
+                            df[<span class=string>'Day_of_Month'</span>] = df[<span class=string>'Order_Date'</span>].dt.day
+                        </div>
+                        <div class="code_line">
+                            df[<span class=string>'Weekday'</span>] = df[<span class=string>'Order_Date'</span>].dt.weekday
+                        </div>
+                    </div>
                   </div>
-              </div>
-            <h2 class="txt_pad">Python Subtraction</h2>        
-             <div class="wide_box code_wide_box">
-                  <div class="code_box">
-                      <div class="txt2 code">
-                        c - a<br/>
-                      </div>
-                  </div>
-                  <div class="output_box">
-                    <div class="txt2 output_txt">
-                        > 8<br/>
-                      </div>
-                  </div>
-              </div>
-            <h2 class="txt_pad">Python Multiplication</h2>        
-             <div class="wide_box code_wide_box">
-                  <div class="code_box">
-                      <div class="txt2 code">
-                        a * c<br/>
-                      </div>
-                  </div>
-                  <div class="output_box">
-                    <div class="txt2 output_txt">
-                        > 20<br/>
-                      </div>
-                  </div>
-              </div>
-            <h2 class="txt_pad">Python Division</h2>        
-             <div class="wide_box code_wide_box">
-                  <div class="code_box">
-                      <div class="txt2 code">
-                        c * b<br/>
-                      </div>
-                  </div>
-                  <div class="output_box">
-                    <div class="txt2 output_txt">
-                        > 2.0<br/>
-                      </div>
-                  </div>
-              </div>
-            <h2 class="txt_pad">Python Raising to a Power</h2>        
-             <div class="wide_box code_wide_box">
-                  <div class="code_box">
-                      <div class="txt2 code">
-                        c ** 2<br/>
-                      </div>
-                  </div>
-                  <div class="output_box">
-                    <div class="txt2 output_txt">
-                        > 100<br/>
-                      </div>
-                  </div>
-              </div>
-            <h2 class="txt_pad">Python Remainder Operator</h2>
-            <p class="txt">The Python remainder or <b>Modulo</b> operator calculates the value left over after dividing the number or variable on the left with the number or variable on the left.</p>
-             <div class="wide_box code_wide_box">
-                  <div class="code_box">
-                      <div class="txt2 code">
-                        d % c<br/>
-                      </div>
-                  </div>
-                  <div class="output_box">
-                    <div class="txt2 output_txt">
-                        > 7<br/>
-                      </div>
-                  </div>
-              </div>
-            <h2 class="txt_pad">Python Floored Quotient Operator</h2> 
-            <p class="txt">The Python <b>Floored Quotient</b> operator calculates how many times the number or variable on the right goes into the number or variable on the left, rounded down the closest integer.</p>
-             <div class="wide_box code_wide_box">
-                  <div class="code_box">
-                      <div class="txt2 code">
-                        d // c<br/>
-                      </div>
-                  </div>
-                  <div class="output_box">
-                    <div class="txt2 output_txt">
-                        > 1<br/>
-                      </div>
-                  </div>
-              </div>
-            <a href="python-sequence-data-types.html" style="text-decoration: none;"><div id="next_mobile">Next</div></a>
- 
+            </div>
+            <img class="output_image" alt="pandas-dates" src="../img/learn-python-for-data-science/pandas-dates/pandas-dates.png">
+            
+            
+            <a href="python-pandas-dates.html" style="text-decoration: none;"><div id="next_mobile">Next</div></a>
             <!--AD BANNER-->
             <div class="ad_banner">
                     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -241,7 +179,8 @@
                     <script>
                          (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
-            </div>           
+            </div>
+
         </div>
     </div>
     </div>
