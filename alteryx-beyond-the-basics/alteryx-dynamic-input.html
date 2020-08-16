@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-147504302-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-147504302-1');
+</script>
+
+    <title>Alteryx Dyanmic Input Tool - Working With Multiple Files | AnalyseUp</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Learn how to use the Dynamic Input tool to import all files stored in a folder or import just the latest file. We'll see how we can define the files to import using the Directory, Sort and Sample tools.">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link href='../css/w3.css' rel='stylesheet' type="text/css">
+    <link href='../css/page_style.css' rel='stylesheet' type='text/css'> 
+    
+<script>
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+        }
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+        }
+        function reveal(element, button){
+            document.getElementById(element).style.visibility = "visible"; 
+            document.getElementById(button).style.visibility = "hidden"; 
+        }
+</script>
+</head>
+
+<body>
+<!--Top Nav-->
+    <div id="top">
+
+        <a href="https://www.analyseup.com"><img alt="Upgrade your data skills with analyseup.com" id="banner" src="img/AnalyseUp_Black(v2.2).png" ></a>
+        <div class="sep"></div>
+    </div>
+<!--Side Menu-->
+    <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:250px; top:0vh;" id="mySidebar">
+        <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+        <!--<a href="alteryx-exercises.html" style="text-decoration: none;"><div id="next">Next</div></a>-->
+        <p></p>
+        <!--<h5 id="side_head"><b>Data Wrangling with Alteryx</b></h5>-->
+        <h6 class="side_title">Other Tutorials & Content</h6>
+            <a href="../learn-alteryx/alteryx-introduction.html" class="w3-bar-item w3-button side_link" >Get Started with Alteryx</a>
+            <a href="../learn-python-for-data-science/python-variables-and-data-types.html" class="w3-bar-item w3-button side_link" >Learn Python</a>
+            <a href="../python-data-science-reference/pandas-create-dataframe.html" class="w3-bar-item w3-button side_link" >Python Data Science Reference</a>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+    </div>
+<!--Content-->
+    <div class="w3-main" style="margin-left:250px; margin-right:200px;">
+    <!--Menu Button-->
+        <div >
+          <div class="h_left">
+                          <button class="w3-button w3-xlarge w3-hide-large" onclick="w3_open()" style="left:0;">&#9776;</button>
+            </div>
+          <div class="h_right">
+              <h1>Alteryx Dyanmic Input Tool - Working With Multiple Files</h1>
+            </div>
+
+          <p></p>
+          <div class="w3-container content_container">
+                <!--TOP AD BANNER-->
+                <div class='horizontal_ad'>
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- top_ad_banner -->
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:100%;height:100px;
+                                text-align:center;"
+                         data-ad-client="ca-pub-4825364639199120"
+                         data-ad-slot="9607273384"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+                <div class="share_buttons">
+                    <a href="https://twitter.com/AnalyseUp?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @AnalyseUp</a>
+                    
+                      <a href="https://twitter.com/share?text=Hello%20world" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    
+                      <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.analyseup.com&layout=button_count&size=small&width=77&height=20&appId" width="77" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                      
+                      <!--
+                      <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+                      <script type="IN/Share" data-url="https://www.analyseup.com"></script>
+                      -->
+    
+                </div>
+              <p class="txt txt_pad">
+                Often when we work with data sources such as excel or csv files we will be working with data spread across multiple files where we may want all the data in those files or data in just a few of them. For this purpose we can use the Alteryx dynamic input tool which allows us to declare which file or files to import at the time the workflow runs.
+              </p>
+              <p class="txt2">
+                In this tutorial we are going to be using files containing details of daily orders that are all stored in a folder with each file containing a date identifier as part of the filename. Each file contains a sample of 2000 orders for the respective days. 
+              </p>
+              <img class="output_image_50" style="width:30%;" src="../img/alteryx-beyond-the-basics/dynamic-input/1-files.png">
+              <p class="txt2 txt_pad">
+                We will use the Dynamic Input tool along with the Directory tool to first import all the files into a single dataset and then see how we can use the Sort and Sample tools to make Alteryx only import the latest file.
+              </p>
+              <img class="output_image" src="../img/alteryx-beyond-the-basics/dynamic-input/2-dynamic-input-worflow.png">
+
+              <h2 class="txt_pad">Import All Files From a Folder with Alteryx</h2>
+              <h4>Alteryx Directory Tool</h4>
+              <p class="txt">
+                To start with we have to get the metadata of the files in the folder our files are stored in. To do this we use the Alteryx Directory Tool. The Alteryx Directory Tool allows us to read in metadata from files in a particular folder and use it as a data source just like any other.
+              </p>
+              <p class="txt2">
+                Let’s start by dragging the Directory tool into our workspace and then in the configuration window set the directory to the location of our files.
+              </p>
+              <img class="output_image" src="../img/alteryx-beyond-the-basics/dynamic-input/3-add-directory-tool.png">
+              <p class="txt2 txt_pad">
+                If we run the workflow and look at the output of the Directory tool then we can see that we have a row for each of our files in that location and various fields detailing the metadata of each file such as filename, path and dates relating to creation and last modification.
+              </p>
+              <img class="output_image" src="../img/alteryx-beyond-the-basics/dynamic-input/4-file-metadata.png">
+              <h4 class="txt_pad">Alteryx Dynamic Input Tool</h4>
+              <p class="txt">
+                Now that we have the metadata let’s add in a Dynamic Input tool by searching for the tool, dragging into our workspace and connecting it to the Directory tool.
+              </p>
+              <img class="output_image" src="../img/alteryx-beyond-the-basics/dynamic-input/5-add-dynamic-input-tool.png">
+              <p class="txt2 txt_pad">
+                If we click on the tool to open the configuration window we can set the input data source template and the parameters for how Alteryx will know which files to import. 
+              </p>
+              <p class="txt2">
+                For this to work, all the files we we intend to import need to contain the same schema (in other words, every file contains the same columns) so we need to initially provide Alteryx with the path to a file that contains the same structure of the files we intend to import. In our case we have set the template file to one of the files already in our orders folder. 
+              </p>
+              <p class="txt2">
+                After this we need to declare which files to import. When we imported the metadata of our files using the directory tool we got the full path for each file in our folder.
+              </p>
+              <img class="output_image" src="../img/alteryx-beyond-the-basics/dynamic-input/7-filepath-metadata.png">
+              <p class="txt2 txt_pad">
+                We can use this as the dynamic “Field” and set the dynamic tool to “Change Entire File Path”. This means Alteryx will use the file paths from our directory tool as a list of data sources and will iteratively import each one of these files into a single dataset.
+              </p>
+              <img class="output_image" src="../img/alteryx-beyond-the-basics/dynamic-input/6-dynamic-input-configuration.png">
+              <p class="txt2 txt_pad">
+                Let’s run the the workflow now and check the output.
+              </p>
+              <img class="output_image" src="../img/alteryx-beyond-the-basics/dynamic-input/8-all-files-output.png">
+              <p class="txt2 txt_pad">
+                As you can see there are 4000 rows in this output as we have dynamically imported data from the two files each containing 2000 rows.
+              </p>
+
+              <h2 class="txt_pad">Import Latest File From a Folder with Alteryx</h2>
+              <p class="txt">
+                Sometimes rather than importing all the files from a folder we will only need the latest file. We can do this by using a Sort tool and Sample tool. We are going to use the same folder and files we used previously to demonstrate this.
+              </p>
+              <h4 class="txt_pad">Alteryx Sort Tool</h4>
+              <p class="txt">
+                Our starting point is the exact same workflow we created above but to start with we are going to drop a Sort tool in-between the Directory tool and the Dynamic Input tool. In the configurations window we set the tool to sort the data by FileName and the order to be descending.
+              </p>
+              <img class="output_image" src="../img/alteryx-beyond-the-basics/dynamic-input/9-add-sort-tool.png">
+              <p class="txt2 txt_pad">
+                We do this because the date the file was generated is included in the filename and therefore sorting on this field will mean the latest file appears in the first row of our data that comes from the Directory tool. We could have also used the “CreationTime” or “Last Write Time” fields in this case but ultimately which fields are best to use depends on your use case and how your files are created or updated.
+              </p>
+              <h4 class="txt_pad">Alteryx Sample Tool</h4>
+              <p class="txt">
+                Our last step is to add a Sample tool after the Sort tool. In the configuration we set the sample tool to take the “First N Records” and then set N to 1. 
+              </p>
+              <img class="output_image" src="../img/alteryx-beyond-the-basics/dynamic-input/10-add-sample-tool.png">
+              <p class="txt2 txt_pad">
+                This will result in only the metadata from the file in the first row of our data, which we know is the from the latest file and therefore only information about this one file will be passed to the Dynamic Input tool.
+              </p>
+              <img class="output_image" src="../img/alteryx-beyond-the-basics/dynamic-input/11-lastest-file-output.png">
+              <p class="txt2 txt_pad">
+                So there we have it, two simple ways to work with multiple files stored in a folder using the Alteryx Dynamic Input tool. The steps used here can be modified to suit different use cases but it shows the power of using the Directory tool and Dynamic Input tool for manipulating the import process for files stored in folders.
+              </p>
+            
+              <!----------AD BANNER-------------------->
+                <div class="ad_banner">
+                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <ins class="adsbygoogle"
+                             style="display:block; text-align:center;"
+                             data-ad-layout="in-article"
+                             data-ad-format="fluid"
+                             data-ad-client="ca-pub-4825364639199120"
+                             data-ad-slot="9368231129"></ins>
+                        <script>
+                             (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                </div>
+          </div>
+        </div>
+    </div>
+
+<!-------------------------------------FOOTER---------------------------------->
+    <div id="footer"></div>
+
+<!-------------------------------------SIDE AD BAR----------------------------->
+<div id="ad_bar" >
+    <!-- side_bar_1 -->
+    <ins class="adsbygoogle"
+         style="display:block; margin-top: 10vh;"
+         data-ad-client="ca-pub-4825364639199120"
+         data-ad-slot="2467780853"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+</div>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+    
+    
+
+</body>
+
+</html>
