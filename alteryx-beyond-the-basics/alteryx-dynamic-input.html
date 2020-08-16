@@ -105,7 +105,11 @@
               <p class="txt2 txt_pad">
                 We will use the Dynamic Input tool along with the Directory tool to first import all the files into a single dataset and then see how we can use the Sort and Sample tools to make Alteryx only import the latest file.
               </p>
-              <img class="output_image" src="../img/alteryx-beyond-the-basics/dynamic-input/2-dynamic-input-worflow.png">
+              <div class="wide_box">
+                  <p></p>
+              <img class="tut_img" src="../img/alteryx-beyond-the-basics/dynamic-input/2-dynamic-input-worflow.png">
+              <p></p>
+              </div>
 
               <h2 class="txt_pad">Import All Files From a Folder with Alteryx</h2>
               <h4>Alteryx Directory Tool</h4>
@@ -115,16 +119,28 @@
               <p class="txt2">
                 Let’s start by dragging the Directory tool into our workspace and then in the configuration window set the directory to the location of our files.
               </p>
-              <img class="output_image" src="../img/alteryx-beyond-the-basics/dynamic-input/3-add-directory-tool.png">
+              <div class="wide_box">
+                  <p></p>
+              <img class="tut_img" src="../img/alteryx-beyond-the-basics/dynamic-input/3-add-directory-tool.png">
+              <p></p>
+              </div>
               <p class="txt2 txt_pad">
                 If we run the workflow and look at the output of the Directory tool then we can see that we have a row for each of our files in that location and various fields detailing the metadata of each file such as filename, path and dates relating to creation and last modification.
               </p>
-              <img class="output_image" src="../img/alteryx-beyond-the-basics/dynamic-input/4-file-metadata.png">
+              <div class="wide_box">
+                  <p></p>
+                    <img class="tut_img" src="../img/alteryx-beyond-the-basics/dynamic-input/4-file-metadata.png">
+                    <p></p>
+              </div>
               <h4 class="txt_pad">Alteryx Dynamic Input Tool</h4>
               <p class="txt">
                 Now that we have the metadata let’s add in a Dynamic Input tool by searching for the tool, dragging into our workspace and connecting it to the Directory tool.
               </p>
-              <img class="output_image" src="../img/alteryx-beyond-the-basics/dynamic-input/5-add-dynamic-input-tool.png">
+              <div class="wide_box">
+                  <p></p>
+              <img class="tut_img" src="../img/alteryx-beyond-the-basics/dynamic-input/5-add-dynamic-input-tool.png">
+              <p></p>
+              </div>
               <p class="txt2 txt_pad">
                 If we click on the tool to open the configuration window we can set the input data source template and the parameters for how Alteryx will know which files to import. 
               </p>
@@ -134,15 +150,27 @@
               <p class="txt2">
                 After this we need to declare which files to import. When we imported the metadata of our files using the directory tool we got the full path for each file in our folder.
               </p>
-              <img class="output_image" src="../img/alteryx-beyond-the-basics/dynamic-input/7-filepath-metadata.png">
+              <div class="wide_box">
+                  <p></p>
+              <img class="tut_img" src="../img/alteryx-beyond-the-basics/dynamic-input/7-filepath-metadata.png">
+              <p></p>
+                </div>
               <p class="txt2 txt_pad">
                 We can use this as the dynamic “Field” and set the dynamic tool to “Change Entire File Path”. This means Alteryx will use the file paths from our directory tool as a list of data sources and will iteratively import each one of these files into a single dataset.
               </p>
-              <img class="output_image" src="../img/alteryx-beyond-the-basics/dynamic-input/6-dynamic-input-configuration.png">
+              <div class="wide_box">
+                  <p></p>
+              <img class="tut_img" src="../img/alteryx-beyond-the-basics/dynamic-input/6-dynamic-input-configuration.png">
+              <p></p>
+              </div>
               <p class="txt2 txt_pad">
                 Let’s run the the workflow now and check the output.
               </p>
-              <img class="output_image" src="../img/alteryx-beyond-the-basics/dynamic-input/8-all-files-output.png">
+              <div class="wide_box">
+                  <p></p>
+              <img class="tut_img" src="../img/alteryx-beyond-the-basics/dynamic-input/8-all-files-output.png">
+              <p></p>
+              </div>
               <p class="txt2 txt_pad">
                 As you can see there are 4000 rows in this output as we have dynamically imported data from the two files each containing 2000 rows.
               </p>
@@ -155,7 +183,11 @@
               <p class="txt">
                 Our starting point is the exact same workflow we created above but to start with we are going to drop a Sort tool in-between the Directory tool and the Dynamic Input tool. In the configurations window we set the tool to sort the data by FileName and the order to be descending.
               </p>
-              <img class="output_image" src="../img/alteryx-beyond-the-basics/dynamic-input/9-add-sort-tool.png">
+              <div class="wide_box">
+                  <p></p>
+              <img class="tut_img" src="../img/alteryx-beyond-the-basics/dynamic-input/9-add-sort-tool.png">
+              <p></p>
+              </div>
               <p class="txt2 txt_pad">
                 We do this because the date the file was generated is included in the filename and therefore sorting on this field will mean the latest file appears in the first row of our data that comes from the Directory tool. We could have also used the “CreationTime” or “Last Write Time” fields in this case but ultimately which fields are best to use depends on your use case and how your files are created or updated.
               </p>
@@ -163,11 +195,19 @@
               <p class="txt">
                 Our last step is to add a Sample tool after the Sort tool. In the configuration we set the sample tool to take the “First N Records” and then set N to 1. 
               </p>
-              <img class="output_image" src="../img/alteryx-beyond-the-basics/dynamic-input/10-add-sample-tool.png">
+              <div class="wide_box">
+                  <p></p>
+              <img class="tut_img" src="../img/alteryx-beyond-the-basics/dynamic-input/10-add-sample-tool.png">
+              <p></p>
+              </div>
               <p class="txt2 txt_pad">
                 This will result in only the metadata from the file in the first row of our data, which we know is the from the latest file and therefore only information about this one file will be passed to the Dynamic Input tool.
               </p>
-              <img class="output_image" src="../img/alteryx-beyond-the-basics/dynamic-input/11-lastest-file-output.png">
+              <div class="wide_box">
+                  <p></p>
+              <img class="tut_img" src="../img/alteryx-beyond-the-basics/dynamic-input/11-lastest-file-output.png">
+              <p></p>
+              </div>
               <p class="txt2 txt_pad">
                 So there we have it, two simple ways to work with multiple files stored in a folder using the Alteryx Dynamic Input tool. The steps used here can be modified to suit different use cases but it shows the power of using the Directory tool and Dynamic Input tool for manipulating the import process for files stored in folders.
               </p>
