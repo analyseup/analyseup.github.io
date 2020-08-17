@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-147504302-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-147504302-1');
+</script>
+
+    <title>Alteryx Download Tool | AnalyseUp</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Learn how to use the Alteryx tool to download files from the internet and save them to drive.">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link href='../css/w3.css' rel='stylesheet' type="text/css">
+    <link href='../css/page_style.css' rel='stylesheet' type='text/css'> 
+    
+<script>
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+        }
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+        }
+        function reveal(element, button){
+            document.getElementById(element).style.visibility = "visible"; 
+            document.getElementById(button).style.visibility = "hidden"; 
+        }
+</script>
+</head>
+
+<body>
+<!--Top Nav-->
+    <div id="top">
+
+        <a href="../index.html"><img alt="Get Started with Data Science, Data Analysis and BI" id="banner" src="../img/AnalyseUp_Black(v2.2).png" ></a>
+        <div class="sep"></div>
+    </div>
+<!--Side Menu-->
+    <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:250px; top:0vh;" id="mySidebar">
+        <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+        <!--<a href="alteryx-exercises.html" style="text-decoration: none;"><div id="next">Next</div></a>-->
+        <p></p>
+        <!--<h5 id="side_head"><b>Data Wrangling with Alteryx</b></h5>-->
+        <h6 class="side_title">Other Tutorials & Content</h6>
+            <a href="../learn-alteryx/alteryx-introduction.html" class="w3-bar-item w3-button side_link" >Get Started with Alteryx</a>
+            <a href="../learn-python-for-data-science/python-variables-and-data-types.html" class="w3-bar-item w3-button side_link" >Learn Python</a>
+            <a href="../python-data-science-reference/pandas-create-dataframe.html" class="w3-bar-item w3-button side_link" >Python Data Science Reference</a>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+    </div>
+<!--Content-->
+    <div class="w3-main" style="margin-left:250px; margin-right:200px;">
+    <!--Menu Button-->
+        <div >
+          <div class="h_left">
+                          <button class="w3-button w3-xlarge w3-hide-large" onclick="w3_open()" style="left:0;">&#9776;</button>
+            </div>
+          <div class="h_right">
+              <h1>Alteryx Download Tool - Downloading Internet Files</h1>
+            </div>
+
+          <p></p>
+          <div class="w3-container content_container">
+                <!--TOP AD BANNER-->
+                <div class='horizontal_ad'>
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- top_ad_banner -->
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:100%;height:100px;
+                                text-align:center;"
+                         data-ad-client="ca-pub-4825364639199120"
+                         data-ad-slot="9607273384"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+                <div class="share_buttons">
+                    <a href="https://twitter.com/AnalyseUp?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @AnalyseUp</a>
+                    
+                      <a href="https://twitter.com/share?text=Hello%20world" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    
+                      <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.analyseup.com&layout=button_count&size=small&width=77&height=20&appId" width="77" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                      
+                      <!--
+                      <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+                      <script type="IN/Share" data-url="https://www.analyseup.com"></script>
+                      -->
+    
+                </div>
+              <p class="txt txt_pad">
+                As you’re probably aware, the internet contains a rich collection of data stored in files that can be used for analysis or to build tools. Files containing data on weather, economic indicators and sports statistics, to name just a few, are scattered around the web as free resources. Alteryx contains tools that allow us to automatically download these files, save them in a different location and use when required.
+              </p>
+              <p class="txt2">
+                In this tutorial we will use Alteryx Download tool to download a text file from the met office website containing historical weather data that is updated monthly and save it as a file locally. 
+              </p>
+              <img class="output_image" src="../img/alteryx-beyond-the-basics/download/1-weather-data.png">
+              <p class="txt2 txt_pad">
+                This process can be done with any file that Alteryx can import and that is stored on the internet, an FTP server or any location that has a URL.
+              </p>
+              <p class="txt2">
+                First we need to add a Text Input tool to our workspace. 
+              </p>
+              <div class="wide_box">
+                <p></p>
+                <img class="tut_img" src="../img/alteryx-beyond-the-basics/download/2-add-text-input.png">
+                <p></p>
+              </div>
+              <p class="txt2 txt_pad">
+                We use this to declare the url of the file we are going to import and also the destination file for the data. Let’s create two columns called “URL” and “Destination” in the tool and then fill in a row with our required url and destination file.
+              </p>
+              <div class="wide_box">
+                <p></p>
+                <img class="tut_img" src="../img/alteryx-beyond-the-basics/download/3-declare-url-destination.png">
+                <p></p>
+              </div>
+              <p class="txt2 txt_pad">
+                Next we’ll search for the Download tool and drop into our workspace, connecting it to the output of the Text Input tool.
+              </p>
+              <div class="wide_box">
+                <p></p>
+                <img class="tut_img" src="../img/alteryx-beyond-the-basics/download/4-add-download-tool.png">
+                <p></p>
+              </div>
+              <p class="txt2 txt_pad">
+                Our final step is to open the Download tool configuration window and set the “URL Field” parameter to the URL field from our Text Input tool and then set the “To a File” parameter to get “Filename from a Field” and use the Destination field we created in the Text Input tool.
+              </p>
+              <div class="wide_box">
+                <p></p>
+                <img class="tut_img" src="../img/alteryx-beyond-the-basics/download/5-download-tool-configuration.png">
+                <p></p>
+              </div>
+              <p class="txt2 txt_pad">
+                If we run the workflow and check our destination file then we should now see the weather data from the MetOffice file. We can then schedule this workflow monthly to automatically have this file updated with the latest data.
+              </p>
+              <p class="txt2">
+                There we have it, a simple yet powerful workflow for downloading internet files using Alteryx.
+              </p>
+            
+              <!----------AD BANNER-------------------->
+                <div class="ad_banner">
+                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <ins class="adsbygoogle"
+                             style="display:block; text-align:center;"
+                             data-ad-layout="in-article"
+                             data-ad-format="fluid"
+                             data-ad-client="ca-pub-4825364639199120"
+                             data-ad-slot="9368231129"></ins>
+                        <script>
+                             (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                </div>
+          </div>
+        </div>
+    </div>
+
+<!-------------------------------------FOOTER---------------------------------->
+    <div id="footer"></div>
+
+<!-------------------------------------SIDE AD BAR----------------------------->
+<div id="ad_bar" >
+    <!-- side_bar_1 -->
+    <ins class="adsbygoogle"
+         style="display:block; margin-top: 10vh;"
+         data-ad-client="ca-pub-4825364639199120"
+         data-ad-slot="2467780853"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+</div>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+    
+    
+
+</body>
+
+</html>
