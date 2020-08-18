@@ -188,11 +188,11 @@ a{
             }
 h1 {
     display:inline-block;
-    font-size:26px;
+    font-size:28px;
     position: relative;
     top:8px;
     text-indent:20px;
-    font-weight:300;
+    font-weight:900;
     color:#ff7700ff;
     font-family: "helvetica";
     text-align-last: center;
@@ -767,8 +767,8 @@ input {
                 background-color: white;
                 display:none;
             }
+
         .h_right h1{
-            font-size:22px;
             margin: auto;
             text-align: center;
         }
