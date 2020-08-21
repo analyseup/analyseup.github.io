@@ -78,7 +78,8 @@
 }
 
 #analyseup-info-card{
-    background-color: white;
+    /*background-color: white;*/
+    background-color: #E8E8E8;
     border: 0px;
     border-radius: 0px;
     border-left: 2px solid #ff7700ff;
@@ -114,6 +115,45 @@
 .analyseup-read-more{
     color:#ff7700ff;
 }
+
+/*MailChimp*/
+#mailchimp {
+
+
+    background:#E8E8E8;
+    color: #ff7700ff;
+    padding: 30px 5px;
+    height:150px;
+}
+#mailchimp input {
+     border: medium none;
+    color: ;
+    font-family: "helvetica";
+    font-size: 14px;
+    /*font-style: italic;*/
+    margin-bottom: 10px;
+    padding: 8px 10px;
+    text-align: center;
+    width: 90%;
+    border-radius: 20px;
+    border-color: gray;
+    border-width: 5px;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+}
+#mailchimp input.email { background: #fff }
+#mailchimp input.name { background: #fff}
+#mailchimp input[type="submit"] {
+        background: #ff7700ff;
+        color: white;
+        cursor: pointer;
+        font-family: "helvetica";
+        font-size: 15px;
+        width: 90%;
+        padding: 8px 10px;
+
+}
+#mailchimp input[type="submit"]:hover { color: grey }
 
 /*TABLET*/
 @media (max-width: 992px) 

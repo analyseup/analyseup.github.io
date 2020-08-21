@@ -9,32 +9,31 @@ html {
 
 /*MAIL CHIMP CSS*/
 
-#mailchimp {
-
-	background: #F5F5F5;
-	color: #ff7700ff;
-    padding: 10px 5px;
-    height:200px;
-}
+    #mailchimp {
+        background: #F5F5F5;
+        color: #ff7700ff;
+        padding: 10px 5px;
+        height:200px;
+    }
 	#mailchimp input {
 		 border: medium none;
-    color: gray;
-    font-family: "helvetica";
-    font-size: 14px;
-    /*font-style: italic;*/
-    margin-bottom: 10px;
-    padding: 8px 10px;
+        color: gray;
+        font-family: "helvetica";
+        font-size: 14px;
+        /*font-style: italic;*/
+        margin-bottom: 10px;
+        padding: 8px 10px;
         text-align: center;
-    width: 90%;
+        width: 90%;
         border-radius: 20px;
         border-color: gray;
         border-width: 5px;
 		-moz-border-radius: 20px;
 		-webkit-border-radius: 20px;
 	}
-		#mailchimp input.email { background: #fff }
-		#mailchimp input.name { background: #fff}
-		#mailchimp input[type="submit"] {
+	#mailchimp input.email { background: #fff }
+	#mailchimp input.name { background: #fff}
+	#mailchimp input[type="submit"] {
 			background: #ff7700ff;
 			color: white;
             cursor: pointer;
@@ -43,8 +42,8 @@ html {
 			width: 90%;
 			padding: 8px 10px;
 
-		}
-			#mailchimp input[type="submit"]:hover { color: grey }
+	}
+    #mailchimp input[type="submit"]:hover { color: grey }
 
 /*TOP BANNER*/
     #top {
