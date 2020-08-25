@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <!-- GOOGLE ANALYTICS -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-147504302-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-147504302-1');
+    </script>
+
+    <title>Stratified KFold Tutorial | AnalyseUp.com</title>
+    
+    <!--META TAGS-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Learn what stratified kfold cross validation is, when to use it and how to implement in Python with Scikit-Learn. See how to use the folds to train a model or export the splits to file.">
+    <!--SOCIAL MEDIA META TAGS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--STYLESHEETS-->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link href='../css/w3.css' rel='stylesheet' type="text/css">
+    <link href='../css/page_style.css' rel='stylesheet' type='text/css'> 
+
+    <!--JAVASCRIPT FOR BURGER MENU-->
+    <script>
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+        }
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+        }
+    </script>
+</head>
+    
+<body>
+    <!--TOP BANNER-->
+
+
+    <div id="top" style="max-width: 1080px">
+        <a href="../index.html"><img alt="Get Started with Data Science, Data Analysis and BI" id="banner" src="../img/AnalyseUp_Black(v2.2).png" ></a>
+        <div class="sep"></div>
+    </div>
+    
+
+    
+    <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:250px; top:0vh;" id="mySidebar">
+        <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+        <!--<a href="alteryx-exercises.html" style="text-decoration: none;"><div id="next">Next</div></a>-->
+        <div id="mailchimp">
+            <h6 id="side_title" style="text-align: center; color: black; margin-left: 15px; margin-right:15px;"><b>Subscribe to Our Mailing List</b></h6>
+            <form action="https://analyseup.us17.list-manage.com/subscribe/post?u=af90f4bd3ff02cce6caf63d9e&amp;id=b95079f149" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                <input type="email" size="30" value="Enter your email" name="EMAIL" class="required email" id="mce-EMAIL" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;">
+            
+                    <div id="mce-responses" class="clear">
+                        <div class="response" id="mce-error-response" style="display:none"></div>
+                        <div class="response" id="mce-success-response" style="display:none"></div>
+                    </div>
+            
+                    <div class="clear">
+                        <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+                    </div>
+            </form>
+            </div>
+            <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+            <!--End mc_embed_signup-->
+
+        <h6 class="side_title">Other Content</h6>
+            <a href="../learn-alteryx/alteryx-introduction.html" class="w3-bar-item w3-button side_link" >Get Started with Alteryx</a>
+            <a href="../learn-python-for-data-science/python-variables-and-data-types.html" class="w3-bar-item w3-button side_link" >Learn Python</a>
+            <a href="../python-data-science-reference/pandas-create-dataframe.html" class="w3-bar-item w3-button side_link" >Python Data Science Reference</a>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+    </div>
+
+    <!--MAIN PAGE----->
+    <div class="w3-main" style="margin-left:250px; margin-right:200px; width=2px;">
+    <div>
+            
+        <!--MENU BUTTON-->
+          <div class="h_left">
+              <button class="w3-button w3-xlarge w3-hide-large" onclick="w3_open()" style="left:0;">&#9776;</button>
+          </div>
+        
+        
+        <!--CONTENT-->
+        <div class="w3-container content_container">
+            <!--TOP AD BANNER-->
+            <div class='horizontal_ad'>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- top_ad_banner -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:100%;height:100px;
+                            text-align:center;"
+                     data-ad-client="ca-pub-4825364639199120"
+                     data-ad-slot="9902475134"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>  
+            
+            <div class="share_buttons">
+                  <!--TWITTER FOLLOW-->
+                  <a href="https://twitter.com/AnalyseUp?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @AnalyseUp</a>
+                  <!--TWEET-->
+                  <a class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                  <!--FACEBOOK SHARE-->
+                  <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.analyseup.com/python-machine-learning/stratified-kfold.html&layout=button_count&size=small&width=77&height=20&appId" width="77" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                  
+            </div>
+            <p></p>
+            <p class=txt_pad></p>
+                <div class="h_right">
+                    <h1>Stratified Kfold Tutorial</h1>
+                </div>
+            <p class="txt">In this short tutorial we are going to look at stratified kfold cross validation: what it is and when we should use it. We’ll then walk through how to split data into 5 stratified folds using the StratifiedKFold function in Sci-Kit Learn and use those folds to train and test a model before exporting all the splits to csv files.</p>
+            
+            <h3 class="txt_pad">What is Stratified KFold Cross Validation?</h3>
+            <p class="txt">Stratified kfold cross validation is an extension of regular kfold cross validation but specifically for classification problems where rather than the splits being completely random, the ratio between the target classes is the same in each fold as it is in the full dataset.</p>
+            <p class="txt2">Let’s look at an example. If we are building a model to classify images of cats and dogs and we have a data set that’s comprised of 75% cat images and 25% dog images, using stratified kfold cross valuation will mean that each fold we create remains close to this 75/25 ratio.</p>
+            <img class="output_image"  style="width:75%;margin-top: 0px;;" alt="stratified-kfold-example" src="../img/python-machine-learning/stratified-kfold/stratified-kfold-example.png">
+            <p class=txt_pad></p>
+
+            <h3 class="txt_pad">When to Use Stratified Kfold Cross Validation</h3>
+            <p class="code txt_pad" style="font-weight:bolder; text-align: center;">1. We want to preserve the class ratio of our target</p>
+            <p class="code" style="font-weight:bolder; text-align: center;">2. We have relatively fewer training examples</p>
+            <p class="txt2">Stratified kfold cross validation is typically useful when we have imbalanced data and where the data size is on the small side. Sometimes we will over or under sample our data to deal with class imbalance but other times we want to maintain the class imbalance when it’s representative of or contains some information about what we are trying to classify.</p>
+            <p class="txt2">When the data is large enough we can still use regular kfold cross validation as this will often preserve the class ratios but this becomes less likely with fewer training examples. </p>
+            <p class="txt2">For example, suppose we had a binary classification problem where one class accounted for 90% of the training examples but we had a million training examples.  Here regular kfold cross validation would likely preserve the ratio between the classes. However, say we had only a thousand training examples for the same problem. In this case, it’s more likely that different folds would have different class ratios, especially with larger values of k and could even result in a fold containing training examples from just a single class.</p>
+            <p class="txt2">Now that we understand what this method is and when to use it let’s have a look at how to implement it in Python using Sci-Kit Learn.</p>
+
+
+            <h3 class="txt_pad">How to Implement Stratified Kfold Using Scikit-Learn</h3>
+            <p class="txt">We are going to work with a dataset that tells us about products ordered from an e-commerce business: when they were ordered, who ordered them and if they were returned. Out intention is to build a model to predict whether a product that was ordered will eventually be returned. The dataset here is both small and imbalanced but we want to preserve that imbalance as it informs the model of the likelihood of a product being returned.</p>
+            <p class="txt2">We are going to use a 5-fold cross valuation strategy and make use of Scikit-learn’s StratifiedKFold function to preserve the ratio between the classes in each fold.</p>
+            <p class="txt2">Let’s start by importing Pandas and the StratifiedKFold function from SciKit-Learn. We’ll also read our data from csv into a DataFrame.</p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class=code_line>
+                            <span class=key_word>import</span> pandas <span class=key_word>as</span> pd
+                        </div>
+                        <div class="code_line">
+                            <span class=key_word>from</span> sklearn.model_selection <span class=key_word>import</span> StratifiedKFold
+                        </div>
+                        <p></p>
+                        <div class="code_line">
+                            df = pd.read_csv(<span class=string>'data/processed_data.csv'</span>)
+                        </div>
+                    </div>
+                  </div>
+          </div>
+          <p class="txt2">Our target here is the Returned_Units column which will be either 1 or 0.</p>
+          <img class="output_image" alt="stratified-kfold-data" src="../img/python-machine-learning/stratified-kfold/stratified-kfold-data.png">
+          <p class="txt2 txt_pad">Let’s have a quick check to see what the class ratio looks like for this column.</p>
+          <div class="wide_box code_wide_box">
+            <div class="code_box_wide">
+                <div class="txt2 code">
+                    <div class=code_line>
+                        <span class=key_word>print</span>(<span class=string>'Class Ratio:'</span>,<span class=key_word>sum</span>(df[<span class=string>'Returned_Units'</span>])/<span class=key_word>len</span>(df[<span class=string>'Returned_Units'</span>]))
+                    </div>
+                    
+                </div>
+              </div>
+              <div class="output_box_wide">
+                <div class="txt2 output_txt">
+                > Class Ratio: 0.216<br/>
+                </div>
+            </div>
+        </div>
+        <p class="txt2">As you can see in our data, 21.6% of the time a product is returned. When we create our folds we want each split to have this same percentage of returns. </p>
+        <p class="txt2">Let’s initialise a StratifiedKFold object and declare the number of splits we want, which in our case is 5.</p>
+        <div class="wide_box code_wide_box">
+            <div class="code_box_wide">
+                <div class="txt2 code">
+                    <div class=code_line>
+                        skf = StratifiedKFold(n_splits=<span class=number>5</span>)
+                    </div>
+                </div>
+              </div>
+        </div>
+        <p class="txt2">When we perform the splits we’ll need to tell the function which column we are going to use as the target so let’s also create a series called target that contains the Returned_`Units data from our main data frame.</p>
+        <div class="wide_box code_wide_box">
+            <div class="code_box_wide">
+                <div class="txt2 code">
+                    <div class=code_line>
+                        target = df.loc[:,<span class=string>'Returned_Units'</span>]
+                    </div>
+                </div>
+              </div>
+        </div>
+        <p class="txt2">Now we are ready to use the function to create our folds. For this we’ll use a for loop and StratifiedKFold’s split operation to get the train and test row indexes for each split. We can then use these indexes to split our data into train and test dataframes. To start with we’ll just split our data and print the class ratio for each fold to check that they are all close to the full data set.</p>
+            <div class="wide_box code_wide_box">
+                  <div class="code_box_wide">
+                      <div class="txt2 code">
+                          <div class=code_line>
+                            fold_no = <span class=number>1</span>
+                          </div>
+                          <div class="code_line">
+                              <span class=key_word>def</span> train_index, test_index <span class=key_word>in</span> skf.split(df, target):
+                          </div>
+                          <div class="code_line function1">
+                            train = df.loc[train_index,:]
+                          </div>
+                          <div class="code_line function1">
+                            test = df.loc[test_index,:]
+                          </div>
+                          <div class="code_line function1">
+                            <span class=key_word>print</span>(<span class=string>'Fold'</span>,<span class=key_word>str</span>(fold_no),<span class=string>'Class Ratio:'</span>,<span class=key_word>sum</span>(test[<span class=string>'Returned_Units'</span>])/<span class=key_word>len</span>(test[<span class=string>'Returned_Units'</span>]))
+                          </div>
+                          <div class="code_line function1">
+                            fold_no += <span class=number>1</span>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="output_box_wide">
+                        <div class="txt2 output_txt">
+                        > Fold 1 Class Ratio 0.215<br/>
+                        > Fold 2 Class Ratio 0.215<br/>
+                        > Fold 3 Class Ratio 0.215<br/>
+                        > Fold 4 Class Ratio 0.2175<br/>
+                        > Fold 5 Class Ratio 0.2175<br/>
+                        </div>
+                  </div>
+            </div>
+            <p class="txt2">As is the case with regular KFold cross validation, each train split contains 4 folds while the test set contains a single fold so we use the test split to determine the class ratio for each fold. You can see that each fold’s class ratio is close to the full data set which is obviously what we want.</p> 
+            <p class=txt2 style='color:rgb(167, 163, 163)'><i>You might have also noticed that we have a variable called fold_no that increments on each loop. This is purely to label the folds when we print our output.</i></p>
+
+            <h4 class="txt_pad">Splitting & Training a Machine Learning Model</h4>
+            <p class="txt">Now we have our folds setup we can extend the for loop to pass our train/test splits into a custom function that will train and test a model. Let’s train a simple logistic regression model using just two features, make predictions and print the accuracy for each of our folds.</p>
+            <p class="txt2">First we import the libraries we require and initialise the model.</p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class=code_line>
+                            <span class=key_word>from</span> sklearn.linear_model <span class=key_word>import</span> LogisticRegression
+                        </div>
+                        <div class=code_line>
+                            <span class=key_word>from</span> sklearn.metrics <span class=key_word>
+                                import</span> accuracy_score
+                        </div>
+                        <div class=code_line>
+                            model = LogisticRegression()
+                        </div>
+                    </div>
+                  </div>
+          </div>
+          <p class="txt2">Next we’ll build a custom function that we can pass our data splits to for training and testing.</p>
+          <div class="wide_box code_wide_box">
+            <div class="code_box_wide">
+                <div class="txt2 code">
+                    <div class=code_line>
+                        <span class=key_word>def</span> <b>train_model</b>(train, test, fold_no):
+                    </div>
+                    <div class="code_line function1">
+                        X = [<span class=string>'Retail_Price'</span>,<span class=string>'Discount'</span>]
+                    </div>
+                    <div class="code_line function1">
+                        y = [<span class=string>'Returned_Units'</span>]
+                    </div>
+                    <div class="code_line function1">
+                        X_train = train[X]
+                    </div>
+                    <div class="code_line function1">
+                        y_train = train[y]
+                    </div>
+                    <div class="code_line function1">
+                        X_test = test[X]
+                    </div>
+                    <div class="code_line function1">
+                        y_test = test[y]
+                    </div>
+                    <div class="code_line function1">
+                        model.fit(X_train,y_train)
+                    </div>
+                    <div class="code_line function1">
+                        predictions = model.predict(X_test)
+                    </div>
+                    <div class="code_line function1">
+                        print(<span class=string>'Fold'</span>,<span class=key_word>str</span>(fold_no),<span class=string>'Accuracy:'</span>,accuracy_score(y_test,predictions))
+                    </div>
+                </div>
+              </div>
+          </div>
+          <p class="txt2">Finally let’s modify the for loop we created above to call the build_model function on each of our splits.</p>
+          <div class="wide_box code_wide_box">
+            <div class="code_box_wide">
+                <div class="txt2 code">
+                    <div class=code_line>
+                      fold_no = <span class=number>1</span>
+                    </div>
+                    <div class="code_line">
+                        <span class=key_word>def</span> train_index, test_index <span class=key_word>in</span> skf.split(df, target):
+                    </div>
+                    <div class="code_line function1">
+                      train = df.loc[train_index,:]
+                    </div>
+                    <div class="code_line function1">
+                      test = df.loc[test_index,:]
+                    </div>
+                    <div class="code_line function1">
+                        train_model(train,test,fold_no)
+                    </div>
+                    <div class="code_line function1">
+                      fold_no += <span class=number>1</span>
+                    </div>
+                </div>
+              </div>
+              <div class="output_box_wide">
+                  <div class="txt2 output_txt">
+                  > Fold 1 Accuracy: 0.785<br/>
+                  > Fold 2 Accuracy: 0.785<br/>
+                  > Fold 3 Accuracy: 0.785<br/>
+                  > Fold 4 Accuracy: 0.7825<br/>
+                  > Fold 5 Accuracy: 0.7825<br/>
+                  </div>
+            </div>
+      </div>
+      <p class="txt2">We now have the pipeline for training and testing using our stratified folds and therefore more complex models can be built by making changes to the train_model function.</p>
+
+      <h4 class="txt_pad">Splitting & Exporting to CSV</h4>
+      <p class="txt">An alternative to training and testing a model in the loop is simply to export the splits to file and then use them to train a model in another script or to use for some other purpose. Let’s see how we can make a few changes to our for loop to do this.</p>
+      <div class="wide_box code_wide_box">
+        <div class="code_box_wide">
+            <div class="txt2 code">
+                <div class=code_line>
+                  fold_no = <span class=number>1</span>
+                </div>
+                <div class="code_line">
+                    <span class=key_word>def</span> train_index, test_index <span class=key_word>in</span> skf.split(df, target):
+                </div>
+                <div class="code_line function1">
+                  train = df.loc[train_index,:]
+                </div>
+                <div class="code_line function1">
+                  test = df.loc[test_index,:]
+                </div>
+                <div class="code_line function1">
+                    train_filename = <span class=string>'train_split_'</span> + <span class=key_word>str</span>(fold_no) + <span class=string>'.csv'</span>
+                </div>
+                <div class="code_line function1">
+                    test_filename = <span class=string>'test_split_'</span> + <span class=key_word>str</span>(fold_no) + <span class=string>'.csv'</span>
+                </div>
+                <div class="code_line function1">
+                    train.to_csv(<span class=string>'data/splits/'</span> + train_filename, index=<span class=key_word>False</span>)
+                </div>
+                <div class="code_line function1">
+                    test.to_csv(<span class=string>'data/splits/'</span> + test_filename, index=<span class=key_word>False</span>)
+                </div>
+                <div class="code_line function1">
+                  fold_no += <span class=number>1</span>
+                </div>
+            </div>
+          </div>
+  </div>
+      <p class="txt2">As you can see we now have 5 train and test files to work with as and when we need them.</p>
+      <p class="txt2">For further detail on the Sci-Kit Learn StratifiedKFold function, you can view the documentation <a class="txt2 analyseup-link" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.StratifiedKFold.html">here</a>.</p>
+
+      <h3 class="txt_pad">Full Code</h3>
+        <div class="wide_box code_wide_box">
+            <div class="code_box_wide">
+                <div class="txt2 code">
+                    <div class=code_line>
+                        <span class=key_word>import</span> pandas <span class=key_word>as</span> pd
+                    </div>
+                    <div class="code_line">
+                        <span class=key_word>from</span> sklearn.model_selection <span class=key_word>import</span> StratifiedKFold
+                    </div>
+                    <p></p>
+                    <div class="code_line">
+                        df = pd.read_csv(<span class=string>'data/processed_data.csv'</span>)
+                    </div>
+                    <p></p>
+                    <div class=code_line>
+                        skf = StratifiedKFold(n_splits=<span class=number>5</span>)
+                    </div>
+                    <div class=code_line>
+                        target = df.loc[:,<span class=string>'Returned_Units'</span>]
+                    </div>
+                    <p></p>
+                    <div class=code_line>
+                        <span class=key_word>from</span> sklearn.linear_model <span class=key_word>import</span> LogisticRegression
+                    </div>
+                    <div class=code_line>
+                        <span class=key_word>from</span> sklearn.metrics <span class=key_word>
+                            import</span> accuracy_score
+                    </div>
+                    <div class=code_line>
+                        model = LogisticRegression()
+                    </div>
+                    <p></p>
+                    <div class=code_line>
+                        <span class=key_word>def</span> <b>train_model</b>(train, test, fold_no):
+                    </div>
+                    <div class="code_line function1">
+                        X = [<span class=string>'Retail_Price'</span>,<span class=string>'Discount'</span>]
+                    </div>
+                    <div class="code_line function1">
+                        y = [<span class=string>'Returned_Units'</span>]
+                    </div>
+                    <div class="code_line function1">
+                        X_train = train[X]
+                    </div>
+                    <div class="code_line function1">
+                        y_train = train[y]
+                    </div>
+                    <div class="code_line function1">
+                        X_test = test[X]
+                    </div>
+                    <div class="code_line function1">
+                        y_test = test[y]
+                    </div>
+                    <div class="code_line function1">
+                        model.fit(X_train,y_train)
+                    </div>
+                    <div class="code_line function1">
+                        predictions = model.predict(X_test)
+                    </div>
+                    <div class="code_line function1">
+                        print(<span class=string>'Fold'</span>,<span class=key_word>str</span>(fold_no),<span class=string>'Accuracy:'</span>,accuracy_score(y_test,predictions))
+                    </div>
+                    <p></p>
+                    <div class=code_line>
+                        fold_no = <span class=number>1</span>
+                      </div>
+                      <div class="code_line">
+                          <span class=key_word>def</span> train_index, test_index <span class=key_word>in</span> skf.split(df, target):
+                      </div>
+                      <div class="code_line function1">
+                        train = df.loc[train_index,:]
+                      </div>
+                      <div class="code_line function1">
+                        test = df.loc[test_index,:]
+                      </div>
+                      <div class="code_line function1">
+                          train_model(train,test,fold_no)
+                      </div>
+                      <div class="code_line function1">
+                        fold_no += <span class=number>1</span>
+                      </div>
+                </div>
+              </div>
+      </div>
+            
+            
+            <!--AD BANNER-->
+            <div class="ad_banner">
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <ins class="adsbygoogle"
+                         style="display:block; text-align:center;"
+                         data-ad-layout="in-article"
+                         data-ad-format="fluid"
+                         data-ad-client="ca-pub-4825364639199120"
+                         data-ad-slot="8773565602"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+            </div>
+
+        </div>
+    </div>
+    </div>
+<!-------------------------------------FOOTER---------------------------------->
+<div id="footer"></div>
+
+        
+<!--SIDE AD BAR-->
+<div id="ad_bar" >
+    <!-- side_bar_1 -->
+    <ins class="adsbygoogle"
+         style="display:block; margin-top: 10vh;"
+         data-ad-client="ca-pub-4825364639199120"
+         data-ad-slot="6532762683"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+</div>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>    
+
+</body>
+</html>
