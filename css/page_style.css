@@ -45,8 +45,11 @@ html {
 	}
     #mailchimp input[type="submit"]:hover { color: grey }
 /*SHARE BUTTONS*/
+#share-buttons {
+    height:5px;
+}
 #share-buttons img {
-    width: 20px;
+    width: 35px;
     padding: 5px;
     border: 0;
     box-shadow: 0;
