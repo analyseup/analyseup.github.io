@@ -12,7 +12,7 @@
   gtag('config', 'UA-147504302-1');
 </script>
 
-    <title>Alteryx Dynamic Input Tool - Working With Multiple Files | AnalyseUp</title>
+    <title>Dynamic File Import with Alteryx | AnalyseUp</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Learn how to use the Dynamic Input tool to import all files stored in a folder or import just the latest file. We'll see how we can define the files to import using the Directory, Sort and Sample tools.">
@@ -45,7 +45,26 @@
     <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:250px; top:0vh;" id="mySidebar">
         <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
         <!--<a href="alteryx-exercises.html" style="text-decoration: none;"><div id="next">Next</div></a>-->
-        <p></p>
+        <div id="mailchimp">
+          <h6 id="side_title" style="text-align: center; color: black; margin-left: 15px; margin-right:15px;"><b>Subscribe to Our Mailing List</b></h6>
+          <form action="https://analyseup.us17.list-manage.com/subscribe/post?u=af90f4bd3ff02cce6caf63d9e&amp;id=b95079f149" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+              <input type="email" size="30" value="Enter your email" name="EMAIL" class="required email" id="mce-EMAIL" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;">
+          
+                  <div id="mce-responses" class="clear">
+                      <div class="response" id="mce-error-response" style="display:none"></div>
+                      <div class="response" id="mce-success-response" style="display:none"></div>
+                  </div>
+          
+                  <div class="clear">
+                      <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+                  </div>
+          </form>
+          </div>
+          <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+          <!--End mc_embed_signup-->
+        <h6 class="side_title">Alteryx Beyond the Basics</h6>
+        <a id=sel href="alteryx-dynamic-input.html" class="w3-bar-item w3-button side_link" >Dynamic File Import</a>
+        <a href="alteryx-download-tool.html" class="w3-bar-item w3-button side_link" >Downloading Files</a>
         <!--<h5 id="side_head"><b>Data Wrangling with Alteryx</b></h5>-->
         <h6 class="side_title">Other Tutorials & Content</h6>
             <a href="../learn-alteryx/alteryx-introduction.html" class="w3-bar-item w3-button side_link" >Get Started with Alteryx</a>
@@ -64,7 +83,7 @@
                           <button class="w3-button w3-xlarge w3-hide-large" onclick="w3_open()" style="left:0;">&#9776;</button>
             </div>
           <div class="h_right">
-              <h1>Alteryx Dynamic Input Tool - Working With Multiple Files</h1>
+              <h1>Dynamic File Import with Alteryx</h1>
             </div>
 
           <p></p>
@@ -82,19 +101,7 @@
                          (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
                 </div>
-                <div class="share_buttons">
-                    <a href="https://twitter.com/AnalyseUp?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @AnalyseUp</a>
-                    
-                      <a href="https://twitter.com/share?text=Hello%20world" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    
-                      <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.analyseup.com&layout=button_count&size=small&width=77&height=20&appId" width="77" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
-                      
-                      <!--
-                      <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
-                      <script type="IN/Share" data-url="https://www.analyseup.com"></script>
-                      -->
-    
-                </div>
+                
               <p class="txt txt_pad">
                 Often when we work with data sources such as excel or csv files we will be working with data spread across multiple files where we may want all the data in those files or data in just a few of them. For this purpose we can use the Alteryx dynamic input tool which allows us to declare which file or files to import at the time the workflow runs.
               </p>

@@ -224,12 +224,11 @@
                 <div class="code_box_wide">
                     <div class="txt2 code">
                         <div class="code_line">
-                            df[<span class=string>'Discount'</span>].fillna(<span class=number>0</span>,inplace=<span class=key_word>True</span>)
+                            df.dropna(inplace=<span class=key_word>True</span>, axis=<span class=number>1</span>)
                         </div>
                     </div>
                   </div>
             </div>
-            <p class="txt2">df.dropna(inplace=True, axis=1)</p>
 
             <h2 class="txt_pad">Replacing Values</h2>
             <p class="txt">The fillna operation can be thought of as a special case of the Pandas Replace operation. The Replace operation simply replaces any value in your data frame that you specify with another value that you define.</p>
