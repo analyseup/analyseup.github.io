@@ -72,8 +72,7 @@
             <a href="../python-data-science-reference/python-machine-learning-linear-models.html" class="w3-bar-item w3-button side_link" >Linear Models</a>
         <h6 class="side_title">Other Tutorials & Content</h6>
             <a href="../learn-python-for-data-science/python-variables-and-data-types.html" class="w3-bar-item w3-button side_link" >Learn Python for Data Science</a> 
-            <a href="../learn-alteryx/alteryx-introduction.html" class="w3-bar-item w3-button side_link" >Learn Alteryx</a> 
-            <a href="../blog/evaluation-metric-tunnel-vision.html" class="w3-bar-item w3-button side_link" >Blog</a> 
+            <a href="../learn-alteryx/alteryx-introduction.html" class="w3-bar-item w3-button side_link" >Learn Alteryx</a>  
                             <br/>
             <br/>
             <br/>
@@ -91,7 +90,7 @@
 
           <!--HEADER-->
           <div class="h_right">
-              <h1>Pandas Filter, Sort and Sample</h1>
+              <h1>Filter, Sort and Sample Data</h1>
           </div>
 
         <!--CONTENT-->
@@ -109,17 +108,19 @@
                      (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
             </div>
-            <!--SOCIAL MEDIA BUTTONS-->
-            <div class="share_buttons">
-                  <!--TWITTER FOLLOW-->
-                  <a href="https://twitter.com/AnalyseUp?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @AnalyseUp</a>
-                  <!--TWEET-->
-                  <a class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-            </div>
+            
             <p class="txt_pad"></p>
+            <div id=sub>
+                <div id=m_menu>
+                    <a class=menu_li href="#filter">Filter Data</a>
+                    <a class=menu_li href="#sort">Sort Data</a>
+                    <a class=menu_li href="#sample">Sample Data</a>
+                </div>
+            </div>
 
-
+            <a name=filter></a>
             <h2 class="txt_pad">Pandas Filter Rows</h2>
+            <h4 class=txt_pad>Basic Filter</h4>
             <p class="txt2">Filter the orders data frame to only include rows where the PromoID is 30_OFF:</p>
             <div class="wide_box code_wide_box">
                   <div class="code_box_wide">
@@ -130,7 +131,8 @@
                       </div>
                     </div>
             </div>
-            <p class="txt2 txt_pad">Filter the orders data frame to only include rows where the PromoID is 30_OFF and the ProductID is 228722:</p>
+            <h4>And Filter</h4>
+            <p class="txt2">Filter the orders data frame to only include rows where the PromoID is 30_OFF and the ProductID is 228722:</p>
             <div class="wide_box code_wide_box">
                   <div class="code_box_wide">
                       <div class="txt2 code">
@@ -141,7 +143,8 @@
                       </div>
                     </div>
             </div>
-            <p class="txt2 txt_pad">Filter the orders data frame to only include rows where the PromoID is 30_OFF or the ProductID is 228722:</p>
+            <h4>Or Filter</h4>
+            <p class="txt2">Filter the orders data frame to only include rows where the PromoID is 30_OFF or the ProductID is 228722:</p>
             <div class="wide_box code_wide_box">
                   <div class="code_box_wide">
                       <div class="txt2 code">
@@ -153,6 +156,7 @@
                     </div>
             </div>
 
+            <a name=sort></a>
             <h2 class="txt_pad">Pandas Sort Rows</h2>
             <p class="txt2">Sort the orders dataframe by ProductID and then Order_Date in descending order.</p>
             <div class="wide_box code_wide_box">
@@ -165,6 +169,7 @@
                     </div>
             </div>
 
+            <a name=sample></a>
             <h2 class="txt_pad">Pandas Sample Rows</h2>
             <p class="txt2">Sample 100 rows from the orders dataframe</p>
             <div class="wide_box code_wide_box">

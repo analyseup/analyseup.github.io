@@ -91,7 +91,7 @@
 
           <!--HEADER-->
           <div class="h_right">
-              <h1>Select, Drop and Rename Columns - Pandas</h1>
+              <h1>Select, Drop and Rename with Pandas</h1>
           </div>
 
 
@@ -110,17 +110,18 @@
                      (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
             </div>
-            <!--SOCIAL MEDIA BUTTONS-->
-            <div class="share_buttons">
-                  <!--TWITTER FOLLOW-->
-                  <a href="https://twitter.com/AnalyseUp?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @AnalyseUp</a>
-                  <!--TWEET-->
-                  <a class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-            </div>
+
             <p class="txt_pad"></p>
-
-
-            <h2 class="txt_pad">Pandas Select Columns</h2>
+            <div id=sub>
+                <div id=m_menu>
+                    <a class=menu_li href="#select">Select Columns & Rows</a>
+                    <a class=menu_li href="#drop">Drop Columms</a>
+                    <a class=menu_li href="#rename">Rename Columns</a>
+                </div>
+            </div>
+            <a name=select></a>
+            <h2 class="txt_pad">Select Columns & Rows</h2>
+            <h4 class="txt_pad">Select Columns with a List</h4>
             <p class="txt2">Selecting the Order_Date and ProductID columns from the orders data frame.</p>
             <div class="wide_box code_wide_box">
                   <div class="code_box_wide">
@@ -131,9 +132,54 @@
                       </div>
                     </div>
             </div>
+            <h4>Select Columns Using Loc</h4>
+            <p class="txt2">Select all columns between Order_No and ProductID from the orders dataframe using Loc.</p>
+            <div class="wide_box code_wide_box">
+                  <div class="code_box_wide">
+                      <div class="txt2 code">
+                          <div class="code_line">
+                            orders.loc[:,<span class=string>'Order_No'</span>:<span class=string>'ProductID'</span>]
+                          </div>
+                      </div>
+                    </div>
+            </div>
+            <h4>Select Columns Using iLoc</h4>
+            <p class="txt2">Select the first five columns from the orders dataframe using iLoc.</p>
+            <div class="wide_box code_wide_box">
+                  <div class="code_box_wide">
+                      <div class="txt2 code">
+                          <div class="code_line">
+                            orders.iloc[:,<span class=number>0</span>:<span class=number>5</span>]
+                          </div>
+                      </div>
+                    </div>
+            </div>
+            <h4>Select Rows Using iLoc</h4>
+            <p class="txt2">Select the first ten rows from the orders dataframe using iLoc.</p>
+            <div class="wide_box code_wide_box">
+                  <div class="code_box_wide">
+                      <div class="txt2 code">
+                          <div class="code_line">
+                            orders.iloc[<span class=number>0</span>:<span class=number>10</span>,:]
+                          </div>
+                      </div>
+                    </div>
+            </div>
+            <h4>Select the Last N Rows Using iLoc</h4>
+            <p class="txt2">Select the last ten rows from the orders dataframe using iLoc.</p>
+            <div class="wide_box code_wide_box">
+                  <div class="code_box_wide">
+                      <div class="txt2 code">
+                          <div class="code_line">
+                            orders.iloc[<span class=number>-10</span>:<span class=number></span>,:]
+                          </div>
+                      </div>
+                    </div>
+            </div>
 
-            <h2 class="txt_pad">Pandas Drop Columns</h2>
-            <p class="txt2">Drop the PromoID and Order_Date columns from the orders data frame.</p>
+            <a name=drop></a>
+            <h2 class="txt_pad">Drop Columns</h2>
+            <p class="txt2">Drop the PromoID and Order_Date columns from the orders dataframe.</p>
             <div class="wide_box code_wide_box">
                   <div class="code_box_wide">
                       <div class="txt2 code">
@@ -144,7 +190,9 @@
                     </div>
             </div>
 
-            <h2 class="txt_pad">Pandas Rename Column</h2>
+            <a name=rename></a>
+            <h2 class="txt_pad">Rename Columns</h2>
+            <h4 class="txt_pad">Rename Columns with a Dictionary</h4>
             <p class="txt2">Rename the "Order_Date" column of the orders data frame to "Date".</p>
             <div class="wide_box code_wide_box">
                   <div class="code_box_wide">
@@ -155,6 +203,17 @@
                       </div>
                     </div>
             </div>
+            <h4 class="txt_pad">Rename All Columns with a List</h4>
+            <p class="txt2">Rename all three columns in the df dataframe to col_1, col_2 and col_3 using a list.</p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class="code_line">
+                            df.columns = [<span class=string>'col_1'</span>,<span class=string>'col_2'</span>,<span class=string>'col_3'</span>]
+                        </div>
+                    </div>
+                  </div>
+          </div>
 
             <!--
              <a href="python-lists-and-tuples.html" style="text-decoration: none;"><div id="next_mobile">Next</div></a>
