@@ -117,8 +117,15 @@
                   <a class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             </div>
             <p class="txt_pad"></p>
-
-
+            <div id=sub>
+                <div id=m_menu>
+                    <a class=menu_li href="#csv">Import CSV File</a>
+                    <a class=menu_li href="#excel">Import Excel Worksheet</a>
+                    <a class=menu_li href="#pickle">Import Pickle File</a>
+                    <a class=menu_li href="#sql">Import Using SQL Server Query</a>
+                </div>
+            </div>
+            <a name="csv"></a>
             <h2 class="txt_pad">Import CSV File into Pandas Dataframe</h2>
             <p class="txt2">Import data from the "orders.csv" file into a Pandas dataframe. Here we will parse the field "Order_Date" as a date, take a subset of columns and only import the first 500 rows.</p>
             <div class="wide_box code_wide_box">
@@ -136,7 +143,7 @@
                       </div>
                     </div>
             </div>
-
+            <a name="excel"></a>
             <h2 class="txt_pad">Import Excel Worksheet into Pandas Dataframe</h2>
             <p class="txt2">Import data from the xlsx file "Returns.xslx" into a Pandas dataframe. The data in this case is stored in the "Returns" worksheet.</p>
             <div class="wide_box code_wide_box">
@@ -148,7 +155,7 @@
                       </div>
                     </div>
             </div>
-
+            <a name="pickle"></a>
             <h2 class="txt_pad">Import Pickle File into Pandas Dataframe</h2>
             <div class="wide_box code_wide_box">
                   <div class="code_box_wide">
@@ -159,7 +166,7 @@
                       </div>
                     </div>
             </div>
-
+            <a name="sql"></a>
             <h2 class="txt_pad">Import SQL Server Query into Pandas Dataframe</h2>
             <p class="txt2">Connect to SQL Server, run SQL query and import the resulting data into a Pandas dataframe. Note, this assumes that you don't have to enter a username and password to connect to the server you are querying.</p>
             <div class="wide_box code_wide_box">
