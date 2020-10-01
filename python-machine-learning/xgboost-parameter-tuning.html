@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <!-- GOOGLE ANALYTICS -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-147504302-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-147504302-1');
+    </script>
+
+    <title>XGBoost Parameter Tuning Tutorial | AnalyseUp.com</title>
+    
+    <!--META TAGS-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Learn how to use GridSearchCV to tune XGBoost hyperparameters and improve the performance of your models.">
+    <!--SOCIAL MEDIA META TAGS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--STYLESHEETS-->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link href='../css/w3.css' rel='stylesheet' type="text/css">
+    <link href='../css/page_style.css' rel='stylesheet' type='text/css'> 
+
+    <!--JAVASCRIPT FOR BURGER MENU-->
+    <script>
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+        }
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+        }
+    </script>
+</head>
+    
+<body>
+    <!--TOP BANNER-->
+
+
+    <div id="top" style="max-width: 1080px">
+        <a href="../index.html"><img alt="Get Started with Data Science, Data Analysis and BI" id="banner" src="../img/AnalyseUp_Black(v2.2).png" ></a>
+        <div class="sep"></div>
+    </div>
+    
+
+    
+    <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:250px; top:0vh;" id="mySidebar">
+        <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+        <!--<a href="alteryx-exercises.html" style="text-decoration: none;"><div id="next">Next</div></a>-->
+        <div id="mailchimp">
+            <h6 id="side_title" style="text-align: center; color: black; margin-left: 15px; margin-right:15px;"><b>Subscribe to Our Mailing List</b></h6>
+            <form action="https://analyseup.us17.list-manage.com/subscribe/post?u=af90f4bd3ff02cce6caf63d9e&amp;id=b95079f149" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                <input type="email" size="30" value="Enter your email" name="EMAIL" class="required email" id="mce-EMAIL" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;">
+            
+                    <div id="mce-responses" class="clear">
+                        <div class="response" id="mce-error-response" style="display:none"></div>
+                        <div class="response" id="mce-success-response" style="display:none"></div>
+                    </div>
+            
+                    <div class="clear">
+                        <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+                    </div>
+            </form>
+            </div>
+            <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+            <!--End mc_embed_signup-->
+        <h6 class="side_title">Python Machine Learning</h6>
+            <a href="../learn-python-for-data-science/python-random-forest-feature-importance-plot.html" class="w3-bar-item w3-button side_link" >Plotting Feature Importance</a>
+            <a href="stratified-kfold.html" class="w3-bar-item w3-button side_link" >Stratified KFold</a>
+            <a href="xgboost-parameter-tuning.html" class="w3-bar-item w3-button side_link" >XGBoost Parameter Tuning</a>
+            <a href="" class="w3-bar-item w3-button side_link" >More to Follow...</a>
+        <h6 class="side_title">Other Content</h6>
+            <a href="../learn-alteryx/alteryx-introduction.html" class="w3-bar-item w3-button side_link" >Get Started with Alteryx</a>
+            <a href="../learn-python-for-data-science/python-variables-and-data-types.html" class="w3-bar-item w3-button side_link" >Learn Python</a>
+            <a href="../python-data-science-reference/pandas-create-dataframe.html" class="w3-bar-item w3-button side_link" >Python Data Science Reference</a>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+    </div>
+
+    <!--MAIN PAGE----->
+    <div class="w3-main" style="margin-left:250px; margin-right:200px; width=2px;">
+    <div>
+            
+        <!--MENU BUTTON-->
+          <div class="h_left">
+              <button class="w3-button w3-xlarge w3-hide-large" onclick="w3_open()" style="left:0;">&#9776;</button>
+          </div>
+        
+        
+        <!--CONTENT-->
+        <div class="w3-container content_container">
+            <!--TOP AD BANNER-->
+            <div class='horizontal_ad'>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- top_ad_banner -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:100%;height:100px;
+                            text-align:center;"
+                     data-ad-client="ca-pub-4825364639199120"
+                     data-ad-slot="9902475134"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>  
+            
+            
+            <p></p>
+            <p class=txt_pad></p>
+                <div class="h_right">
+                    <h1>XGBoost Parameter Tuning Tutorial</h1>
+                </div>
+                <div id="share-buttons">
+                    <a href="mailto:?Subject=Simple Share Buttons&amp;Body=I%20saw%20this%20and%20thought%20of%20you!%20 https://www.analyseup.com/python-machine-learning/xgboost-parameter-tuning.html">
+                        <img src="https://simplesharebuttons.com/images/somacro/email.png" alt="Email" />
+                    </a>
+                    <a href="http://www.facebook.com/sharer.php?u=https://www.analyseup.com/python-machine-learning/xgboost-parameter-tuning" target="_blank">
+                        <img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" />
+                    </a>
+                    <!-- LinkedIn -->
+                    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.analyseup.com/python-machine-learning/xgboost-parameter-tuning" target="_blank">
+                        <img src="https://simplesharebuttons.com/images/somacro/linkedin.png" alt="LinkedIn" />
+                    </a>
+                    <!-- Reddit -->
+                    <a href="http://reddit.com/submit?url=ahttps://www.analyseup.com/python-machine-learning/xgboost-parameter-tuning&amp;title=XGBoost Parameter Tuning" target="_blank">
+                        <img src="https://simplesharebuttons.com/images/somacro/reddit.png" alt="Reddit" />
+                    </a>
+                
+                    <!-- Twitter -->
+                    <a href="https://twitter.com/share?url=https://www.analyseup.com/python-machine-learning/xgboost-parameter-tuning&amp;text=XGBoost Parameter Tuning&amp;hashtags=DataScience" target="_blank">
+                        <img src="https://simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter" />
+                    </a>
+                
+                </div>
+            <p class=txt_pad></p>
+            <p class="txt">XGBoost has many parameters that can be adjusted to achieve greater accuracy or generalisation for our models. Here we’ll look at just a few of the most common and influential parameters that we’ll need to pay most attention to. We’ll get an intuition for these parameters by discussing how different values can impact the performance of our models before demonstrating how to use grid search to find the best values in a given range for the model we’re working on.</p>
+            <p class="txt2">Before we discuss the parameters let's just have a quick review of how the XGBoost algorithm works to enable us to understand how the changes in parameter values will impact the way our models are trained.</p>
+            
+            <h3 class="txt_pad">XGBoost Overview</h3>
+            <p class="txt">XGBoost has similar behaviour to a decision tree in that each tree is split based on certain range values in different columns but unlike decision trees, each each node is given a weight. On each iteration a new tree is created and new node weights are assigned. For each tree the training examples with the biggest error from the previous tree are given extra attention so that the next tree will optimise more for these training examples, this is the boosting part of the algorithm. Finally, the outputs of each tree get ensembled, usually through averaging the weights for each instance from each tree to derive predictions.</p>
+            
+
+            <h3 class="txt_pad">XGBoost Parameters</h3>
+            <p class="txt">Now let’s look at some of the parameters we can adjust when training our model.</p>
+            <h4 class="txt_pad">Subsample</h4>
+            <p class="txt" style="text-align: center;font-style: italic;">Value Range: 0 - 1</p>
+            <p class="txt" style="text-align: center;font-style: italic;">Decrease to reduce overfitting</p>
+            <p class="txt2">Each tree will only get a % of the training examples and can be values between 0 and 1. Lowering this value stops subsets of training examples dominating the model and allows greater generalisation.</p>
+            <h4 class="txt_pad">Colsample_bytree</h4>
+            <p class="txt" style="text-align: center;font-style: italic;">Value Range: 0 - 1</p>
+            <p class="txt" style="text-align: center;font-style: italic;">Decrease to reduce overfitting</p>
+            <p class="txt2">Similar to subsample but for columns rather than rows. Again you can set values between 0 and 1 where lower values can make the model generalise better by stopping any one field having too much prominence, a prominence that might not exist in the test data.</p>
+            <h4 class="txt_pad">Max_Depth</h4>
+            <p class="txt" style="text-align: center;font-style: italic;">Value Range: 0 - infinity</p>
+            <p class="txt" style="text-align: center;font-style: italic;">Decrease to reduce overfitting</p>
+            <p class="txt2">This limits the maximum number of child nodes each branch of the tree can have. Keeping this low stops the model becoming too complex and creating splits that might only be relevant to the training data. However if this is too low, then the model might not be able to make use of all the information in your data.</p>
+            <p class="txt2">Good values to use here will vary largely on the complexity of the problem you are trying to predict and the richness of your data. The default is 6 and generally is a good place to start and work up from however for simple problems or when dealing with small datasets then the optimum value can be lower.
+            </p>
+            <h4 class="txt_pad">Min_Child_weight</h4>
+            <p class="txt" style="text-align: center;font-style: italic;">Value Range: 0 - infinity</p>
+            <p class="txt" style="text-align: center;font-style: italic;">Increase to reduce overfitting</p>
+            <p class="txt2">Means that the sum of the weights in the child needs to be equal to or above the threshold set by this parameter. Good values to try are 1, 5, 15, 200 but this often depends on the amount of data in your training set as fewer examples will likely result in lower child weights.</p>
+            <h4 class="txt_pad">Learning_Rate</h4>
+            <p class="txt2">Learning rate or ETA is similar to the learning rate you have may come across for things like gradient descent. In layman’s terms it is how much the weights are adjusted each time a tree is built. Set the learning rate too high and the algorithm might miss the optimum weights but set it too low and it might converge to suboptimal values.</p>
+            <h4 class="txt_pad">N_estimators</h4>
+            <p class="txt2">N_estimators is the number of iterations the model will perform or in other words the number of trees that will be created. Often we set this to a large value and use early stopping to roll back the model to the one with the best performance.</p>
+
+            <p class="txt2">It is worth noting that there is interaction here between the parameters and so adjusting one will often effect what happens will happen when we adjust another. For example, increasing the min_child_weight will reduce the impact of increasing the max_depth as the first parameter will limit how how many splits can occur anyway.</p>
+            
+            <h3 class="txt_pad">XG Boost & GridSearchCV in Python</h3>
+            <p class="txt">Now that we have got an intuition about what’s going on, let’s look at how we can tune our parameters using Grid Search CV with Python.</p>
+            <p class="txt2">For our example we’re going to use the titanic dataset so let’s start by importing the dataset, getting dummy variables, selecting features and then splitting our data into features and target for training and testing as we would do when approaching any machine learning problem.</p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class=code_line>
+                            <span class=key_word>import</span> pandas <span class=key_word>as</span> pd
+                        </div>
+                        <div class=code_line>
+                            df = pd.read_csv(<span class=string>'data/titanic/train.csv'</span>)
+
+                        <div class=code_line>
+                            df = pd.get_dummies(df,columns=[<span class=string>'Pclass'</span>,<span class=string>'Sex'</span>,<span class=string>'Embarked'</span>],drop_first=<span class=key_word>True</span>)
+                        </div>
+                        <div class=code_line>
+                            X = df[[<span class=string>'Age'</span>, <span class=string>'SibSp'</span>, <span class=string>'Parch'</span>,<span class=string>'Fare'</span>, <span class=string>'Pclass_2'</span>, <span class=string>'Pclass_3'</span>,<span class=string>'Sex_male'</span>, <span class=string>'Embarked_Q'</span>,<span class=string>'Embarked_S'</span>]]
+                        </div>
+                        <div class=code_line>
+                            y = df[[<span class=string>'Survived'</span>]]
+                        </div>
+                        <div class=code_line>
+                            <span class=key_word>from</span> sklearn.model_selection <span class=key_word>import</span> train_test_split
+                        </div>
+                        <div class=code_line>
+                            X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=<span class=number>0.3</span>, random_state=<span class=number>42</span>)
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            </div>
+
+            <p class="txt2">Now let’s train and evaluate a baseline model using only standard parameter settings as a comparison for the tuned model that we will create later. The model will be set to train for 100 iterations but will stop early if there has been no improvement after 10 rounds.</p>
+          
+          <div class="wide_box code_wide_box">
+            <div class="code_box_wide">
+                <div class="txt2 code">
+                    <div class=code_line>
+                        <span class=key_word>import</span> xgboost <span class=key_word>as</span> xgb
+                    </div>
+                    <div class=code_line>
+                        <span class=comment>#Declare the evaluation data set</span>
+                    </div>
+                    <div class=code_line>
+                        eval_set = [(X_train, y_train),(X_val,y_val)]
+                    </div>
+                    <div class=code_line>
+                        <span class=comment>#Initialise model using standard parameters</span>
+                    </div>
+                    <div class=code_line>
+                        model = xgb.XGBClassifier(subsample=<span class=number>1</span>,
+                    </div>
+                    <div class="code_line function3">
+                        colsample_bytree=<span class=number>1</span>,
+                    </div>
+                    <div class="code_line function3">
+                        min_child_weight=<span class=number>1</span>,
+                    </div>
+                    <div class="code_line function3">
+                        max_depth=<span class=number>6</span>,
+                    </div>
+                    <div class="code_line function3">
+                        learning_rate=<span class=number>0.3</span>,
+                    </div>
+                    <div class="code_line function3">
+                        n_estimators=<span class=number>100</span>)
+                    </div>
+                    <div class=code_line>
+                        <span class=comment>#Fit the model but stop early if there has been no reduction in error after 10 epochs.</span>
+                    </div>
+                    <div class=code_line>
+                        model.fit(X_train,y_train,early_stopping_rounds=<span class=number>10</span>, eval_metric=<span class=string>"error"</span>,eval_set=eval_set,verbose=<span class=number>0</span>)
+                    </div>
+                    <div class=code_line>
+                        <span class=comment>#Make predictions using for the validation set and evaluate</span>
+                    </div>
+                    <div class=code_line>
+                        predictions = model.predict(X_val)
+                    </div>
+                    <div class=code_line>
+                        <span class=key_word>from</span> sklearn.metrics <span class=key_word>import</span> accuracy_score
+                    </div>
+                    <div class=code_line>
+                        <span class=key_word>print</span>(<span class=string>'Accuracy:'</span>,accuracy_score(y_val, predictions))
+                    </div>                  
+                </div>
+              </div>
+              <div class="output_box_wide">
+                <div class="txt2 output_txt">
+                > Accuracy: 0.80223<br/>
+                </div>
+            </div>
+        </div>
+        <p class="txt2">As you can see, we get an accuracy score of 80.2% against the validation set so now let’s use grid search to tune the parameters we discussed above to see if we can improve that score.</p>
+        <p class="txt2">First we’ll import the GridSearchCV library and then define what values we’ll ask grid search to try. Grid search will train the model using every combination of these values to determine which combination gives us the most accurate model.</p>
+
+        <div class="wide_box code_wide_box">
+            <div class="code_box_wide">
+                <div class="txt2 code">
+                    <div class=code_line>
+                        <span class=key_word>from</span> sklearn.model_selection <span class=key_word>import</span> GridSearchCV
+                    </div>
+                    <div class=code_line>
+                        PARAMETERS = {<span class=string>"subsample"</span>:[<span class=number>0.5</span>, <span class=number>0.75</span>, <span class=number>1</span>],
+                    <div class="code_line function3">
+                        <span class=string>"colsample_bytree"</span>:[<span class=number>0.5</span>, <span class=number>0.75</span>, <span class=number>1</span>],
+                    </div>
+                    <div class="code_line function3">
+                        <span class=string>"max_depth"</span>:[<span class=number>2</span>, <span class=number>6</span>, <span class=number>12</span>],
+                    </div>
+                    <div class="code_line function3">
+                        <span class=string>"min_child_weight"</span>:[<span class=number>1</span>,<span class=number>5</span>,<span class=number>15</span>],
+                    </div>
+                    <div class="code_line function3">
+                        <span class=string>"learning_rate"</span>:[<span class=number>0.3</span>, <span class=number>0.1</span>, <span class=number>0.03</span>],
+                    </div>
+                    <div class="code_line function3">
+                        <span class=string>"n_estimators"</span>:[<span class=number>100</span>]}
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        
+        <p class="txt2">Now let’s fit the grid search model and print out what grid search determines are the best parameters for our model.</p>
+
+        <div class="wide_box code_wide_box">
+            <div class="code_box_wide">
+                <div class="txt2 code">
+                    <div class=code_line>
+                        <span class=comment>#Initialise XGBoost Model</span>
+                    </div>
+                    <div class=code_line>
+                        model = xgb.XGBClassifier(n_estimators=<span class=number>100</span>, n_jobs=<span class=number>-1</span>)
+                    </div>
+                    <div class=code_line>
+                        <span class=comment>"""Initialise Grid Search Model to inherit from the XGBoost Model,</span>
+                    </div>
+                    <div class=code_line>
+                        <span class=comment>set the of cross validations to 3 per combination and use accuracy</span>
+                    </div>
+                    <div class="code_line">
+                        <span class=comment>to score the models."""</span>
+                    </div>
+                    <div class="code_line">
+                        model_gs = GridSearchCV(model,param_grid=PARAMETERS,cv=3,scoring=<span class=string>"accuracy"</span>)
+                    </div>
+                    <div class="code_line">
+                        <span class=comment>#Fit the model as done previously</span>
+                    </div>
+                    <div class="code_line">
+                        model_gs.fit(X_train,y_train,early_stopping_rounds=<span class=number>10</span>, eval_metric=<span class=string>"error"</span>,eval_set=eval_set,verbose=<span class=number>0</span>)
+                    </div>
+                    <div class="code_line">
+                        <span class=key_word>print</span>(model_gs.best_params_)
+                    </div>               
+                </div>
+              </div>
+              <div class="output_box_wide">
+                <div class="txt2 output_txt">
+                    <div class="code_line">
+                > {'colsample_bytree': 0.5, 'learning_rate': 0.3, 'max_depth': 6, 'min_child_weight': 1, 'n_estimators': 100, 'subsample': 0.5}<br/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="txt2">Finally let’s get predictions for our validation data and evaluate the accuracy of our results.</p>
+        
+        <div class="wide_box code_wide_box">
+            <div class="code_box_wide">
+                <div class="txt2 code">
+                    <div class=code_line>
+                        predictions = model_gs.predict(X_val)
+                    </div>
+                    <div class=code_line>
+                        <span class=key_word>print</span>(<span class=string>'Accuracy:'</span>,accuracy_score(y_val, predictions))
+                    </div>                  
+                </div>
+              </div>
+              <div class="output_box_wide">
+                <div class="txt2 output_txt">
+                > Accuracy: 0.82835<br/>
+                </div>
+            </div>
+        </div>
+        <p class="txt2">As we can see, we ended up with a 82.8% accuracy which is a 2.6% increase in the accuracy of our model by using grid search to tune our model parameters.</p>
+        <p class="txt2">ou have seen here that tuning parameters can give us better model performance. While the parameters we’ve tuned here are some of the most commonly tuned when training XGBoost model, this list is not exhaustive and tuning other parameters may also give good results depending on the use case. In addition the values we chose here were ones we suspected from experience and knowledge of the data set would give us good results but again good choices for these values will often depend on the nature of the data you are working with.
+        </p>
+            
+            
+            <!--AD BANNER-->
+            <div class="ad_banner">
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <ins class="adsbygoogle"
+                         style="display:block; text-align:center;"
+                         data-ad-layout="in-article"
+                         data-ad-format="fluid"
+                         data-ad-client="ca-pub-4825364639199120"
+                         data-ad-slot="8773565602"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+            </div>
+
+        </div>
+    </div>
+    </div>
+<!-------------------------------------FOOTER---------------------------------->
+<div id="footer"></div>
+
+        
+<!--SIDE AD BAR-->
+<div id="ad_bar" >
+    <!-- side_bar_1 -->
+    <ins class="adsbygoogle"
+         style="display:block; margin-top: 10vh;"
+         data-ad-client="ca-pub-4825364639199120"
+         data-ad-slot="6532762683"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+</div>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>    
+
+</body>
+</html>
