@@ -69,8 +69,9 @@
             <!--End mc_embed_signup-->
         <h6 class="side_title">Python Machine Learning</h6>
             <a href="../learn-python-for-data-science/python-random-forest-feature-importance-plot.html" class="w3-bar-item w3-button side_link" >Plotting Feature Importance</a>
-            <a href="stratified-kfold.html" class="w3-bar-item w3-button side_link" >Stratified KFold</a>
-            <a href="xgboost-parameter-tuning.html" class="w3-bar-item w3-button side_link" >XGBoost Parameter Tuning</a>
+            
+            <a href="../python-machine-learning/stratified-kfold.html" class="w3-bar-item w3-button side_link" >Stratified KFold</a>
+            <a href="../python-machine-learning/xgboost-parameter-tuning.html" class="w3-bar-item w3-button side_link" >XGBoost Parameter Tuning</a>
             <a href="" class="w3-bar-item w3-button side_link" >More to Follow...</a>
         <h6 class="side_title">Other Content</h6>
             <a href="../learn-alteryx/alteryx-introduction.html" class="w3-bar-item w3-button side_link" >Get Started with Alteryx</a>
@@ -94,19 +95,10 @@
         
         <!--CONTENT-->
         <div class="w3-container content_container">
-            <!--TOP AD BANNER-->
-            <div class='horizontal_ad'>
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                <!-- top_ad_banner -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:100%;height:100px;
-                            text-align:center;"
-                     data-ad-client="ca-pub-4825364639199120"
-                     data-ad-slot="9902475134"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>  
+            <!--DATASNIPS-->
+            <a href="https://www.datasnips.com" target=”_blank”>
+            <img src="../img/au_advert_v1.png" style="max-width:800px;display:block;width:100%;height:auto;text-align:center;border:1px solid grey;margin-left: auto;margin-right: auto;">
+            </a>  
             
             
             <p></p>
@@ -152,6 +144,20 @@
             <p class="txt2">When the data is large enough we can still use regular kfold cross validation as this will often preserve the class ratios but this becomes less likely with fewer training examples. </p>
             <p class="txt2">For example, suppose we had a binary classification problem where one class accounted for 90% of the training examples but we had a million training examples.  Here regular kfold cross validation would likely preserve the ratio between the classes. However, say we had only a thousand training examples for the same problem. In this case, it’s more likely that different folds would have different class ratios, especially with larger values of k and could even result in a fold containing training examples from just a single class.</p>
             <p class="txt2">Now that we understand what this method is and when to use it let’s have a look at how to implement it in Python using Sci-Kit Learn.</p>
+            
+            <!--TOP AD BANNER-->
+            <div class='horizontal_ad'>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- top_ad_banner -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:100%;height:100px;
+                            text-align:center;"
+                     data-ad-client="ca-pub-4825364639199120"
+                     data-ad-slot="9902475134"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>  
 
 
             <h3 class="txt_pad">How to Implement Stratified Kfold Using Scikit-Learn</h3>

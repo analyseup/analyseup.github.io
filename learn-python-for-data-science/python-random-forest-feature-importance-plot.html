@@ -71,8 +71,8 @@
         <!--MENU LINKS-->
         <h6 class="side_title">Python Machine Learning</h6>
             <a href="../learn-python-for-data-science/python-random-forest-feature-importance-plot.html" class="w3-bar-item w3-button side_link" >Plotting Feature Importance</a>
-            <a href="stratified-kfold.html" class="w3-bar-item w3-button side_link" >Stratified KFold</a>
-            <a href="xgboost-parameter-tuning.html" class="w3-bar-item w3-button side_link" >XGBoost Parameter Tuning</a>
+            <a href="../python-machine-learning/stratified-kfold.html" class="w3-bar-item w3-button side_link" >Stratified KFold</a>
+            <a href="../python-machine-learning/xgboost-parameter-tuning.html" class="w3-bar-item w3-button side_link" >XGBoost Parameter Tuning</a>
             <a href="" class="w3-bar-item w3-button side_link" >More to Follow...</a>
         <h6 class="side_title">Other Tutorials & Content</h6>
             <a href="../learn-alteryx/alteryx-introduction.html" class="w3-bar-item w3-button side_link" >Learn Alteryx</a> 
@@ -96,20 +96,12 @@
         
           
         <!--CONTENT-->
-        <div class="w3-container">
+        <div class="w3-container content_container">
             <!--TOP AD BANNER-->
-            <div class='horizontal_ad'>
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                <!-- top_ad_banner -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:100%;height:100px;
-                            text-align:center;"
-                     data-ad-client="ca-pub-4825364639199120"
-                     data-ad-slot="9902475134"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div> 
+            <a href="https://www.datasnips.com" target=”_blank”>
+            <img src="../img/au_advert_v1.png" style="max-width:800px;display:block;width:100%;height:auto;text-align:center;border:1px solid grey;margin-left: auto;margin-right: auto;">
+            </a>  
+            
 
             <!--HEADER-->
         <p class=txt_pad></p>
@@ -143,6 +135,19 @@
             <p class="txt txt_pad">A big part of analysing our models post training is whether the features we used for training actually helped in predicting the target and by how much. Tree based machine learning algorithms such as <b>Random Forest</b> and <b>XGBoost</b> come with a <b>feature importance</b> attribute that outputs an array containing a value between 0 and 100 for each feature representing how useful the model found each feature in trying to predict the target. This gives us the opportunity to analyse what contributed to the accuracy of the model and what features were just noise. With this information we can check that the model is working as we would expect, discard features if we feel they are not adding any value and use it to hypothesis about new features that we could engineer for another iteration of the model.
             </p>
             <p class="txt2">However, the problem with the feature importance attribute is that the output is an unlabelled, unordered array of values so looking at it in isolation won’t tell us much about our model. So we are going to take this array and create a function that plots the feature importance data on a labelled and ordered Seaborn bar chart that will give us a more intuitive understanding of which features our model has deemed useful.</p>
+            
+            <div class='horizontal_ad'>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- top_ad_banner -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:100%;height:100px;
+                            text-align:center;"
+                     data-ad-client="ca-pub-4825364639199120"
+                     data-ad-slot="9902475134"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div> 
 
             
             <h3 class="txt_pad">Import Libraries</h3>
