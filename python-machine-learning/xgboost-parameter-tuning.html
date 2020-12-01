@@ -131,6 +131,12 @@
             <p class="txt">XGBoost has many parameters that can be adjusted to achieve greater accuracy or generalisation for our models. Here we’ll look at just a few of the most common and influential parameters that we’ll need to pay most attention to. We’ll get an intuition for these parameters by discussing how different values can impact the performance of our models before demonstrating how to use grid search to find the best values in a given range for the model we’re working on.</p>
             <p class="txt2">Before we discuss the parameters let's just have a quick review of how the XGBoost algorithm works to enable us to understand how the changes in parameter values will impact the way our models are trained.</p>
             
+            <div style="text-align: center;width:100%; margin-bottom: 10px;">
+                <a class="txt" href="https://www.datasnips.com/2/profile" style="color:#ff7700ff; font-size:20px;text-align: center;">
+                     <b>View Our Profile on Datasnips.com to See Our Data Science Code Snippets</b> 
+                </a>
+            </div>
+            
             <h3 class="txt_pad">XGBoost Overview</h3>
             <p class="txt">XGBoost has similar behaviour to a decision tree in that each tree is split based on certain range values in different columns but unlike decision trees, each each node is given a weight. On each iteration a new tree is created and new node weights are assigned. For each tree the training examples with the biggest error from the previous tree are given extra attention so that the next tree will optimise more for these training examples, this is the boosting part of the algorithm. Finally, the outputs of each tree get ensembled, usually through averaging the weights for each instance from each tree to derive predictions.</p>
             

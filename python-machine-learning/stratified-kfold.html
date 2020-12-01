@@ -131,6 +131,12 @@
             <p class=txt_pad></p>
             <p class="txt">In this short tutorial we are going to look at stratified kfold cross validation: what it is and when we should use it. We’ll then walk through how to split data into 5 stratified folds using the StratifiedKFold function in Sci-Kit Learn and use those folds to train and test a model before exporting all the splits to csv files.</p>
             
+            <div style="text-align: center;width:100%; margin-bottom: 10px;">
+                <a class="txt" href="https://www.datasnips.com/2/profile" style="color:#ff7700ff; font-size:20px;text-align: center;">
+                     <b>View Our Profile on Datasnips.com to See Our Data Science Code Snippets</b> 
+                </a>
+            </div>
+            
             <h3 class="txt_pad">What is Stratified KFold Cross Validation?</h3>
             <p class="txt">Stratified kfold cross validation is an extension of regular kfold cross validation but specifically for classification problems where rather than the splits being completely random, the ratio between the target classes is the same in each fold as it is in the full dataset.</p>
             <p class="txt2">Let’s look at an example. If we are building a model to classify images of cats and dogs and we have a data set that’s comprised of 75% cat images and 25% dog images, using stratified kfold cross valuation will mean that each fold we create remains close to this 75/25 ratio.</p>
