@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- GOOGLE ANALYTICS -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-147504302-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-147504302-1');
+    </script>
+
+    <title>Python Dictionaries - Python Data Science Code Directory</title>
+
+    <!--META TAGS-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="The Python Data Science Code Directory is a repository of code examples for working with data and building machine learning models in Python. It's built as a quick and easy code lookup for data scientists and analysts of all levels.">
+    <!--SOCIAL MEDIA META TAGS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--STYLESHEETS-->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link href='../css/w3.css' rel='stylesheet' type="text/css">
+    <link href='../css/page_style.css' rel='stylesheet' type='text/css'>
+
+    <!--JAVASCRIPT FOR BURGER MENU-->
+    <script>
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+        }
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+        }
+    </script>
+</head>
+
+<body>
+    <!--TOP BANNER-->
+
+
+    <div id="top">
+        <a href="../index.html"><img alt="Get Started with Data Science, Data Analysis and BI" id="banner" src="../img/AnalyseUp_Black(v2.2).png" ></a>
+        <div class="sep"></div>
+    </div>
+
+
+
+    <!--SIDE MENU-->
+    <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:250px; top:0vh;" id="mySidebar">
+        <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+        <!--NEXT BUTTON
+        <a href="python-lists-and-tuples.html" style="text-decoration: none;"><div id="next">Next</div></a>-->
+        <p></p>
+        <!--MENU LINKS-->
+        <h6 class="side_title">Setup</h6>
+        <a href="../python-data-science-reference/conda-commands.html" class="w3-bar-item w3-button side_link" >Conda Commands</a>
+        <h6 class="side_title">General Python</h6>
+        <a href="../python-data-science-reference/python-lists.html" class="w3-bar-item w3-button side_link" >Lists</a>
+        <a href="../python-data-science-reference/python-dictionaries.html" class="w3-bar-item w3-button side_link" >Dictionaries</a>
+        <h6 class="side_title">Data Wrangling</h6>
+            <a href="../python-data-science-reference/pandas-create-dataframe.html" class="w3-bar-item w3-button side_link" >Importing Data</a>
+            <a href="../python-data-science-reference/pandas-selecting-dropping-and-renaming-columns.html" class="w3-bar-item w3-button side_link" >Select, Drop & Rename</a>
+            <a href="../python-data-science-reference/pandas-filter-sort-and-sample.html" class="w3-bar-item w3-button side_link" >Filter, Sort & Sample</a>
+            <a href="../python-data-science-reference/pandas-add-column.html" class="w3-bar-item w3-button side_link" >Add Columns</a>
+            <a href="../python-data-science-reference/pandas-clean-data.html" class="w3-bar-item w3-button side_link" >Cleaning Data</a>
+            <a href="../python-data-science-reference/pandas-dates.html" class="w3-bar-item w3-button side_link" >Dates & Time</a>
+        <a href="../python-data-science-reference/pandas-join-data.html" class="w3-bar-item w3-button side_link" >Join Data</a>
+            <a href="../python-data-science-reference/pandas-aggregating-data.html" class="w3-bar-item w3-button side_link" >Aggregate & Transform</a>
+        <h6 class="side_title">Data Analysis</h6>
+            <a href="../python-data-science-reference/pandas-exploring-data.html" class="w3-bar-item w3-button side_link" >Exploring Data</a>
+            <a href="../python-data-science-reference/seaborn-continuous-variables.html" class="w3-bar-item w3-button side_link" >Plotting Continuous Variables</a>
+            <a href="../python-data-science-reference/seaborn-discrete-variables.html" class="w3-bar-item w3-button side_link" >Plotting Discrete Variables</a>
+        <h6 class="side_title">Machine Learning</h6>
+            <a href="../python-data-science-reference/python-machine-learning-model-preparation.html" class="w3-bar-item w3-button side_link" >Data Preparation</a>
+            <a href="../python-data-science-reference/python-machine-learning-linear-models.html" class="w3-bar-item w3-button side_link" >Linear Models</a>
+                            <br/>
+            <br/>
+            <br/>
+            <br/>
+    </div>
+
+    <!--MAIN PAGE----->
+    <div class="w3-main" style="margin-left:250px; margin-right:200px;">
+    <div>
+
+        <!--MENU BUTTON-->
+          <div class="h_left">
+              <button class="w3-button w3-xlarge w3-hide-large" onclick="w3_open()" style="left:0;">&#9776;</button>
+          </div>
+
+          <!--HEADER-->
+          <div class="h_right">
+              <h1>Python Dictionaries</h1>
+          </div>
+
+        <!--CONTENT-->
+        <div class="w3-container content_container">
+            <!--PY-REF-TOP-BANNER-->
+            <div class='horizontal_ad'>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- top_ad_banner -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:100%;height:100px;
+                            text-align:center;"
+                     data-ad-client="ca-pub-4825364639199120"
+                     data-ad-slot="6723525876"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+            <!--SOCIAL MEDIA BUTTONS-->
+            <div class="share_buttons">
+                  <!--TWITTER FOLLOW-->
+                  <a href="https://twitter.com/AnalyseUp?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @AnalyseUp</a>
+            </div>
+            <p class="txt_pad"></p>
+            <div id=sub>
+                <div id=m_menu>
+                    <a class=menu_li href="#create">Creating Dictionaries</a>
+                    <a class=menu_li href="#values">Getting Value of a Dictionay Key</a>
+                    <a class=menu_li href="#change">Changing Value of a Key</a>
+                    <a class=menu_li href="#add">Adding to a Dictionary</a>
+                    <a class=menu_li href="#delete">Deleting from a Dictionary</a>
+                </div>
+            </div>
+
+            <a name="create"></a>
+            <h2 class="txt_pad">Creating Dictionaries</h2>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class=code_line>
+                        string_list = [<span class='string'>'one'</span>,
+                        <span class='string'> 'two'</span>,
+                        <span class='string'> 'three'</span>]</div>
+                        <div class=code_line>int_list = [<span class=number>1</span>, <span class=number>2</span>, <span class=number>3</span>, <span class=number>4</span>]</div>
+                        <div class=code_line>mixed_list = [<span class=number>1</span>,<span class='string'> 'two'</span>, <span class=number>3</span>]</div>
+                    </div>
+                </div>
+            </div>
+
+            <a name="elements"></a>
+            <h2 class="txt_pad">Getting List Elements</h2>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class=code_line><span class=comment>#Select first element of my_list:</div>
+                        <div class=code_line>my_list[<span class=number>0</span>]</div>
+                        <div class=code_line><span class=comment>#Select first two element of my_list:</div>
+                        <div class=code_line>my_list[<span class=number>0</span>:<span class=number>2</span>]</div>
+                    </div>
+                </div>
+            </div>
+
+            <a name="length"></a>
+            <h2 class="txt_pad">List Length</h2>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class=code_line><span class=comment>#Get the number of elements in my_list:</div>
+                        <div class=code_line><span class=key_word>len</span>(my_list)</div>
+                    </div>
+                </div>
+            </div>
+
+            <a name="append"></a>
+            <h2 class="txt_pad">Append to List</h2>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class=code_line><span class=comment>#Append the number 4 to my_list:</div>
+                        <div class=code_line>my_list.append(<span class=number>4</span>)</div>
+                    </div>
+                </div>
+            </div>
+
+            <a name="remove"></a>
+            <h2 class="txt_pad">Remove Element from List</h2>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class=code_line><span class=comment>#Remove the number 4 from my_list:</div>
+                        <div class=code_line>my_list.remove(<span class=number>4</span>)</div>
+                    </div>
+                </div>
+            </div>
+
+            <a name="reassign"></a>
+            <h2 class="txt_pad">Reassigning List Elements</h2>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class=code_line><span class=comment>#Reassign the first element of my_list to 10:</div>
+                        <div class=code_line>my_list[<span class=number>0</span>] = <span class=number>10</span></div>
+                    </div>
+                </div>
+            </div>
+
+
+            
+
+
+
+
+            <!--
+             <a href="python-lists-and-tuples.html" style="text-decoration: none;"><div id="next_mobile">Next</div></a>
+            -->
+            <!--PY-REF-FOOTER-->
+            <div class="ad_banner">
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <ins class="adsbygoogle"
+                         style="display:block; text-align:center;"
+                         data-ad-layout="in-article"
+                         data-ad-format="fluid"
+                         data-ad-client="ca-pub-4825364639199120"
+                         data-ad-slot="7601493277"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+            </div>
+
+
+
+        </div>
+    </div>
+    </div>
+<!-------------------------------------FOOTER---------------------------------->
+<div id="footer"></div>
+
+<!--PY-REF-SIDE-BANNER-->
+<div id="ad_bar" >
+    <!-- side_bar_1 -->
+    <ins class="adsbygoogle"
+         style="display:block; margin-top: 10vh;"
+         data-ad-client="ca-pub-4825364639199120"
+         data-ad-slot="6943017726"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+</div>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</body>
+</html>
