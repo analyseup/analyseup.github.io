@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <!-- GOOGLE ANALYTICS -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-147504302-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-147504302-1');
+    </script>
+
+    <title>Catboost with Python: A Simple Tutorial | AnalyseUp.com</title>
+    
+    <!--META TAGS-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="In this short tutorial we will see how to quickly implement Catboost using Python. We'll learn how to handle categorical features, train and tune the model using grid search and analyse the result.">
+    <!--SOCIAL MEDIA META TAGS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--STYLESHEETS-->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link href='../css/w3.css' rel='stylesheet' type="text/css">
+    <link href='../css/page_style.css' rel='stylesheet' type='text/css'> 
+
+    <!--JAVASCRIPT FOR BURGER MENU-->
+    <script>
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+        }
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+        }
+    </script>
+</head>
+    
+<body>
+    <!--TOP BANNER-->
+
+
+    <div id="top" style="max-width: 1080px">
+        <a href="../index.html"><img alt="Get Started with Data Science, Data Analysis and BI" id="banner" src="../img/AnalyseUp_Black(v2.2).png" ></a>
+        <div class="sep"></div>
+    </div>
+    
+
+    
+    <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:250px; top:0vh;" id="mySidebar">
+        <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+        <!--<a href="alteryx-exercises.html" style="text-decoration: none;"><div id="next">Next</div></a>-->
+        <div id="mailchimp">
+            <h6 id="side_title" style="text-align: center; color: black; margin-left: 15px; margin-right:15px;"><b>Subscribe to Our Mailing List</b></h6>
+            <form action="https://analyseup.us17.list-manage.com/subscribe/post?u=af90f4bd3ff02cce6caf63d9e&amp;id=b95079f149" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                <input type="email" size="30" value="Enter your email" name="EMAIL" class="required email" id="mce-EMAIL" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;">
+            
+                    <div id="mce-responses" class="clear">
+                        <div class="response" id="mce-error-response" style="display:none"></div>
+                        <div class="response" id="mce-success-response" style="display:none"></div>
+                    </div>
+            
+                    <div class="clear">
+                        <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+                    </div>
+            </form>
+            </div>
+            <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+            <!--End mc_embed_signup-->
+        <h6 class="side_title">Python Machine Learning</h6>
+            <a href="../learn-python-for-data-science/python-random-forest-feature-importance-plot.html" class="w3-bar-item w3-button side_link" >Plotting Feature Importance</a>
+            <a href="../python-machine-learning/stratified-kfold.html" class="w3-bar-item w3-button side_link" >Stratified KFold</a>
+            <a href="../python-machine-learning/xgboost-parameter-tuning.html" class="w3-bar-item w3-button side_link" >XGBoost Parameter Tuning</a>
+            <a href="" class="w3-bar-item w3-button side_link" >More to Follow...</a>
+        <h6 class="side_title">Other Content</h6>
+            <a href="../learn-alteryx/alteryx-introduction.html" class="w3-bar-item w3-button side_link" >Get Started with Alteryx</a>
+            <a href="../learn-python-for-data-science/python-variables-and-data-types.html" class="w3-bar-item w3-button side_link" >Learn Python</a>
+            <a href="../python-data-science-reference/pandas-create-dataframe.html" class="w3-bar-item w3-button side_link" >Python Data Science Reference</a>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+    </div>
+
+    <!--MAIN PAGE----->
+    <div class="w3-main" style="margin-left:250px; margin-right:200px; width=2px;">
+    <div>
+            
+        <!--MENU BUTTON-->
+          <div class="h_left">
+              <button class="w3-button w3-xlarge w3-hide-large" onclick="w3_open()" style="left:0;">&#9776;</button>
+          </div>
+        
+        
+        <!--CONTENT-->
+        <div class="w3-container content_container">
+            <!--DATASNIPS-->
+            <a href="https://www.datasnips.com" target=”_blank”>
+            <img src="../img/au_advert_v2.png" style="max-width:800px;display:block;width:100%;height:auto;text-align:center;border:1px solid grey;margin-left: auto;margin-right: auto;">
+            </a>  
+            
+            
+            <p></p>
+            <p class=txt_pad></p>
+                <div class="h_right">
+                    <h1 style="font-size: 24px;">Catboost with Python: A Simple Tutorial</h1>
+                </div>
+            <p></p>
+            <div id=sub  class=txt_pad>
+                <div id=m_menu>
+                    <a class=menu_li href="#what">What is Catboost?</a>
+                    <a class=menu_li href="#use_cases">Use Cases</a>
+                    <a class=menu_li href="#imp">Implementation</a>
+                </div>
+            </div>
+            <p class="txt">In this tutorial we will see how to implement the Catboost machine learning algorithm in Python. We will give a brief overview of what Catboost is and what it can be used for before walking step by step through training a simple model including how to tune parameters and analyse the model.</p>
+            
+            <a name=what></a>
+            <h2 class="txt_pad">What is Catboost?</h2>
+            <p class="txt">Catboost is a boosted decision tree machine learning algorithm developed by Yandex. It works in the same way as other gradient boosted algorithms such as XGBoost but provides support out of the box for categorical variables, has a higher level of accuracy without tuning parameters and also offers GPU support to speed up training.</p>
+            
+            <!--TOP AD BANNER-->
+            <div class='horizontal_ad'>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- top_ad_banner -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:100%;height:100px;
+                            text-align:center;"
+                     data-ad-client="ca-pub-4825364639199120"
+                     data-ad-slot="9902475134"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>  
+
+            <a name=use_cases></a>
+            <h2 class="txt_pad">Use Cases</h2>
+            <p class="txt">Catboost is used for a range of regression and classification tasks and has been shown to be a top performer on various Kaggle competitions that involve tabular data. Below are a couple of examples of where Catboost has been successfully implemented:</p>
+            <ul class="txt2">
+                <li>Cloudflare use Catboost to identify bots trying to target it’s users websites. Full details <a href="https://blog.cloudflare.com/stop-the-bots-practical-lessons-in-machine-learning/" class="txt2 analyseup-link" target=”_blank”>here</a>.</li>
+                <li>Ride hailing service Careem, based in Dubai, use Catboost to predict where it’s customers will travel to next. Full details <a href="https://blog.careem.com/en/careems-destination-prediction-service/" class="txt2 analyseup-link" target=”_blank”>here</a>.
+                </li>
+            </ul>
+            
+            <a name=imp></a>
+            <h2 class="txt_pad">Implementation</h2>
+            <p class="txt">For this short tutorial we are going to use the classic Titanic dataset to predict whether a passenger on the ship survived or not. The intention here is to keep this tutorial simple using a small dataset but the principles will apply to more complex datasets and problems you might be trying to solve.</p>
+            <p class="txt2">Before we start, let’s import the libraries we will need and also the titanic dataset.</p>
+            
+            
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class=code_line>
+                            <span class=key_word>import</span> pandas <span class=key_word>as</span> pd
+                        </div>
+                        <div class=code_line>
+                            <span class=key_word>from</span> pandas.api.types <span class=key_word>import</span> is_numeric_dtype  
+                        </div>
+                        <div class=code_line>
+                            <span class=key_word>from</span> sklearn.model_selection <span class=key_word>import</span> train_test_split
+                        </div>
+                        <div class=code_line>
+                            <span class=key_word>import</span> catboost <span class=key_word>as</span> cb
+                        </div>
+                        <div class=code_line>
+                            <span class=key_word>from</span> sklearn.metrics <span class=key_word>import</span> classification_report
+                        </div>
+                        <div class=code_line>
+                            <span class=key_word>import</span> matplotlib.pyplot <span class=key_word>as</span> plt
+                        </div>
+                        <div class=code_line>
+                            <span class=key_word>import</span> seaborn <span class=key_word>as</span> sns
+                        </div>
+                        <p></p>
+                        <div class=code_line>
+                            df = pd.read_csv(<span class=string>'titanic.csv'</span>)
+                        </div>
+                        
+                        
+                  </div>
+            </div>
+            </div>
+            
+            <h3 class="txt_pad">Data Preparation</h3>
+            <p class="txt2">Initially we’re simply going to drop any rows that contain NaN for the “survived” column which is our target as this doesn’t help our model.</p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class=code_line>
+                            df.dropna(subset=[<span class=string>'survived'</span>],inplace=<span class=key_word>True</span>)
+                        </div>
+                  </div>
+            </div>
+            </div>
+            
+            <p class="txt2">Now for this tutorial we are only going to make use of 4 features; pclass, sex, age and fare. Let’s split our data into X and y to get our feature and target dataframes.</p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class=code_line>
+                            X = df[[<span class=string>'pclass'</span>,<span class=string>'sex'</span>, <span class=string>'age'</span>, <span class=string>'fare'</span>]]
+                        </div>
+                        <div class=code_line>
+                            y = df[<span class=string>'survived'</span>]
+                        </div>
+                  </div>
+            </div>
+            </div>
+            
+            <p class="txt2">Now we still need to treat some of the features. We need to convert the “pclass” column to a string data type as although it appears numeric, the values are discrete so it’s actually a categorical variable in this context. In addition, the “fare” and “age” columns contain some NaNs so we’ll replace these with zeros.</p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class=code_line>
+                            X[<span class=string>'pclass'</span>] = X[<span class=string>'pclass'</span>].astype(<span class=string>'str'</span>)
+                        </div>
+                        <div class=code_line>
+                            X[<span class=string>'fare'</span>].fillna(<span class=number>0</span>,inplace=<span class=key_word>True</span>)
+                        </div>
+                        <div class=code_line>
+                            X[<span class=string>'age'</span>].fillna(<span class=number>0</span>,inplace=<span class=key_word>True</span>)
+                        </div>
+                  </div>
+            </div>
+            </div>
+            
+            <h3 class="txt_pad">Preparing Categorical Features</h3>
+            <p class="txt">As mentioned above, Catboost provides support for categorical features with no need to one-hot encode or dummy any columns. To enable this we need to do two things.</p>
+            <p class="txt2">First we need to generate a list of column indices that contain the categorical data. This list will be passed to the model during training. Now, we only have two categorical variables so it’s easy for us to identify the column indices manually (in our case it’s the first two columns; “pclass” and “sex”) but in another project you could be working with any number of categorical columns. Given this, let’s create a function that takes a dataframe and returns indices of all non-numeric columns as a list.</p>
+            
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class=code_line>
+                            <span class=key_word>def</span> <b>get_categorical_indicies</b>(X):  
+                        </div>
+                        <div class="code_line function1">
+                            cats = []
+                        </div>
+                        <div class="code_line function1">
+                            <span class=key_word>for</span> col in X.columns:
+                        </div>
+                        <div class="code_line function2">
+                            <span class=key_word>if</span> is_numeric_dtype(X[col]):
+                        </div>
+                        <div class="code_line function3">
+                            <span class=key_word>pass</span>
+                        </div>
+                        <div class="code_line function2">
+                            <span class=key_word>else</span>:
+                        </div>
+                        <div class="code_line function3">
+                            cats.append(col)
+                        </div>
+                        <div class="code_line function1">
+                            cat_indicies = []
+                        </div>
+                        <div class="code_line function1">
+                            <span class=key_word>for</span> col in cats:
+                        </div>
+                        <div class="code_line function2">
+                            cat_indicies.append(X.columns.get_loc(col))
+                        </div>
+                        <div class="code_line function1">
+                            <span class=key_word>return</span> cat_indicies
+                        </div>
+                        <p></p>
+                        <div class="code_line">
+                            categorical_indicies = get_categorical_indicies(X)
+                        </div>
+                  </div>
+            </div>
+            </div>
+            
+            <p class="txt2">Now we can reuse this function to get the indices of non-numerical columns for any dataframe when we use Catboost.</p>
+            <p class="txt2">The second thing we need to do is convert all categorical columns to the category data type which is required by Catboost. To do this we are going to use another function and similar logic to the previous step to identify non-numerical columns and convert them to the category data type.</p>
+            
+            
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class=code_line>
+                            <span class=key_word>def</span> <b>convert_cats</b>(X):  
+                        </div>
+                        <div class="code_line function1">
+                            cats = []
+                        </div>
+                        <div class="code_line function1">
+                            <span class=key_word>for</span> col in X.columns:
+                        </div>
+                        <div class="code_line function2">
+                            <span class=key_word>if</span> is_numeric_dtype(X[col]):
+                        </div>
+                        <div class="code_line function3">
+                            <span class=key_word>pass</span>
+                        </div>
+                        <div class="code_line function2">
+                            <span class=key_word>else</span>:
+                        </div>
+                        <div class="code_line function3">
+                            cats.append(col)
+                        </div>
+                        <div class="code_line function1">
+                            cat_indicies = []
+                        </div>
+                        <div class="code_line function1">
+                            <span class=key_word>for</span> col in cats:
+                        </div>
+                        <div class="code_line function2">
+                            X[col] = X[col].astype(<span class=string>'category'</span>)
+                        </div>
+                        <p></p>
+                        <div class="code_line">
+                            convert_cats(X)
+                        </div>
+                  </div>
+            </div>
+            </div>
+            
+          <p class="txt2">Finally, before we begin training our model we need to split our data into two datasets for training and testing.</p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class=code_line>
+                            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=<span class=number>0.2</span>, random_state=<span class=number>101</span>, stratify=y) 
+                        </div>
+
+                  </div>
+            </div>
+            </div>
+            
+            <p class="txt2">Now there is an additional complication; if we print out the survival rate of of our test set we can see that our training data is imbalanced.</p>
+            
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class=code_line>
+                            print(<span class=string>'Test Survival Rate:'</span>,y_test.sum()/y_test.count())
+                        </div>
+                  </div>
+            </div>
+                <div class="output_box_wide">
+                  <div class="txt2 output_txt">
+                  Test Survival Rate: 0.3816793893129771<br/>
+                  </div>
+            </div>
+            </div>
+            
+            
+            <p class="txt2">There are a few ways to handle this but in our example we are simply going to undersample the training data. </p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class=code_line>
+                            train_df = pd.concat([X,y],axis=<span class=number>1</span>)
+                        </div>
+                        <div class=code_line>
+                            survived = train_df[train_df[<span class=string>'survived'</span>]==<span class=number>1</span>]
+                        </div>
+                        <div class=code_line>
+                            deceased = train_df[train_df[<span class=string>'survived'</span>]==<span class=number>0</span>]
+                        </div>
+                        <div class=code_line>
+                            deceased = deceased.sample(n=len(survived), random_state=<span class=number>101</span>)
+                        </div>
+                        <div class=code_line>
+                            train_df = pd.concat([survived,deceased],axis=<span class=number>0</span>)
+                        </div>
+                        <div class=code_line>
+                            X_train = train_df.drop(<span class=string>'survived'</span>,axis=<span class=number>1</span>)
+                        </div>
+                        <div class=code_line>
+                            y_train = train_df[<span class=string>'survived'</span>]
+                        </div>
+
+                  </div>
+            </div>
+            </div>
+            
+            <h3 class="txt_pad">Training</h3>
+            <p class="txt">To train our model we are going to wrap our train and test datasets in a Catboost pool constructor. We can define our features, target and list of categorical features inside the pool constructor and then pass these as one when training and evaluating our model.</p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class=code_line>
+                            train_dataset = cb.Pool(X_train,y_train, cat_features=categorical_indicies)
+                        </div>
+                        <div class=code_line>
+                            test_dataset = cb.Pool(X_test,y_test, cat_features=categorical_indicies)
+                        </div>
+                  </div>
+            </div>
+            </div>
+            <p class="txt2">Now let’s initiate the Catboost Classifier.</p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class=code_line>
+                            model = cb.CatBoostClassifier(loss_function=<span class=string>'Logloss'</span>, eval_metric=<span class=string>'Accuracy'</span>)
+                        </div>
+                  </div>
+            </div>
+            </div>
+            
+            <p class="txt2">As this is a binary classification problem we’ll use log loss as the loss function and evaluate based on accuracy.</p>
+            <p class="txt" style='color:rgb(167, 163, 163)'><i>Note: If you are looking for an intuitive explanation of log loss then check out <a href="https://towardsdatascience.com/understanding-binary-cross-entropy-log-loss-a-visual-explanation-a3ac6025181a" class="txt2 analyseup-link" target=”_blank”>this</a> article from Daniel Godoy.</i></p>
+            
+            <p class="txt2">To train the model we are going to use Catboost’s inbuilt grid search method. If you have used Sci-Kit learns Grid Search CV then this works in the same way. First we declare a dictionary of the hyperparameters that we want to tune and lists of values to test. We have decided to tune just a few of the most influential parameters: learning rate, tree depth, L2 leaf regularisation and also the number of iterations we will train the model for.</p>
+            
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class=code_line>
+                            grid = {<span class=string>'learning_rate'</span>: [<span class=number>0.03</span>, <span class=number>0.1</span>],
+                        </div>
+                        <div class="code_line function1">
+                            <span class=string>'depth'</span>: [<span class=number>4</span>, <span class=number>6</span>, <span class=number>10</span>],
+                        </div>
+                        <div class="code_line function1">
+                            <span class=string>'l2_leaf_reg'</span>: [<span class=number>1</span>, <span class=number>3</span>, <span class=number>5</span>,],
+                        </div>
+                        <div class="code_line function1">
+                            <span class=string>'iterations'</span>: [<span class=number>50</span>, <span class=number>100</span>, <span class=number>150</span>]}
+                        </div>
+                  </div>
+            </div>
+            </div>
+            
+            <p class="txt2">Now we can fit the model using the grid search method by passing the grid dictionary we declared above along with the training data pool. By default grid search splits the training data into an 80/20 split for training and testing with a three fold cross validation strategy.</p>
+            
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class=code_line>
+                            model.grid_search(grid,train_dataset)
+                        </div>
+                  </div>
+            </div>
+            </div>
+            
+            <p class="txt2">The model has now been trained and you can print out the optimum parameters that have been found using grid search if you’re interested.</p>
+            
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class=code_line>
+                            model.get_params()
+                        </div>
+                  </div>
+            </div>
+                <div class="output_box_wide">
+                  <div class="txt2 output_txt">
+                  {'loss_function': 'Logloss',<br/>
+                  'eval_metric': 'Accuracy',<br/>
+                  'depth': 10,<br/>
+                  'l2_leaf_reg': 1,<br/>
+                  'iterations': 100,<br/>
+                  'learning_rate': 0.1}<br/>
+                  </div>
+            </div>
+            </div>
+            
+            <h3 class="txt_pad">Evaluation</h3>
+            <p class="txt">Now that we have trained our model we can evaluate how it performs on our test data and then briefly see what features are most influential.</p>
+            <p class="txt2">To start with we’ll use our model to make predictions for our test and the print out a classification report.</p>
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class=code_line>
+                            pred = model.predict(X_test)
+                        </div>
+                        <div class=code_line>
+                            <span class=key_word>print</span>(classification_report(y_test, pred)) 
+                        </div>
+                  </div>
+            </div>
+            </div>
+            
+            <img class="output_image_80" alt="classification-report" src="../img/python-machine-learning/catboost/classification-report.png">
+            
+            <p></p>
+            
+            <p class="txt2 txt_pad">As we can see we got an accuracy of 79% on our test set which isn’t bad considering we are only using four features.</p>
+            <p class="txt2">To delve further under the hood of our model we can analyse what impact our features have had by plotting the feature importance.</p>
+            
+            <div class="wide_box code_wide_box">
+                  <div class="code_box_wide">
+                      <div class="txt2 code">
+                          <div class="code_line">
+                          <span class="key_word">def</span> plot_feature_importance(importance,names,model_type): 
+                          </div>
+                          <br/>
+                          <div class="code_line function1">
+                              <span class="comment">#Create arrays from feature importance and feature names</span>
+                          </div>
+                          <div class="code_line function1">
+                             feature_importance = np.array(importance)
+                          </div>
+                          <div class="code_line function1">
+                             feature_names = np.array(names)
+                          </div>
+                          <br/>
+                          <div class="code_line function1">
+                              <span class="comment">#Create a DataFrame using a Dictionary</span>
+                          </div>
+                          <div class="code_line function1">
+                              data={<span class="string">'feature_names'</span>:feature_names,<span class="string">'feature_importance'</span>:feature_importance}
+                          </div>
+                          <div class="code_line function1">
+                              fi_df = pd.DataFrame(data)
+                          </div>
+                          <br/>
+                          <div class="code_line function1">
+                              <span class="comment">#Sort the DataFrame in order decreasing feature importance</span>
+                          </div>
+                          <div class="code_line function1">
+                              fi_df.sort_values(by=[<span class="string">'feature_importance'</span>],
+                              ascending=<span class="key_word">False</span>,inplace=<span class="key_word">True</span>))
+                          </div>
+                          <br/>
+                          <div class="code_line function1">
+                              <span class="comment">#Define size of bar plot</span>
+                          </div>
+                           <div class="code_line function1">
+                              plt.figure(figsize=(10,8))
+                          </div>
+                          <div class="code_line function1">
+                              <span class="comment">#Plot Searborn bar chart</span>
+                          </div>
+                          <div class="code_line function1">
+                              sns.barplot(x=fi_df[<span class="string">'feature_importance'</span>], y=fi_df[<span class="string">'feature_names'</span>])
+                          </div>
+                          <div class="code_line function1">
+                              <span class="comment">#Add chart labels</span>
+                          </div>
+                          <div class="code_line function1">
+                              plt.title(model_type + <span class="string">' FEATURE IMPORTANCE'</span>)
+                          </div>
+                          <div class="code_line function1">
+                              plt.xlabel(<span class="string">'FEATURE IMPORTANCE'</span>)
+                          </div>
+                          <div class="code_line function1">
+                              plt.ylabel(<span class="string">'FEATURE NAMES'</span>)
+                          </div>
+                          <p></p>
+                          <div class="code_line">
+                              plot_feature_importance(cb_model.get_feature_importance(),train.columns,<span class="string">'CATBOOST'</span>) 
+                          </div>
+                      </div>
+                    </div>
+            </div>
+            
+            <img class="output_image_80" alt="feature-importance" src="../img/python-machine-learning/catboost/feature-importance.png">
+            
+            <p></p>
+            
+            <p class="txt2 txt_pad">As you can see the “sex” feature was by far the most dominant feature.</p>
+            
+            <p class="txt2" style='color:rgb(167, 163, 163)'><i>If you want a more detailed breakdown of the feature importance function then you can read about it <a href="https://www.analyseup.com/learn-python-for-data-science/python-random-forest-feature-importance-plot.html" class="txt2 analyseup-link" target=”_blank”>here</a>.</i></p>
+            
+            <p class="txt2">Finally, we can analyse how our model performed on our test data by breaking the performance down by feature values. Catboost comes with function called calc_feature_statistics which plots the average real value and average value of our models prediction for each feature value. Let’s generate a feature statistic plot for the “sex” feature in our test data.</p>
+            
+            <div class="wide_box code_wide_box">
+                <div class="code_box_wide">
+                    <div class="txt2 code">
+                        <div class=code_line>
+                            model.calc_feature_statistics(test_dataset,feature=<span class=string>'sex'</span>,plot=<span class=key_word>True</span>,prediction_type=<span class=string>'Class'</span>)
+                        </div>
+                  </div>
+            </div>
+            </div>
+            
+            <img class="output_image_80" alt="feature-statistics" src="../img/python-machine-learning/catboost/feature-statistics.png">
+            
+            <p></p>
+            
+            <p class="txt2 txt_pad">This tells us that we had a lot more examples of male passengers in our test dataset but that females were more likely to survive. The plot also indicates that our model was biased towards females surviving compared to men than was actually the case in our test data.</p>
+            
+            <p class="txt2">So there we have it, a quick walk through of how to implement Catboost using Python. Catboost contains many additional options to customise your training and evaluate your model. For further detail, check out the Catboost documentation <a href="https://catboost.ai/docs" class="txt2 analyseup-link" target=”_blank”>here</a>.</p>
+            
+            
+        
+        
+        
+        
+        
+            
+            <!--AD BANNER-->
+            <div class="ad_banner">
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <ins class="adsbygoogle"
+                         style="display:block; text-align:center;"
+                         data-ad-layout="in-article"
+                         data-ad-format="fluid"
+                         data-ad-client="ca-pub-4825364639199120"
+                         data-ad-slot="8773565602"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+            </div>
+
+        </div>
+    </div>
+    </div>
+<!-------------------------------------FOOTER---------------------------------->
+<div id="footer"></div>
+
+        
+<!--SIDE AD BAR-->
+<div id="ad_bar" >
+    <!-- side_bar_1 -->
+    <ins class="adsbygoogle"
+         style="display:block; margin-top: 10vh;"
+         data-ad-client="ca-pub-4825364639199120"
+         data-ad-slot="6532762683"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+</div>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>    
+
+</body>
+</html>
